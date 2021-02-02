@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/David/Documents/NetBeansProjects/Proyecto-Final--main/Proyecto-Cine/src/Vista/VistaAdministracionSalas.java</file>
+            <file>file:/C:/Users/David/Documents/NetBeansProjects/Proyecto-Final--main/Proyecto-Cine/src/Vista/VistaListaPeliculas.java</file>
+            <file>file:/C:/Users/David/Documents/NetBeansProjects/Proyecto-Final--main/Proyecto-Cine/src/Controlador/ControladorPelicula.java</file>
+            <file>file:/C:/Users/David/Documents/NetBeansProjects/Proyecto-Final--main/Proyecto-Cine/src/Vista/VistaDetallePelicula.java</file>
+            <file>file:/C:/Users/David/Documents/NetBeansProjects/Proyecto-Final--main/Proyecto-Cine/src/Vista/VistaAdministracionPeliculas.java</file>
+            <file>file:/C:/Users/David/Documents/NetBeansProjects/Proyecto-Final--main/Proyecto-Cine/src/Modelo/Sala.java</file>
+            <file>file:/C:/Users/David/Documents/NetBeansProjects/Proyecto-Final--main/Proyecto-Cine/src/Vista/VistaAdministracionSnacks.java</file>
+        </group>
     </open-files>
 </project-private>
