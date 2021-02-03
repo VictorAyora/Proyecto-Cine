@@ -55,12 +55,14 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabelDuracionPelicula = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jPanelActoresPelicula = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabelDirectorPelicula = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jPanelSinopsisPelicula = new javax.swing.JPanel();
         jButtonRegresar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPaneSinopsis = new javax.swing.JTextPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPaneActores = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -146,19 +148,6 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
         jLabel10.setText("Sinópsis:");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 460, -1, -1));
 
-        javax.swing.GroupLayout jPanelActoresPeliculaLayout = new javax.swing.GroupLayout(jPanelActoresPelicula);
-        jPanelActoresPelicula.setLayout(jPanelActoresPeliculaLayout);
-        jPanelActoresPeliculaLayout.setHorizontalGroup(
-            jPanelActoresPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
-        );
-        jPanelActoresPeliculaLayout.setVerticalGroup(
-            jPanelActoresPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanelActoresPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, 290, 80));
-
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Actores:");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, -1, -1));
@@ -171,21 +160,17 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
         jLabel12.setText("Subtítulos:");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 410, -1, -1));
 
-        javax.swing.GroupLayout jPanelSinopsisPeliculaLayout = new javax.swing.GroupLayout(jPanelSinopsisPelicula);
-        jPanelSinopsisPelicula.setLayout(jPanelSinopsisPeliculaLayout);
-        jPanelSinopsisPeliculaLayout.setHorizontalGroup(
-            jPanelSinopsisPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
-        );
-        jPanelSinopsisPeliculaLayout.setVerticalGroup(
-            jPanelSinopsisPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 110, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanelSinopsisPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 460, 320, 110));
-
         jButtonRegresar.setText("Regresar");
         getContentPane().add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 610, -1, -1));
+
+        jScrollPane2.setViewportView(jTextPaneSinopsis);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 460, 300, 100));
+
+        jTextPaneActores.setEditable(false);
+        jScrollPane1.setViewportView(jTextPaneActores);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, 280, 90));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -247,9 +232,11 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelNombrePelicula;
     private javax.swing.JLabel jLabelProveedorPelicula;
     private javax.swing.JLabel jLabelSubtitulosPelicula;
-    private javax.swing.JPanel jPanelActoresPelicula;
     private javax.swing.JPanel jPanelPortada;
-    private javax.swing.JPanel jPanelSinopsisPelicula;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextPane jTextPaneActores;
+    private javax.swing.JTextPane jTextPaneSinopsis;
     // End of variables declaration//GEN-END:variables
     class FondoPanel extends JPanel {
 

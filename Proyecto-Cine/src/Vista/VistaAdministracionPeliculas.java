@@ -54,7 +54,6 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         jTextFieldAnioPelicula = new javax.swing.JTextField();
         jRadioButtonSubtitulos = new javax.swing.JRadioButton();
         jLabel10 = new javax.swing.JLabel();
-        jTextFieldDuracionPelicula = new javax.swing.JTextField();
         jRadioButtonComedia = new javax.swing.JRadioButton();
         jRadioButtonFiccion = new javax.swing.JRadioButton();
         jRadioButtonTerror = new javax.swing.JRadioButton();
@@ -68,15 +67,11 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         jRadioButtonEspaniol = new javax.swing.JRadioButton();
         jRadioButtonIngles = new javax.swing.JRadioButton();
         jRadioButtonPortugues = new javax.swing.JRadioButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextAreaSinopsis = new javax.swing.JTextArea();
         jRadioButtonFrances = new javax.swing.JRadioButton();
         jPanelPortadaPelicula = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jButtonAgregarPortada = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextAreaActores = new javax.swing.JTextArea();
         jLabel13 = new javax.swing.JLabel();
         jTextFieldDirector = new javax.swing.JTextField();
         jButtonRegistrarPelicula = new javax.swing.JButton();
@@ -90,6 +85,11 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         jButtonCambiarEstadoPelicula = new javax.swing.JButton();
         jButtonModificarDatosPelicula = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
+        jSpinnerDuracionPelicula = new javax.swing.JSpinner();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextPaneSinopsisPelicula = new javax.swing.JTextPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPaneActoresPelicula = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -123,13 +123,13 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, -1));
 
         jLabel4.setText("AÑO:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, -1, -1));
 
         jLabel5.setText("SUBTÍTULOS:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, -1, 20));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, -1, 20));
 
         jLabel6.setText("DURACIÓN:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, -1, 20));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, -1, 20));
 
         jLabel7.setText("DIRECTOR:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 400, -1, -1));
@@ -138,7 +138,7 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 440, -1, -1));
 
         jLabel9.setText("IDIOMA:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 400, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, -1, 20));
         getContentPane().add(jTextFieldTituloPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 270, -1));
 
         jTextFieldAnioPelicula.addActionListener(new java.awt.event.ActionListener() {
@@ -146,18 +146,11 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
                 jTextFieldAnioPeliculaActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldAnioPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 70, -1));
-        getContentPane().add(jRadioButtonSubtitulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, -1, -1));
+        getContentPane().add(jTextFieldAnioPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 70, -1));
+        getContentPane().add(jRadioButtonSubtitulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, -1, -1));
 
         jLabel10.setText("GÉNERO:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, -1, -1));
-
-        jTextFieldDuracionPelicula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDuracionPeliculaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextFieldDuracionPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, 70, 20));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, -1));
 
         jRadioButtonComedia.setText("Comedia");
         jRadioButtonComedia.addActionListener(new java.awt.event.ActionListener() {
@@ -165,10 +158,10 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
                 jRadioButtonComediaActionPerformed(evt);
             }
         });
-        getContentPane().add(jRadioButtonComedia, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, -1, -1));
+        getContentPane().add(jRadioButtonComedia, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, -1, -1));
 
         jRadioButtonFiccion.setText("Ficción");
-        getContentPane().add(jRadioButtonFiccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, -1, -1));
+        getContentPane().add(jRadioButtonFiccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, -1, -1));
 
         jRadioButtonTerror.setText("Terror");
         jRadioButtonTerror.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +169,7 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
                 jRadioButtonTerrorActionPerformed(evt);
             }
         });
-        getContentPane().add(jRadioButtonTerror, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
+        getContentPane().add(jRadioButtonTerror, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, -1, -1));
 
         jRadioButtonRomance.setText("Romance");
         jRadioButtonRomance.addActionListener(new java.awt.event.ActionListener() {
@@ -184,17 +177,23 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
                 jRadioButtonRomanceActionPerformed(evt);
             }
         });
-        getContentPane().add(jRadioButtonRomance, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, -1, -1));
+        getContentPane().add(jRadioButtonRomance, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, -1, -1));
 
         jRadioButtonAccion.setText("Acción");
-        getContentPane().add(jRadioButtonAccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, -1, -1));
+        getContentPane().add(jRadioButtonAccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
 
         jRadioButtonDrama.setText("Drama");
-        getContentPane().add(jRadioButtonDrama, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, -1, -1));
+        getContentPane().add(jRadioButtonDrama, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, -1, -1));
 
         jRadioButtonInfantilFamiliar.setText("Infantil/Familiar");
-        getContentPane().add(jRadioButtonInfantilFamiliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, -1, -1));
-        getContentPane().add(jTextFieldProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 200, -1));
+        getContentPane().add(jRadioButtonInfantilFamiliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, -1, -1));
+
+        jTextFieldProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldProveedorActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 200, -1));
 
         jRadioButton2D.setText("2D");
         getContentPane().add(jRadioButton2D, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 440, -1, -1));
@@ -203,10 +202,10 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         getContentPane().add(jRadioButton3D, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 440, -1, -1));
 
         jRadioButtonEspaniol.setText("Español");
-        getContentPane().add(jRadioButtonEspaniol, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, -1, -1));
+        getContentPane().add(jRadioButtonEspaniol, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, -1, -1));
 
         jRadioButtonIngles.setText("Inglés");
-        getContentPane().add(jRadioButtonIngles, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 400, -1, -1));
+        getContentPane().add(jRadioButtonIngles, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, -1, -1));
 
         jRadioButtonPortugues.setText("Portugués");
         jRadioButtonPortugues.addActionListener(new java.awt.event.ActionListener() {
@@ -214,13 +213,7 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
                 jRadioButtonPortuguesActionPerformed(evt);
             }
         });
-        getContentPane().add(jRadioButtonPortugues, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, -1, -1));
-
-        jTextAreaSinopsis.setColumns(20);
-        jTextAreaSinopsis.setRows(5);
-        jScrollPane1.setViewportView(jTextAreaSinopsis);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 410, 50));
+        getContentPane().add(jRadioButtonPortugues, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, -1, -1));
 
         jRadioButtonFrances.setText("Francés");
         jRadioButtonFrances.addActionListener(new java.awt.event.ActionListener() {
@@ -228,7 +221,7 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
                 jRadioButtonFrancesActionPerformed(evt);
             }
         });
-        getContentPane().add(jRadioButtonFrances, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 400, -1, -1));
+        getContentPane().add(jRadioButtonFrances, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 370, -1, -1));
 
         jLabel11.setText("Portada");
 
@@ -237,42 +230,41 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         jPanelPortadaPeliculaLayout.setHorizontalGroup(
             jPanelPortadaPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPortadaPeliculaLayout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(77, 77, 77)
                 .addComponent(jLabel11)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanelPortadaPeliculaLayout.setVerticalGroup(
             jPanelPortadaPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPortadaPeliculaLayout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
+                .addContainerGap(47, Short.MAX_VALUE)
                 .addComponent(jLabel11)
-                .addGap(47, 47, 47))
+                .addGap(39, 39, 39))
         );
 
-        getContentPane().add(jPanelPortadaPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 150, 220, 120));
+        getContentPane().add(jPanelPortadaPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 180, 200, 100));
 
         jButtonAgregarPortada.setText("Agregar Portada");
-        getContentPane().add(jButtonAgregarPortada, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 280, -1, -1));
+        jButtonAgregarPortada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarPortadaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonAgregarPortada, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 210, 120, 30));
 
         jLabel12.setText("PROVEEDOR:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, -1));
-
-        jTextAreaActores.setColumns(20);
-        jTextAreaActores.setRows(5);
-        jScrollPane2.setViewportView(jTextAreaActores);
-
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 330, 270, 50));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, -1, -1));
 
         jLabel13.setText("ACTORES:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 340, -1, -1));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 310, -1, 20));
         getContentPane().add(jTextFieldDirector, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 400, 270, -1));
 
         jButtonRegistrarPelicula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonRegistrarPelicula.setText("Registrar");
-        getContentPane().add(jButtonRegistrarPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 440, 100, 30));
+        getContentPane().add(jButtonRegistrarPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 460, 100, 30));
 
         jLabel14.setText("SINÓPSIS:");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, -1, -1));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, -1, -1));
 
         jScrollPane3.setViewportView(jTextPaneBuscarPelicula);
 
@@ -305,6 +297,15 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonModificarDatosPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 610, -1, -1));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 500, 1160, 10));
+        getContentPane().add(jSpinnerDuracionPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, 80, 30));
+
+        jScrollPane4.setViewportView(jTextPaneSinopsisPelicula);
+
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, 440, 70));
+
+        jScrollPane2.setViewportView(jTextPaneActoresPelicula);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 310, 270, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -312,10 +313,6 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
     private void jTextFieldAnioPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnioPeliculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldAnioPeliculaActionPerformed
-
-    private void jTextFieldDuracionPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDuracionPeliculaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDuracionPeliculaActionPerformed
 
     private void jRadioButtonComediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonComediaActionPerformed
         // TODO add your handling code here:
@@ -344,6 +341,14 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
     private void jButtonModificarDatosPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarDatosPeliculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonModificarDatosPeliculaActionPerformed
+
+    private void jTextFieldProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldProveedorActionPerformed
+
+    private void jButtonAgregarPortadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarPortadaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAgregarPortadaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -418,21 +423,21 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButtonRomance;
     private javax.swing.JRadioButton jRadioButtonSubtitulos;
     private javax.swing.JRadioButton jRadioButtonTerror;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSpinner jSpinnerDuracionPelicula;
     private javax.swing.JTable jTableAdministracionPelicula;
-    private javax.swing.JTextArea jTextAreaActores;
-    private javax.swing.JTextArea jTextAreaSinopsis;
     private javax.swing.JTextField jTextFieldAnioPelicula;
     private javax.swing.JTextField jTextFieldDirector;
-    private javax.swing.JTextField jTextFieldDuracionPelicula;
     private javax.swing.JTextField jTextFieldProveedor;
     private javax.swing.JTextField jTextFieldTituloPelicula;
+    private javax.swing.JTextPane jTextPaneActoresPelicula;
     private javax.swing.JTextPane jTextPaneBuscarPelicula;
+    private javax.swing.JTextPane jTextPaneSinopsisPelicula;
     private java.awt.ScrollPane scrollPaneAdmPelicula;
     // End of variables declaration//GEN-END:variables
     class FondoPanel extends JPanel {

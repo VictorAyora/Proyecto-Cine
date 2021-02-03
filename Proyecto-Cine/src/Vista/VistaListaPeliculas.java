@@ -72,12 +72,16 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Película", "Formato", "Horario", "N° Ticket", "N° Sala", "Días"
+                "Película", "Año", "Subtítulos", "Duración", "Género", "Proveedor", "Formato", "Idioma"
             }
         ));
         jScrollPane1.setViewportView(jTableListaPeliculas);
+        if (jTableListaPeliculas.getColumnModel().getColumnCount() > 0) {
+            jTableListaPeliculas.getColumnModel().getColumn(3).setResizable(false);
+            jTableListaPeliculas.getColumnModel().getColumn(5).setResizable(false);
+        }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 990, 340));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 980, 340));
 
         jButtonVerDetalles.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonVerDetalles.setText("Ver Detalles");
