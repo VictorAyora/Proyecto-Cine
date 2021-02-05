@@ -19,7 +19,7 @@ public class Cuenta extends javax.swing.JFrame {
      * Creates new form Cuenta
      */
     
-        FondoPanel fondo = new FondoPanel();
+    FondoPanel fondo = new FondoPanel();
 
     public Cuenta() {
         this.setContentPane(fondo);
@@ -38,7 +38,7 @@ public class Cuenta extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButtonEditarImagen = new javax.swing.JButton();
+        jButtonGuardarCambios = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -46,21 +46,23 @@ public class Cuenta extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextFieldBuscar = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldDireccion = new javax.swing.JTextField();
         jLabelNombre = new javax.swing.JLabel();
         jLabelApellido = new javax.swing.JLabel();
         jLabelCedula = new javax.swing.JLabel();
         jLabelCorreo = new javax.swing.JLabel();
         jButtonEditarImagen1 = new javax.swing.JButton();
         jButtonEditarImagen2 = new javax.swing.JButton();
-        jButtonEditarImagen3 = new javax.swing.JButton();
+        jButtonModificarClave = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jTextFieldNombre1 = new javax.swing.JTextField();
+        jTextFieldTelefono = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -75,13 +77,14 @@ public class Cuenta extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 210, 180));
 
-        jButtonEditarImagen.setText("Guardar Cambios");
-        jButtonEditarImagen.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGuardarCambios.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonGuardarCambios.setText("Guardar Cambios");
+        jButtonGuardarCambios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditarImagenActionPerformed(evt);
+                jButtonGuardarCambiosActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonEditarImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 640, -1, -1));
+        getContentPane().add(jButtonGuardarCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 640, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Nombre:");
@@ -114,12 +117,12 @@ public class Cuenta extends javax.swing.JFrame {
         });
         getContentPane().add(jTextFieldBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 380, 40));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTextFieldDireccionActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 490, 260, 85));
+        getContentPane().add(jTextFieldDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 490, 260, 85));
 
         jLabelNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelNombre.setText("Nombre");
@@ -137,6 +140,7 @@ public class Cuenta extends javax.swing.JFrame {
         jLabelCorreo.setText("Correo:");
         getContentPane().add(jLabelCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 440, -1, -1));
 
+        jButtonEditarImagen1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonEditarImagen1.setText("Editar Imagen");
         jButtonEditarImagen1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,6 +149,7 @@ public class Cuenta extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonEditarImagen1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 430, -1, -1));
 
+        jButtonEditarImagen2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonEditarImagen2.setText("Regresar");
         jButtonEditarImagen2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,23 +158,24 @@ public class Cuenta extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonEditarImagen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 650, -1, -1));
 
-        jButtonEditarImagen3.setText("Modificar Clave");
-        jButtonEditarImagen3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonModificarClave.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonModificarClave.setText("Modificar Clave");
+        jButtonModificarClave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditarImagen3ActionPerformed(evt);
+                jButtonModificarClaveActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonEditarImagen3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 640, -1, -1));
+        getContentPane().add(jButtonModificarClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 640, -1, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar.png"))); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, 60, 40));
 
-        jTextFieldNombre1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNombre1ActionPerformed(evt);
+                jTextFieldTelefonoActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 400, 131, -1));
+        getContentPane().add(jTextFieldTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 400, 131, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Symbol", 1, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -186,13 +192,13 @@ public class Cuenta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldBuscarActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTextFieldDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDireccionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jTextFieldDireccionActionPerformed
 
-    private void jButtonEditarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarImagenActionPerformed
+    private void jButtonGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarCambiosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonEditarImagenActionPerformed
+    }//GEN-LAST:event_jButtonGuardarCambiosActionPerformed
 
     private void jButtonEditarImagen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarImagen1ActionPerformed
         // TODO add your handling code here:
@@ -202,13 +208,13 @@ public class Cuenta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonEditarImagen2ActionPerformed
 
-    private void jButtonEditarImagen3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarImagen3ActionPerformed
+    private void jButtonModificarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarClaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonEditarImagen3ActionPerformed
+    }//GEN-LAST:event_jButtonModificarClaveActionPerformed
 
-    private void jTextFieldNombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombre1ActionPerformed
+    private void jTextFieldTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefonoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNombre1ActionPerformed
+    }//GEN-LAST:event_jTextFieldTelefonoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,10 +252,10 @@ public class Cuenta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonEditarImagen;
     private javax.swing.JButton jButtonEditarImagen1;
     private javax.swing.JButton jButtonEditarImagen2;
-    private javax.swing.JButton jButtonEditarImagen3;
+    private javax.swing.JButton jButtonGuardarCambios;
+    private javax.swing.JButton jButtonModificarClave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -264,9 +270,9 @@ public class Cuenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCorreo;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldBuscar;
-    private javax.swing.JTextField jTextFieldNombre1;
+    private javax.swing.JTextField jTextFieldDireccion;
+    private javax.swing.JTextField jTextFieldTelefono;
     // End of variables declaration//GEN-END:variables
     class FondoPanel extends JPanel {
 
