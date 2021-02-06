@@ -1,7 +1,6 @@
-
 package Controlador;
 
-import Modelo.Usuario;
+import Modelo.Funcion;
 import java.util.List;
 import javax.swing.JOptionPane;
 import org.hibernate.Session;
@@ -11,10 +10,11 @@ import util.NewHibernateUtil;
  *
  * @author Victor Ayora, Geovanny Poma, Veronica Placencia, Azucena Toledo
  */
-public class ControladorUsuario {
+public class ControladorFuncion {
+
     private Session st;
 
-    public ControladorUsuario() {
+    public ControladorFuncion() {
         sessionHibernate();
     }
 
@@ -22,13 +22,13 @@ public class ControladorUsuario {
         st = NewHibernateUtil.getSessionFactory().openSession();
     }
 
-    public void registrarUsuario(Usuario u) {
+    public void registrarFuncion(Funcion f) {
 
         try {
             st.beginTransaction();
-            st.save(u);
+            st.save(f);
             st.getTransaction().commit();
-            JOptionPane.showMessageDialog(null, "Usuario registrado");
+            JOptionPane.showMessageDialog(null, "Funcion registrada");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al guardar los datos");
@@ -36,37 +36,37 @@ public class ControladorUsuario {
 
     }
 
-    public List<Usuario> cargarUsuario(List<Usuario> lis) {
+    public List<Funcion> cargarFuncion(List<Funcion> lis) {
 
         try {
 
-            lis = (List<Usuario>) st.createQuery("from Usuario").list();
+            lis = (List<Funcion>) st.createQuery("from Funcion").list();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al traer Datos");
         }
         return lis;
     }
 
-    public Usuario traerUsuario(int id) {
+    public Funcion traerFuncion(int id) {
 
-        Usuario u = null;
+        Funcion f = null;
 
         try {
-            u = (Usuario) st.load(Usuario.class, id);
+            f = (Funcion) st.load(Funcion.class, id);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al traer usuario");
+            JOptionPane.showMessageDialog(null, "Error al traer funcion");
         }
-        return u;
+        return f;
     }
 
-    public void actualizarUsuario(Usuario u) {
+    public void actualizarFuncion(Funcion f) {
         try {
             st.beginTransaction();
-            st.update(u);
+            st.update(f);
             st.getTransaction().commit();
-            JOptionPane.showMessageDialog(null, "Usuario Actualizada");
+            JOptionPane.showMessageDialog(null, "Funcion Actualizada");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar usuario");
+            JOptionPane.showMessageDialog(null, "Error al actualizar funcion");
         }
     }
 }

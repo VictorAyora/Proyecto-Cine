@@ -1,7 +1,7 @@
 
 package Controlador;
 
-import Modelo.Usuario;
+import Modelo.Cartelera;
 import java.util.List;
 import javax.swing.JOptionPane;
 import org.hibernate.Session;
@@ -11,10 +11,10 @@ import util.NewHibernateUtil;
  *
  * @author Victor Ayora, Geovanny Poma, Veronica Placencia, Azucena Toledo
  */
-public class ControladorUsuario {
+public class ControladorCartelera {
     private Session st;
 
-    public ControladorUsuario() {
+    public ControladorCartelera() {
         sessionHibernate();
     }
 
@@ -22,13 +22,13 @@ public class ControladorUsuario {
         st = NewHibernateUtil.getSessionFactory().openSession();
     }
 
-    public void registrarUsuario(Usuario u) {
+    public void registrarCartelera(Cartelera c) {
 
         try {
             st.beginTransaction();
-            st.save(u);
+            st.save(c);
             st.getTransaction().commit();
-            JOptionPane.showMessageDialog(null, "Usuario registrado");
+            JOptionPane.showMessageDialog(null, "Cartelera registrada");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al guardar los datos");
@@ -36,37 +36,37 @@ public class ControladorUsuario {
 
     }
 
-    public List<Usuario> cargarUsuario(List<Usuario> lis) {
+    public List<Cartelera> cargarCartelera(List<Cartelera> lis) {
 
         try {
 
-            lis = (List<Usuario>) st.createQuery("from Usuario").list();
+            lis = (List<Cartelera>) st.createQuery("from Cartelera").list();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al traer Datos");
         }
         return lis;
     }
 
-    public Usuario traerUsuario(int id) {
+    public Cartelera traerCartelera(int id) {
 
-        Usuario u = null;
+        Cartelera c = null;
 
         try {
-            u = (Usuario) st.load(Usuario.class, id);
+            c = (Cartelera) st.load(Cartelera.class, id);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al traer usuario");
+            JOptionPane.showMessageDialog(null, "Error al traer cartelera");
         }
-        return u;
+        return c;
     }
 
-    public void actualizarUsuario(Usuario u) {
+    public void actualizarCartelera(Cartelera c) {
         try {
             st.beginTransaction();
-            st.update(u);
+            st.update(c);
             st.getTransaction().commit();
-            JOptionPane.showMessageDialog(null, "Usuario Actualizada");
+            JOptionPane.showMessageDialog(null, "Cartelera Actualizada");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar usuario");
+            JOptionPane.showMessageDialog(null, "Error al actualizar cartelera");
         }
     }
 }
