@@ -1,61 +1,70 @@
 package Modelo;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author Victor Ayora, Geovanny Poma, Veronica Placencia, Azucena Toledo
  */
-public class Snack {
+@Entity
+public class Snack implements Serializable{
     
-    private int id;
-    public String external_id;  
-    public String tipo;
-    public double precio;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id_snack;
+    public String external_id_snack;  
+    public String tipo_snack;
+    public double precio_snack;
     public int cantidad;
-    public String imagen;
+    public String imagen_snack;
     public String tamanio;
-    private Boolean estado;
+    private Boolean estado_snack;
 
     public Snack(int id, String external_id, String tipo, double precio, int cantidad, String imagen, String tamanio, Boolean estado) {
-        this.id = id;
-        this.external_id = external_id;
-        this.tipo = tipo;
-        this.precio = precio;
+        this.id_snack = id;
+        this.external_id_snack = external_id;
+        this.tipo_snack = tipo;
+        this.precio_snack = precio;
         this.cantidad = cantidad;
-        this.imagen = imagen;
+        this.imagen_snack = imagen;
         this.tamanio = tamanio;
-        this.estado = estado;
+        this.estado_snack = estado;
     }
 
     public int getId() {
-        return id;
+        return id_snack;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_snack = id;
     }
 
     public String getExternal_id() {
-        return external_id;
+        return external_id_snack;
     }
 
     public void setExternal_id(String external_id) {
-        this.external_id = external_id;
+        this.external_id_snack = external_id;
     }
 
     public String getTipo() {
-        return tipo;
+        return tipo_snack;
     }
 
     public void setTipo(String tipo) {
-        this.tipo = tipo;
+        this.tipo_snack = tipo;
     }
 
     public double getPrecio() {
-        return precio;
+        return precio_snack;
     }
 
     public void setPrecio(double precio) {
-        this.precio = precio;
+        this.precio_snack = precio;
     }
 
     public int getCantidad() {
@@ -67,11 +76,11 @@ public class Snack {
     }
 
     public String getImagen() {
-        return imagen;
+        return imagen_snack;
     }
 
     public void setImagen(String imagen) {
-        this.imagen = imagen;
+        this.imagen_snack = imagen;
     }
 
     public String getTamanio() {
@@ -83,11 +92,11 @@ public class Snack {
     }
 
     public Boolean getEstado() {
-        return estado;
+        return estado_snack;
     }
 
     public void setEstado(Boolean estado) {
-        this.estado = estado;
+        this.estado_snack = estado;
     }
     
     

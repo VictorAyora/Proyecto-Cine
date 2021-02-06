@@ -7,25 +7,25 @@ import java.util.TimeZone; /**
  */
 public class Horario {
     //atributos
-    private int id;
-    public String external_id;
+    private int id_horario;
+    public String external_id_horario;
     public DateTime hora;
 
     //getters y setters
     public int getId() {
-        return id;
+        return id_horario;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_horario = id;
     }
 
     public String getExternal_id() {
-        return external_id;
+        return external_id_horario;
     }
 
     public void setExternal_id(String external_id) {
-        this.external_id = external_id;
+        this.external_id_horario = external_id;
     }
 
     public DateTime getHora() {

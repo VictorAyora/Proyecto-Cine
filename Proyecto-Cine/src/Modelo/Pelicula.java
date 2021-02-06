@@ -6,8 +6,8 @@ package Modelo;
  */
 public class Pelicula {
 
-    private int id;
-    public String external_id;
+    private int id_pelicula;
+    public String external_id_pelicula;
     public String titulo;
     public String sinopsis;
     public Boolean subtitulos;
@@ -20,11 +20,11 @@ public class Pelicula {
     public String portada;
     public String actores;
     public String director;
-    private Boolean estado;
+    private Boolean estado_pelicula;
 
     public Pelicula(int id, String external_id, String titulo, String sinopsis, Boolean subtitulos, String proveedor, String genero, String formato, int anio, String idioma, int duracion, String portada, String actores, String director, Boolean estado) {
-        this.id = id;
-        this.external_id = external_id;
+        this.id_pelicula = id;
+        this.external_id_pelicula = external_id;
         this.titulo = titulo;
         this.sinopsis = sinopsis;
         this.subtitulos = subtitulos;
@@ -37,23 +37,23 @@ public class Pelicula {
         this.portada = portada;
         this.actores = actores;
         this.director = director;
-        this.estado = estado;
+        this.estado_pelicula = estado;
     }
 
     public int getId() {
-        return id;
+        return id_pelicula;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_pelicula = id;
     }
 
     public String getExternal_id() {
-        return external_id;
+        return external_id_pelicula;
     }
 
     public void setExternal_id(String external_id) {
-        this.external_id = external_id;
+        this.external_id_pelicula = external_id;
     }
 
     public String getTitulo() {
@@ -153,11 +153,11 @@ public class Pelicula {
     }
 
     public Boolean getEstado() {
-        return estado;
+        return estado_pelicula;
     }
 
     public void setEstado(Boolean estado) {
-        this.estado = estado;
+        this.estado_pelicula = estado;
     }
 
 }

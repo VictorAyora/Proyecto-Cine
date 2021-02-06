@@ -1,32 +1,41 @@
 package Modelo;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author Victor Ayora, Geovanny Poma, Veronica Placencia, Azucena Toledo
  */
-public class Cuenta {
+@Entity
+public class Cuenta implements Serializable{
     //Atributos de la clase Usuario
-    private int id;
-    public String external_id; 
+    private int id_cuenta;
+    public String external_id_cuenta; 
     private String usuario;
     private String clave;
-    private boolean estado;
+    private boolean estado_cuenta;
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     //Getters y Setters
     public int getId() {
-        return id;
+        return id_cuenta;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_cuenta = id;
     }
 
     public String getExternal_id() {
-        return external_id;
+        return external_id_cuenta;
     }
 
     public void setExternal_id(String external_id) {
-        this.external_id = external_id;
+        this.external_id_cuenta = external_id;
     }
 
     public String getUsuario() {
@@ -46,10 +55,10 @@ public class Cuenta {
     }
 
     public boolean isEstado() {
-        return estado;
+        return estado_cuenta;
     }
 
     public void setEstado(boolean estado) {
-        this.estado = estado;
+        this.estado_cuenta = estado;
     }   
 }

@@ -1,39 +1,48 @@
 package Modelo;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author Victor Ayora, Geovanny Poma, Veronica Placencia, Azucena Toledo
  */
-public class Rol {
+@Entity
+public class Rol implements Serializable {
     
     //Atributos de la clase Rol
-    private int id;
-    public String external_id;
-    private String tpo; 
+    private int id_rol;
+    public String external_id_rol;
+    private String tipo_rol; 
     
     //Getters y Setters
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
-        return id;
+        return id_rol;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_rol = id;
     }
 
     public String getExternal_id() {
-        return external_id;
+        return external_id_rol;
     }
 
     public void setExternal_id(String external_id) {
-        this.external_id = external_id;
+        this.external_id_rol = external_id;
     }
 
     public String getTpo() {
-        return tpo;
+        return tipo_rol;
     }
 
     public void setTpo(String tpo) {
-        this.tpo = tpo;
+        this.tipo_rol = tpo;
     }
     
 }
