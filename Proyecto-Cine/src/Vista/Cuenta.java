@@ -205,11 +205,14 @@ public class Cuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditarImagen1ActionPerformed
 
     private void jButtonEditarImagen2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarImagen2ActionPerformed
-        // TODO add your handling code here:
+        AdmUsuarios au = new AdmUsuarios();
+        au.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonEditarImagen2ActionPerformed
 
     private void jButtonModificarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarClaveActionPerformed
-        // TODO add your handling code here:
+        ModificarClave mc = new ModificarClave();
+        mc.setVisible(true);
     }//GEN-LAST:event_jButtonModificarClaveActionPerformed
 
     private void jTextFieldTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefonoActionPerformed

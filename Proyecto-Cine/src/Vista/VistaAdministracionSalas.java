@@ -114,7 +114,9 @@ public class VistaAdministracionSalas extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldCapacidadSalaActionPerformed
 
     private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
-        // TODO add your handling code here:
+        MenuAdministrador ma = new MenuAdministrador();
+        ma.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     /**

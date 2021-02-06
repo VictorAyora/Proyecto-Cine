@@ -218,7 +218,9 @@ public class AdmUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonDardeBajaActionPerformed
 
     private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
-        // TODO add your handling code here:
+        MenuAdministrador ma = new MenuAdministrador();
+        ma.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     private void jButtonRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrar1ActionPerformed
@@ -226,7 +228,9 @@ public class AdmUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRegistrar1ActionPerformed
 
     private void jButtonModificarDatos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarDatos1ActionPerformed
-        // TODO add your handling code here:
+        Cuenta c = new Cuenta();
+        c.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonModificarDatos1ActionPerformed
 
     /**

@@ -114,6 +114,11 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         getContentPane().add(scrollPaneAdmPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 560, 630, 130));
 
         jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 670, -1, -1));
 
         jLabel1.setText("PELÍCULA:");
@@ -279,6 +284,11 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         getContentPane().add(jButtonBuscarPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 520, -1, -1));
 
         jButtonMostrarTodosPelicula.setText("Mostrar Todos");
+        jButtonMostrarTodosPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarTodosPeliculaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonMostrarTodosPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 520, -1, -1));
         getContentPane().add(filler1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 400, -1, -1));
 
@@ -349,6 +359,18 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
     private void jButtonAgregarPortadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarPortadaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAgregarPortadaActionPerformed
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        MenuAdministrador ma = new MenuAdministrador();
+        ma.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
+
+    private void jButtonMostrarTodosPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarTodosPeliculaActionPerformed
+        VistaListaPeliculas lp = new VistaListaPeliculas();
+        lp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonMostrarTodosPeliculaActionPerformed
 
     /**
      * @param args the command line arguments

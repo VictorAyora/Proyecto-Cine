@@ -157,6 +157,11 @@ public class VistaAdministracionSnacks extends javax.swing.JFrame {
         getContentPane().add(jButtonModificarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 520, 89, -1));
 
         jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 630, -1, -1));
 
         jLabel6.setText("TIPO:");
@@ -188,6 +193,12 @@ public class VistaAdministracionSnacks extends javax.swing.JFrame {
     private void jButtonModificarSnackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarSnackActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonModificarSnackActionPerformed
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        MenuAdministrador ma = new MenuAdministrador();
+        ma.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     /**
      * @param args the command line arguments

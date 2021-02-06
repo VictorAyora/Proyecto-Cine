@@ -161,6 +161,11 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 410, -1, -1));
 
         jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 610, -1, -1));
 
         jScrollPane2.setViewportView(jTextPaneSinopsis);
@@ -174,6 +179,12 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        VistaListaPeliculas lp = new VistaListaPeliculas();
+        lp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     /**
      * @param args the command line arguments

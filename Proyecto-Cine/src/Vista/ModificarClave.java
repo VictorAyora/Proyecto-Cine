@@ -83,6 +83,11 @@ public class ModificarClave extends javax.swing.JFrame {
 
         jButtonRegresar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
 
         jButtonGuardarCambios.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonGuardarCambios.setText("Guardar Cambios");
@@ -164,6 +169,10 @@ public class ModificarClave extends javax.swing.JFrame {
     private void jButtonGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarCambiosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonGuardarCambiosActionPerformed
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     /**
      * @param args the command line arguments

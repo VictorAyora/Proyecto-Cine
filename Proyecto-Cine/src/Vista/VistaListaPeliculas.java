@@ -94,6 +94,11 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
 
         jButtonRegresar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 650, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -104,12 +109,20 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVerDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerDetallesActionPerformed
-        // TODO add your handling code here:
+        VistaDetallePelicula dp = new VistaDetallePelicula();
+        dp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonVerDetallesActionPerformed
 
     private void jTextFieldBuscarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBuscarPeliculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldBuscarPeliculaActionPerformed
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        VistaAdministracionPeliculas ap = new VistaAdministracionPeliculas();
+        ap.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     /**
      * @param args the command line arguments

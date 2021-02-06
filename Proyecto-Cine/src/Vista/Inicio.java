@@ -25,6 +25,7 @@ public class Inicio extends javax.swing.JFrame {
         this.setExtendedState(6);
         this.setResizable(false);//no redimenciona la ventana
         initComponents();
+        jPanel2.setVisible(false);
     }
 
     /**
@@ -36,17 +37,34 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setOpaque(false);
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 400, 170, 50));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 2, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("     CONTINUAR");
+        jLabel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jLabel1MouseMoved(evt);
+            }
+        });
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel1MouseExited(evt);
             }
         });
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 380, 230, 90));
@@ -60,6 +78,18 @@ public class Inicio extends javax.swing.JFrame {
         is.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseMoved
+        
+    }//GEN-LAST:event_jLabel1MouseMoved
+
+    private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
+        jPanel2.setVisible(true);
+    }//GEN-LAST:event_jLabel1MouseEntered
+
+    private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
+        jPanel2.setVisible(false);       
+    }//GEN-LAST:event_jLabel1MouseExited
 
     /**
      * @param args the command line arguments
@@ -97,9 +127,7 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     class FondoPanel extends JPanel {
-
         private Image imagen;
-
         @Override
         public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/Imagenes/Inicio.png")).getImage();
@@ -110,5 +138,6 @@ public class Inicio extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
