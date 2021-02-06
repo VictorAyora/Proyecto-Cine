@@ -5,19 +5,26 @@
  */
 package Vista;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
 /**
  *
- * @author SAMAEL
+ * @author Victor Ayora, Geovanny Poma, Veronica Placencia, Azucena Toledo
  */
 public class VistaVentaSnack extends javax.swing.JFrame {
-
-    /**
-     * Creates new form VistaVentaSnack
-     */
+    
+    FondoPanel fondo = new FondoPanel();
     public VistaVentaSnack() {
+        this.setContentPane(fondo);
+        this.setResizable(false);
+        this.setExtendedState(6);
         initComponents();
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,18 +34,90 @@ public class VistaVentaSnack extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabelTitVentTick = new javax.swing.JLabel();
+        jComboBoxSnack = new javax.swing.JComboBox<>();
+        jComboBoxTamañoSnack = new javax.swing.JComboBox<>();
+        jTextFieldCantidadSnack = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextFieldPrecioSnack = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableSnack = new javax.swing.JTable();
+        jToggleButtonAceptarSnack = new javax.swing.JToggleButton();
+        jToggleButtonPagarSnack = new javax.swing.JToggleButton();
+        jTextFieldPrecioTotalSnack = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jToggleButtonRegresarSnack = new javax.swing.JToggleButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabelTitVentTick.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelTitVentTick.setFont(new java.awt.Font("Century Schoolbook", 1, 48)); // NOI18N
+        jLabelTitVentTick.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTitVentTick.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTitVentTick.setText("VENTA DE SNACK");
+        getContentPane().add(jLabelTitVentTick, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 630, 60));
+
+        jComboBoxSnack.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Palomitas", "Nachos", "Gaseosa", " " }));
+        getContentPane().add(jComboBoxSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 130, -1));
+
+        jComboBoxTamañoSnack.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pequeño", "Mediano", "Grande" }));
+        getContentPane().add(jComboBoxTamañoSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 130, -1));
+        getContentPane().add(jTextFieldCantidadSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 130, 30));
+
+        jLabel1.setText("SNACK:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
+
+        jLabel2.setText("CANTIDAD:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, -1, -1));
+
+        jLabel3.setText("TAMAÑO:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, -1, -1));
+
+        jLabel4.setText("PRECIO:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, -1, -1));
+        getContentPane().add(jTextFieldPrecioSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 380, 130, 30));
+
+        jTableSnack.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Snack", "Cantidad", "Tamaño", "Precio"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableSnack);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 1100, 240));
+
+        jToggleButtonAceptarSnack.setText("ACEPTAR");
+        getContentPane().add(jToggleButtonAceptarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 370, 180, 40));
+
+        jToggleButtonPagarSnack.setText("PAGAR");
+        getContentPane().add(jToggleButtonPagarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 730, 170, 40));
+        getContentPane().add(jTextFieldPrecioTotalSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 690, 70, -1));
+
+        jLabel6.setText("PRECIO TOTAL:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 690, -1, -1));
+
+        jToggleButtonRegresarSnack.setText("REGRESAR");
+        getContentPane().add(jToggleButtonRegresarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 720, 180, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -69,6 +148,7 @@ public class VistaVentaSnack extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VistaVentaSnack.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -77,7 +157,35 @@ public class VistaVentaSnack extends javax.swing.JFrame {
             }
         });
     }
+class FondoPanel extends JPanel {
 
+        private Image imagen;
+
+        @Override
+        public void paint(Graphics g) {
+            imagen = new ImageIcon(getClass().getResource("/Imagenes/VENTA SNACKS.png")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+            setOpaque(false);
+            super.paint(g);
+        }
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> jComboBoxSnack;
+    private javax.swing.JComboBox<String> jComboBoxTamañoSnack;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelTitVentTick;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableSnack;
+    private javax.swing.JTextField jTextFieldCantidadSnack;
+    private javax.swing.JTextField jTextFieldPrecioSnack;
+    private javax.swing.JTextField jTextFieldPrecioTotalSnack;
+    private javax.swing.JToggleButton jToggleButtonAceptarSnack;
+    private javax.swing.JToggleButton jToggleButtonPagarSnack;
+    private javax.swing.JToggleButton jToggleButtonRegresarSnack;
     // End of variables declaration//GEN-END:variables
 }
+
