@@ -246,9 +246,12 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="REGRESAR"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButtonRegresarTicketActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="230" y="720" width="180" height="40"/>
+          <AbsoluteConstraints x="230" y="730" width="120" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -256,9 +259,12 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="PAGAR"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButtonPagarTicketActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="1160" y="730" width="170" height="40"/>
+          <AbsoluteConstraints x="1210" y="740" width="120" height="30"/>
         </Constraint>
       </Constraints>
     </Component>

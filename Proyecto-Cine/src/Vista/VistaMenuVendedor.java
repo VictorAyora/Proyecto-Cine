@@ -48,16 +48,16 @@ public class VistaMenuVendedor extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jPanelSnack = new javax.swing.JPanel();
         jPanelSnacki = new javax.swing.JPanel();
+        jLabelImagenSnack = new javax.swing.JLabel();
+        jLabelVenderSnack = new javax.swing.JLabel();
         jPanelListaSnack = new javax.swing.JPanel();
         jPanelListaSnacki = new javax.swing.JPanel();
+        jLabelImagenListaSnack = new javax.swing.JLabel();
+        jLabelListaSnack = new javax.swing.JLabel();
         jPanelSalir = new javax.swing.JPanel();
         jPanelSaliri = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        jLabelImagenSalir = new javax.swing.JLabel();
+        jLabelSalir = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -134,6 +134,13 @@ public class VistaMenuVendedor extends javax.swing.JFrame {
 
         getContentPane().add(jPanelSnacki, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 350, 260, 220));
 
+        jLabelImagenSnack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/snacks.png"))); // NOI18N
+        getContentPane().add(jLabelImagenSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, -1, 160));
+
+        jLabelVenderSnack.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabelVenderSnack.setText("VENDER SNACK");
+        getContentPane().add(jLabelVenderSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 530, -1, -1));
+
         jPanelListaSnack.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelListaSnack.setOpaque(false);
         jPanelListaSnack.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -180,6 +187,13 @@ public class VistaMenuVendedor extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanelListaSnacki, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 350, 260, 220));
+
+        jLabelImagenListaSnack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Icono ListaSnacks.png"))); // NOI18N
+        getContentPane().add(jLabelImagenListaSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 370, 160, 150));
+
+        jLabelListaSnack.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabelListaSnack.setText("LISTA SNACKS");
+        getContentPane().add(jLabelListaSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 530, -1, -1));
 
         jPanelSalir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelSalir.setOpaque(false);
@@ -228,26 +242,12 @@ public class VistaMenuVendedor extends javax.swing.JFrame {
 
         getContentPane().add(jPanelSaliri, new org.netbeans.lib.awtextra.AbsoluteConstraints(886, 350, 260, 220));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/snacks.png"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, -1, 160));
+        jLabelImagenSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
+        getContentPane().add(jLabelImagenSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 360, 210, 180));
 
-        jLabel14.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel14.setText("VENDER SNACK");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 530, -1, -1));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Icono ListaSnacks.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 370, 160, 150));
-
-        jLabel15.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel15.setText("LISTA SNACKS");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 530, -1, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 360, 210, 180));
-
-        jLabel11.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel11.setText("SALIR");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 530, -1, -1));
+        jLabelSalir.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabelSalir.setText("SALIR");
+        getContentPane().add(jLabelSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 530, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -257,15 +257,15 @@ public class VistaMenuVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jPanelSnackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelSnackMouseClicked
-//        VistaVentaSnack vvs = new VistaVentaSnack();
-//        vvs.setVisible(true);
-//        this.dispose();
+        VistaVentaSnack vvs = new VistaVentaSnack();
+        vvs.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jPanelSnackMouseClicked
 
     private void jPanelListaSnackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelListaSnackMouseClicked
-//        VistaListaSnack vls = new VistaListaSnack();
-//        vls.setVisible(true);
-//        this.dispose();
+        ListaSnack ls = new ListaSnack();
+        ls.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jPanelListaSnackMouseClicked
 
     private void jPanelListaSnackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelListaSnackMouseEntered
@@ -345,14 +345,14 @@ public class VistaMenuVendedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelImagenListaSnack;
+    private javax.swing.JLabel jLabelImagenSalir;
+    private javax.swing.JLabel jLabelImagenSnack;
+    private javax.swing.JLabel jLabelListaSnack;
+    private javax.swing.JLabel jLabelSalir;
+    private javax.swing.JLabel jLabelVenderSnack;
     private javax.swing.JPanel jPanelListaSnack;
     private javax.swing.JPanel jPanelListaSnacki;
     private javax.swing.JPanel jPanelSalir;

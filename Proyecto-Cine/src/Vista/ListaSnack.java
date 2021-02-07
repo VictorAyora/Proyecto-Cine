@@ -12,16 +12,16 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author David
+ * @author Veronica Estefania
  */
-public class VistaListaPeliculas extends javax.swing.JFrame {
+public class ListaSnack extends javax.swing.JFrame {
 
     /**
-     * Creates new form VistaListaPeliculas
+     * Creates new form ListaSnack
      */
     FondoPanel fondo = new FondoPanel();
 
-    public VistaListaPeliculas() {
+    public ListaSnack() {
         this.setContentPane(fondo);
         this.setExtendedState(6);
         initComponents();
@@ -37,60 +37,55 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextFieldBuscarPelicula = new javax.swing.JTextField();
+        jTextFieldBuscarSnack = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jButtonBuscarPelicula = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableListaPeliculas = new javax.swing.JTable();
+        jTableListaSnack = new javax.swing.JTable();
         jButtonRegresar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        jLabelSnack = new javax.swing.JLabel();
         jButtonBuscarPelicula1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextFieldBuscarPelicula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldBuscarPelicula.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldBuscarSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldBuscarSnack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldBuscarPeliculaActionPerformed(evt);
+                jTextFieldBuscarSnackActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldBuscarPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 470, 30));
+        getContentPane().add(jTextFieldBuscarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 470, 30));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 44)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 44)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("LISTA DE PELÍCULAS");
+        jLabel3.setText("LISTA DE SNACK");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 610, 70));
 
         jButtonBuscarPelicula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonBuscarPelicula.setText("Buscar");
-        jButtonBuscarPelicula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarPeliculaActionPerformed(evt);
-            }
-        });
         getContentPane().add(jButtonBuscarPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 200, 120, 30));
 
-        jTableListaPeliculas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTableListaPeliculas.setModel(new javax.swing.table.DefaultTableModel(
+        jTableListaSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTableListaSnack.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Película", "Año", "Subtítulos", "Duración", "Género", "Proveedor", "Formato", "Idioma"
+                "Snack", "Tamaño", "Precio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableListaPeliculas);
+        jScrollPane1.setViewportView(jTableListaSnack);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 980, 340));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, 980, 340));
 
         jButtonRegresar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonRegresar.setText("Regresar");
@@ -101,9 +96,9 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 650, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Película:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, -1, -1));
+        jLabelSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelSnack.setText("Snack:");
+        getContentPane().add(jLabelSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, -1, -1));
 
         jButtonBuscarPelicula1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonBuscarPelicula1.setText("Buscar");
@@ -112,19 +107,15 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldBuscarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBuscarPeliculaActionPerformed
+    private void jTextFieldBuscarSnackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBuscarSnackActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldBuscarPeliculaActionPerformed
+    }//GEN-LAST:event_jTextFieldBuscarSnackActionPerformed
 
     private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
         VistaAdministracionPeliculas ap = new VistaAdministracionPeliculas();
         ap.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonRegresarActionPerformed
-
-    private void jButtonBuscarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarPeliculaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonBuscarPeliculaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,20 +134,21 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaListaPeliculas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaSnack.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaListaPeliculas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaSnack.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaListaPeliculas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaSnack.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaListaPeliculas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaSnack.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaListaPeliculas().setVisible(true);
+                new ListaSnack().setVisible(true);
             }
         });
     }
@@ -166,18 +158,19 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBuscarPelicula1;
     private javax.swing.JButton jButtonRegresar;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelSnack;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableListaPeliculas;
-    private javax.swing.JTextField jTextFieldBuscarPelicula;
+    private javax.swing.JTable jTableListaSnack;
+    private javax.swing.JTextField jTextFieldBuscarSnack;
     // End of variables declaration//GEN-END:variables
+    
     class FondoPanel extends JPanel {
 
         private Image imagen;
 
         @Override
         public void paint(Graphics g) {
-            imagen = new ImageIcon(getClass().getResource("/Imagenes/LISTA PELICULA.png")).getImage();
+            imagen = new ImageIcon(getClass().getResource("/Imagenes/LISTA SNACK.png")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
             super.paint(g);

@@ -40,27 +40,52 @@ public class VistaMenuTaquillero extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelVenderTicket = new javax.swing.JPanel();
-        jPanelVenderTicketi = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanelTicketDisponible = new javax.swing.JPanel();
-        jPanelTicketDisponiblei = new javax.swing.JPanel();
         jTextField3 = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanelVenderTicket = new javax.swing.JPanel();
+        jPanelVenderTicketi = new javax.swing.JPanel();
+        jLabelImagenVenderTicket = new javax.swing.JLabel();
+        jLabelVenderTicket = new javax.swing.JLabel();
+        jPanelTicketDisponible = new javax.swing.JPanel();
+        jPanelTicketDisponiblei = new javax.swing.JPanel();
+        jLabelImagenTicketsDisponibles = new javax.swing.JLabel();
+        jLabelTicketsDisponibles = new javax.swing.JLabel();
         jPanelSalir = new javax.swing.JPanel();
         jPanelSaliri = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        jLabelImagenSalir = new javax.swing.JLabel();
+        jLabelSalir = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextField3.setEditable(false);
+        jTextField3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 20, 250, 70));
+
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 530, 70));
+
+        jTextField4.setEditable(false);
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 20, 130, 70));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usario circulo.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 10, 60, 80));
+
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
+        jLabel2.setText("MI CUENTA ");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 20, 120, 70));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupaNegra.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 30, -1, -1));
 
         jPanelVenderTicket.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelVenderTicket.setOpaque(false);
@@ -109,12 +134,12 @@ public class VistaMenuTaquillero extends javax.swing.JFrame {
 
         getContentPane().add(jPanelVenderTicketi, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 290, 240));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usario circulo.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 10, 60, 80));
+        jLabelImagenVenderTicket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Icono VenderTicket.png"))); // NOI18N
+        getContentPane().add(jLabelImagenVenderTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 210, 200));
 
-        jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
-        jLabel2.setText("MI CUENTA ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 20, 120, 70));
+        jLabelVenderTicket.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabelVenderTicket.setText("VENDER TICKET");
+        getContentPane().add(jLabelVenderTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 530, -1, -1));
 
         jPanelTicketDisponible.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelTicketDisponible.setOpaque(false);
@@ -163,27 +188,12 @@ public class VistaMenuTaquillero extends javax.swing.JFrame {
 
         getContentPane().add(jPanelTicketDisponiblei, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 330, 250, 240));
 
-        jTextField3.setEditable(false);
-        jTextField3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 20, 250, 70));
+        jLabelImagenTicketsDisponibles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Icono Tickets Disponibles.png"))); // NOI18N
+        getContentPane().add(jLabelImagenTicketsDisponibles, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 350, 160, 150));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 530, 70));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupaNegra.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 30, -1, -1));
-
-        jTextField4.setEditable(false);
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 20, 130, 70));
-
-        jLabel16.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel16.setText("VENDER TICKET");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 530, -1, -1));
+        jLabelTicketsDisponibles.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabelTicketsDisponibles.setText("TICKETS DISPONIBLES");
+        getContentPane().add(jLabelTicketsDisponibles, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 530, -1, -1));
 
         jPanelSalir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelSalir.setOpaque(false);
@@ -232,22 +242,12 @@ public class VistaMenuTaquillero extends javax.swing.JFrame {
 
         getContentPane().add(jPanelSaliri, new org.netbeans.lib.awtextra.AbsoluteConstraints(943, 327, 280, 240));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Icono VenderTicket.png"))); // NOI18N
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 210, 200));
+        jLabelImagenSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
+        getContentPane().add(jLabelImagenSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 370, 210, 160));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Icono Tickets Disponibles.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 350, 160, 150));
-
-        jLabel15.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel15.setText("TICKETS DISPONIBLES");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 530, -1, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 370, 210, 160));
-
-        jLabel11.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel11.setText("SALIR");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 530, -1, -1));
+        jLabelSalir.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabelSalir.setText("SALIR");
+        getContentPane().add(jLabelSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 530, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -265,9 +265,9 @@ public class VistaMenuTaquillero extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelVenderTicketMouseEntered
 
     private void jPanelVenderTicketMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelVenderTicketMouseClicked
-//        VistaVentaTicket vvt = new VistaVentaTicket();
-//        vvt.setVisible(true);
-//        this.dispose();
+        VistaVentaTicket vvt = new VistaVentaTicket();
+        vvt.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jPanelVenderTicketMouseClicked
 
     private void jPanelVenderTicketiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelVenderTicketiMouseEntered
@@ -291,9 +291,9 @@ public class VistaMenuTaquillero extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelSaliriMouseEntered
 
     private void jPanelTicketDisponibleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelTicketDisponibleMouseClicked
-//        VistaTicketsDisponibles vtd = new VistaTicketsDisponibles();
-//        vtd.setVisible(true);
-//        this.dispose();
+        TicketsDisponibles td = new TicketsDisponibles();
+        td.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jPanelTicketDisponibleMouseClicked
 
     private void jPanelTicketDisponibleMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelTicketDisponibleMouseEntered
@@ -345,14 +345,14 @@ public class VistaMenuTaquillero extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabelImagenSalir;
+    private javax.swing.JLabel jLabelImagenTicketsDisponibles;
+    private javax.swing.JLabel jLabelImagenVenderTicket;
+    private javax.swing.JLabel jLabelSalir;
+    private javax.swing.JLabel jLabelTicketsDisponibles;
+    private javax.swing.JLabel jLabelVenderTicket;
     private javax.swing.JPanel jPanelSalir;
     private javax.swing.JPanel jPanelSaliri;
     private javax.swing.JPanel jPanelTicketDisponible;

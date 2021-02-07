@@ -83,44 +83,63 @@ public class VistaVentaSnack extends javax.swing.JFrame {
 
         jTableSnack.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Snack", "Cantidad", "Tamaño", "Precio"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTableSnack);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 1100, 240));
 
         jToggleButtonAceptarSnack.setText("ACEPTAR");
-        getContentPane().add(jToggleButtonAceptarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 370, 180, 40));
+        getContentPane().add(jToggleButtonAceptarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 380, 140, 30));
 
         jToggleButtonPagarSnack.setText("PAGAR");
-        getContentPane().add(jToggleButtonPagarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 730, 170, 40));
+        jToggleButtonPagarSnack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonPagarSnackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jToggleButtonPagarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 730, 130, -1));
         getContentPane().add(jTextFieldPrecioTotalSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 690, 70, -1));
 
         jLabel6.setText("PRECIO TOTAL:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 690, -1, -1));
 
         jToggleButtonRegresarSnack.setText("REGRESAR");
-        getContentPane().add(jToggleButtonRegresarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 720, 180, 40));
+        jToggleButtonRegresarSnack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonRegresarSnackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jToggleButtonRegresarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 720, 120, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jToggleButtonRegresarSnackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonRegresarSnackActionPerformed
+        // TODO add your handling code here:
+        VistaMenuVendedor vmv = new VistaMenuVendedor();
+        vmv.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jToggleButtonRegresarSnackActionPerformed
+
+    private void jToggleButtonPagarSnackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonPagarSnackActionPerformed
+        // TODO add your handling code here:
+        Pago p = new Pago();
+        p.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jToggleButtonPagarSnackActionPerformed
 
     /**
      * @param args the command line arguments

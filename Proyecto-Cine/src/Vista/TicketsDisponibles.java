@@ -12,16 +12,16 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author David
+ * @author Veronica Estefania
  */
-public class VistaListaPeliculas extends javax.swing.JFrame {
+public class TicketsDisponibles extends javax.swing.JFrame {
 
     /**
      * Creates new form VistaListaPeliculas
      */
     FondoPanel fondo = new FondoPanel();
 
-    public VistaListaPeliculas() {
+    public TicketsDisponibles() {
         this.setContentPane(fondo);
         this.setExtendedState(6);
         initComponents();
@@ -39,12 +39,12 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
 
         jTextFieldBuscarPelicula = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButtonBuscarPelicula = new javax.swing.JButton();
+        jButtonBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableListaPeliculas = new javax.swing.JTable();
+        jTableTicketsDIsponibles = new javax.swing.JTable();
         jButtonRegresar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jButtonBuscarPelicula1 = new javax.swing.JButton();
+        jButtonGuardarCambios = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -55,40 +55,35 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
                 jTextFieldBuscarPeliculaActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldBuscarPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 470, 30));
+        getContentPane().add(jTextFieldBuscarPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 390, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 44)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("LISTA DE PELÍCULAS");
+        jLabel3.setText("TICKETS DISPONIBLES");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 610, 70));
 
-        jButtonBuscarPelicula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonBuscarPelicula.setText("Buscar");
-        jButtonBuscarPelicula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarPeliculaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonBuscarPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 200, 120, 30));
+        jButtonBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonBuscar.setText("Buscar");
+        getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 200, 90, 30));
 
-        jTableListaPeliculas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTableListaPeliculas.setModel(new javax.swing.table.DefaultTableModel(
+        jTableTicketsDIsponibles.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTableTicketsDIsponibles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Película", "Año", "Subtítulos", "Duración", "Género", "Proveedor", "Formato", "Idioma"
+                "Película", "Duración", "Género", "Formato", "Idioma"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, true, true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableListaPeliculas);
+        jScrollPane1.setViewportView(jTableTicketsDIsponibles);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 980, 340));
 
@@ -99,15 +94,20 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
                 jButtonRegresarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 650, -1, -1));
+        getContentPane().add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 640, 140, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Película:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, -1, -1));
 
-        jButtonBuscarPelicula1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonBuscarPelicula1.setText("Buscar");
-        getContentPane().add(jButtonBuscarPelicula1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 200, 120, 30));
+        jButtonGuardarCambios.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonGuardarCambios.setText("Guardar Cambios");
+        jButtonGuardarCambios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarCambiosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonGuardarCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 640, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -117,14 +117,14 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldBuscarPeliculaActionPerformed
 
     private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
-        VistaAdministracionPeliculas ap = new VistaAdministracionPeliculas();
-        ap.setVisible(true);
+        TicketsDisponibles td = new TicketsDisponibles();
+        td.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonRegresarActionPerformed
 
-    private void jButtonBuscarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarPeliculaActionPerformed
+    private void jButtonGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarCambiosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonBuscarPeliculaActionPerformed
+    }//GEN-LAST:event_jButtonGuardarCambiosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,32 +143,35 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaListaPeliculas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TicketsDisponibles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaListaPeliculas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TicketsDisponibles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaListaPeliculas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TicketsDisponibles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaListaPeliculas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TicketsDisponibles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaListaPeliculas().setVisible(true);
+                new TicketsDisponibles().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonBuscarPelicula;
-    private javax.swing.JButton jButtonBuscarPelicula1;
+    private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonGuardarCambios;
     private javax.swing.JButton jButtonRegresar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableListaPeliculas;
+    private javax.swing.JTable jTableTicketsDIsponibles;
     private javax.swing.JTextField jTextFieldBuscarPelicula;
     // End of variables declaration//GEN-END:variables
     class FondoPanel extends JPanel {
@@ -177,7 +180,7 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
 
         @Override
         public void paint(Graphics g) {
-            imagen = new ImageIcon(getClass().getResource("/Imagenes/LISTA PELICULA.png")).getImage();
+            imagen = new ImageIcon(getClass().getResource("/Imagenes/TICKETS DISPONIBLES.png")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
             super.paint(g);

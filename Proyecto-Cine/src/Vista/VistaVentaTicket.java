@@ -112,10 +112,20 @@ public class VistaVentaTicket extends javax.swing.JFrame {
         getContentPane().add(jToggleButtonAceptarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 370, 180, 40));
 
         jToggleButtonRegresarTicket.setText("REGRESAR");
-        getContentPane().add(jToggleButtonRegresarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 720, 180, 40));
+        jToggleButtonRegresarTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonRegresarTicketActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jToggleButtonRegresarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 730, 120, 30));
 
         jToggleButtonPagarTicket.setText("PAGAR");
-        getContentPane().add(jToggleButtonPagarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 730, 170, 40));
+        jToggleButtonPagarTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonPagarTicketActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jToggleButtonPagarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 740, 120, 30));
 
         jLabel6.setText("PRECIO TOTAL:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 690, -1, -1));
@@ -130,6 +140,20 @@ public class VistaVentaTicket extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jToggleButtonRegresarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonRegresarTicketActionPerformed
+        // TODO add your handling code here
+        VistaVentaTicket vvt = new VistaVentaTicket();
+        vvt.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jToggleButtonRegresarTicketActionPerformed
+
+    private void jToggleButtonPagarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonPagarTicketActionPerformed
+        // TODO add your handling code here:
+        Pago p = new Pago();
+        p.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jToggleButtonPagarTicketActionPerformed
 
     /**
      * @param args the command line arguments
