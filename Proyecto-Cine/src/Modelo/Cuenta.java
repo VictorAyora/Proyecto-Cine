@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -13,31 +15,28 @@ import javax.persistence.Id;
 @Entity
 public class Cuenta implements Serializable{
     //Atributos de la clase Usuario
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_cuenta;
-    public String external_id_cuenta; 
     private String usuario;
     private String clave;
     private boolean estado_cuenta;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @OneToOne
+    private Usuario usu;
+ 
     //Getters y Setters
-    public int getId() {
+
+    public int getId_cuenta() {
         return id_cuenta;
     }
 
-    public void setId(int id) {
-        this.id_cuenta = id;
+    public void setId_cuenta(int id_cuenta) {
+        this.id_cuenta = id_cuenta;
     }
 
-    public String getExternal_id() {
-        return external_id_cuenta;
-    }
-
-    public void setExternal_id(String external_id) {
-        this.external_id_cuenta = external_id;
-    }
-
+    
     public String getUsuario() {
         return usuario;
     }
@@ -54,11 +53,19 @@ public class Cuenta implements Serializable{
         this.clave = clave;
     }
 
-    public boolean isEstado() {
+    public boolean isEstado_cuenta() {
         return estado_cuenta;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado_cuenta = estado;
-    }   
+    public void setEstado_cuenta(boolean estado_cuenta) {
+        this.estado_cuenta = estado_cuenta;
+    }
+
+    public Usuario getUsu() {
+        return usu;
+    }
+
+    public void setUsu(Usuario usu) {
+        this.usu = usu;
+    }
 }

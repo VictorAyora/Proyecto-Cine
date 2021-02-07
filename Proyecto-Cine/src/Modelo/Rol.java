@@ -15,7 +15,6 @@ public class Rol implements Serializable {
     
     //Atributos de la clase Rol
     private int id_rol;
-    public String external_id_rol;
     private String tipo_rol; 
     
     //Getters y Setters
@@ -27,14 +26,6 @@ public class Rol implements Serializable {
 
     public void setId(int id) {
         this.id_rol = id;
-    }
-
-    public String getExternal_id() {
-        return external_id_rol;
-    }
-
-    public void setExternal_id(String external_id) {
-        this.external_id_rol = external_id;
     }
 
     public String getTpo() {

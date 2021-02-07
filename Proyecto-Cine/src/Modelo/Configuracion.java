@@ -20,7 +20,6 @@ import javax.persistence.Id;
 @Entity
 public class Configuracion implements Serializable {
     private int id_configuracion;
-    public String external_id_configuracion;
     public String fecha;
     
     @Id
@@ -32,15 +31,8 @@ public class Configuracion implements Serializable {
     public void setId(int id) {
         this.id_configuracion = id;
     }
-    @Column(length = 20)
-    public String getExternal_id() {
-        return external_id_configuracion;
-    }
-    
-    public void setExternal_id(String external_id) {
-        this.external_id_configuracion = external_id;
-    }
-    @Column(length = 20)
+   
+
     public String getFecha() {
         return fecha;
     }

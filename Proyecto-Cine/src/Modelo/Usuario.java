@@ -5,25 +5,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author Victor Ayora, Geovanny Poma, Veronica Placencia, Azucena Toledo
  */
 @Entity
-public class Usuario implements Serializable {
+public class Usuario implements Serializable{
     
     //Atributos de la clase Usuario
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_usuario;
-    public String external_id_usuario; 
     private String nombre;
     private String apellido;
     private String correo;
     private String cedula; 
     private int telefono;
     private String foto;
+    
+    @OneToOne
+    private Rol rol;
     
     //Getters y Setters 
     public int getId() {
@@ -34,13 +38,6 @@ public class Usuario implements Serializable {
         this.id_usuario = id;
     }
 
-    public String getExternal_id() {
-        return external_id_usuario;
-    }
-
-    public void setExternal_id(String external_id) {
-        this.external_id_usuario = external_id;
-    }
 
     public String getNombre() {
         return nombre;
@@ -88,5 +85,23 @@ public class Usuario implements Serializable {
 
     public void setFoto(String foto) {
         this.foto = foto;
-    }   
+    }
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+    
 }
