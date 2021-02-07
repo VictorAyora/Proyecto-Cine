@@ -52,6 +52,7 @@ public class VistaAdministracionSalas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTableAdministracionSalas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTableAdministracionSalas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -64,12 +65,12 @@ public class VistaAdministracionSalas extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, 750, 260));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 44)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 44)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("ADMINISTRACIÓN DE SALAS");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, -1, 60));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Capacidad:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, -1, -1));
 
@@ -81,15 +82,19 @@ public class VistaAdministracionSalas extends javax.swing.JFrame {
         });
         getContentPane().add(jTextFieldCapacidadSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 130, 30));
 
+        jButtonRegistrarSala.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonRegistrarSala.setText("Registrar");
-        getContentPane().add(jButtonRegistrarSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 270, -1, -1));
+        getContentPane().add(jButtonRegistrarSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 110, 30));
 
+        jButtonCambiarEstadoSala.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCambiarEstadoSala.setText("Cambiar Estado");
         getContentPane().add(jButtonCambiarEstadoSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 310, -1, -1));
 
+        jButtonModificarDatosSala.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonModificarDatosSala.setText("ModificarDatos");
-        getContentPane().add(jButtonModificarDatosSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 360, -1, -1));
+        getContentPane().add(jButtonModificarDatosSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 360, 130, -1));
 
+        jButtonRegresar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonRegresar.setText("Regresar");
         jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +103,7 @@ public class VistaAdministracionSalas extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 590, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("N° Sala:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, -1, -1));
 

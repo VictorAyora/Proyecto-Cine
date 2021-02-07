@@ -55,32 +55,48 @@ public class VistaVentaSnack extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelTitVentTick.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelTitVentTick.setFont(new java.awt.Font("Century Schoolbook", 1, 48)); // NOI18N
+        jLabelTitVentTick.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabelTitVentTick.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTitVentTick.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitVentTick.setText("VENTA DE SNACK");
-        getContentPane().add(jLabelTitVentTick, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 630, 60));
+        getContentPane().add(jLabelTitVentTick, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, 630, 60));
 
+        jComboBoxSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxSnack.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Palomitas", "Nachos", "Gaseosa", " " }));
-        getContentPane().add(jComboBoxSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 130, -1));
+        jComboBoxSnack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxSnackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBoxSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 130, -1));
 
+        jComboBoxTamañoSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxTamañoSnack.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pequeño", "Mediano", "Grande" }));
-        getContentPane().add(jComboBoxTamañoSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 130, -1));
-        getContentPane().add(jTextFieldCantidadSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 130, 30));
+        getContentPane().add(jComboBoxTamañoSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, 130, -1));
 
+        jTextFieldCantidadSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextFieldCantidadSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 130, 30));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("SNACK:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("CANTIDAD:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, -1, 30));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("TAMAÑO:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, 30));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("PRECIO:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, -1, -1));
-        getContentPane().add(jTextFieldPrecioSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 380, 130, 30));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, -1, -1));
 
+        jTextFieldPrecioSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextFieldPrecioSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 380, 130, 30));
+
+        jTableSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTableSnack.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -99,30 +115,36 @@ public class VistaVentaSnack extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableSnack);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 1100, 240));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 980, 180));
 
+        jToggleButtonAceptarSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jToggleButtonAceptarSnack.setText("ACEPTAR");
-        getContentPane().add(jToggleButtonAceptarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 380, 140, 30));
+        getContentPane().add(jToggleButtonAceptarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 380, 140, 30));
 
+        jToggleButtonPagarSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jToggleButtonPagarSnack.setText("PAGAR");
         jToggleButtonPagarSnack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButtonPagarSnackActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButtonPagarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 730, 130, -1));
-        getContentPane().add(jTextFieldPrecioTotalSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 690, 70, -1));
+        getContentPane().add(jToggleButtonPagarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 660, 130, -1));
 
+        jTextFieldPrecioTotalSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextFieldPrecioTotalSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 620, 70, -1));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("PRECIO TOTAL:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 690, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 620, 120, 20));
 
+        jToggleButtonRegresarSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jToggleButtonRegresarSnack.setText("REGRESAR");
         jToggleButtonRegresarSnack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButtonRegresarSnackActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButtonRegresarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 720, 120, -1));
+        getContentPane().add(jToggleButtonRegresarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 660, 120, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -140,6 +162,10 @@ public class VistaVentaSnack extends javax.swing.JFrame {
         p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jToggleButtonPagarSnackActionPerformed
+
+    private void jComboBoxSnackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSnackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxSnackActionPerformed
 
     /**
      * @param args the command line arguments

@@ -59,6 +59,7 @@ public class VistaAdministracionSnacks extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTableAdministracionSnacks.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTableAdministracionSnacks.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -69,23 +70,26 @@ public class VistaAdministracionSnacks extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableAdministracionSnacks);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, 760, 243));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 393, 760, 230));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 44)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 44)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ADMINISTRACIÓN DE SNACKS");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, -1, -1));
 
+        jComboBoxTipoSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxTipoSnack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxTipoSnackActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBoxTipoSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 155, -1));
+        getContentPane().add(jComboBoxTipoSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 155, -1));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("TAMAÑO:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, -1, 30));
 
+        jComboBoxTamanioSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxTamanioSnack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxTamanioSnackActionPerformed(evt);
@@ -93,29 +97,37 @@ public class VistaAdministracionSnacks extends javax.swing.JFrame {
         });
         getContentPane().add(jComboBoxTamanioSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, 155, -1));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("CANTIDAD:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, -1, -1));
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Registrar");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 290, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 350, -1, -1));
 
+        jTextFieldCantidadSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldCantidadSnack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldCantidadSnackActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldCantidadSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 101, -1));
+        getContentPane().add(jTextFieldCantidadSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 101, -1));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("PRECIO:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, -1, -1));
 
+        jTextFieldCantidadSnack1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldCantidadSnack1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldCantidadSnack1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldCantidadSnack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 101, -1));
+        getContentPane().add(jTextFieldCantidadSnack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 101, -1));
 
+        jPanelImagenSnack.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Imagen");
 
         javax.swing.GroupLayout jPanelImagenSnackLayout = new javax.swing.GroupLayout(jPanelImagenSnack);
@@ -137,6 +149,7 @@ public class VistaAdministracionSnacks extends javax.swing.JFrame {
 
         getContentPane().add(jPanelImagenSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 190, 220, -1));
 
+        jButtonAgregarImagenSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonAgregarImagenSnack.setText("Agregar imagen");
         jButtonAgregarImagenSnack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,17 +158,20 @@ public class VistaAdministracionSnacks extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonAgregarImagenSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 330, -1, -1));
 
+        jButtonDarDeBajaSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonDarDeBajaSnack.setText("Dar de Baja");
-        getContentPane().add(jButtonDarDeBajaSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 470, -1, -1));
+        getContentPane().add(jButtonDarDeBajaSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 470, 110, -1));
 
+        jButtonModificarSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonModificarSnack.setText("Modificar");
         jButtonModificarSnack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonModificarSnackActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonModificarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 520, 89, -1));
+        getContentPane().add(jButtonModificarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 520, 110, -1));
 
+        jButtonRegresar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonRegresar.setText("Regresar");
         jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,8 +180,9 @@ public class VistaAdministracionSnacks extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 630, -1, -1));
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("TIPO:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

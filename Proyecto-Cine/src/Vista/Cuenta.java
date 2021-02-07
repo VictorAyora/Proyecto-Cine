@@ -137,8 +137,8 @@ public class Cuenta extends javax.swing.JFrame {
         getContentPane().add(jLabelCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 360, -1, -1));
 
         jLabelCorreo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabelCorreo.setText("Correo:");
-        getContentPane().add(jLabelCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 440, -1, -1));
+        jLabelCorreo.setText("Correo");
+        getContentPane().add(jLabelCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 440, 130, -1));
 
         jButtonEditarImagen1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonEditarImagen1.setText("Editar Imagen");
@@ -147,7 +147,7 @@ public class Cuenta extends javax.swing.JFrame {
                 jButtonEditarImagen1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonEditarImagen1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 430, -1, -1));
+        getContentPane().add(jButtonEditarImagen1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 430, -1, -1));
 
         jButtonEditarImagen2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonEditarImagen2.setText("Regresar");

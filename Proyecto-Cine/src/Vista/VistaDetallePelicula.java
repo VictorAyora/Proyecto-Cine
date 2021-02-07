@@ -67,6 +67,8 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanelPortada.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanelPortadaLayout = new javax.swing.GroupLayout(jPanelPortada);
         jPanelPortada.setLayout(jPanelPortadaLayout);
         jPanelPortadaLayout.setHorizontalGroup(
@@ -80,7 +82,7 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
 
         getContentPane().add(jPanelPortada, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 340, 210));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Idioma:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 370, -1, -1));
 
@@ -88,7 +90,7 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
         jLabelNombrePelicula.setText("Nombe Película");
         getContentPane().add(jLabelNombrePelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 210, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Título:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 210, -1, -1));
 
@@ -96,7 +98,7 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
         jLabelAnioPelicula.setText("2000");
         getContentPane().add(jLabelAnioPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 250, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Año:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 250, -1, -1));
 
@@ -104,7 +106,7 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
         jLabelGeneroPelicula.setText("Género Película");
         getContentPane().add(jLabelGeneroPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 290, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Género:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 290, -1, -1));
 
@@ -112,7 +114,7 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
         jLabelFormatoPelicula.setText("2D");
         getContentPane().add(jLabelFormatoPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 330, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Formato:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 330, -1, -1));
 
@@ -120,7 +122,7 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
         jLabelProveedorPelicula.setText("Proveedor Película");
         getContentPane().add(jLabelProveedorPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 330, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Formato:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 330, -1, -1));
 
@@ -128,7 +130,7 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
         jLabelIdiomaPelicula.setText("Español");
         getContentPane().add(jLabelIdiomaPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 370, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Duración:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 410, -1, -1));
 
@@ -136,7 +138,7 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
         jLabelSubtitulosPelicula.setText("Sí");
         getContentPane().add(jLabelSubtitulosPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 410, 40, -1));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Director:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 560, -1, -1));
 
@@ -144,11 +146,11 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
         jLabelDuracionPelicula.setText("120");
         getContentPane().add(jLabelDuracionPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 410, 40, -1));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Sinópsis:");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 460, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("Actores:");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, -1, -1));
 
@@ -156,23 +158,26 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
         jLabelDirectorPelicula.setText("Nombre Apellido");
         getContentPane().add(jLabelDirectorPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 560, -1, -1));
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("Subtítulos:");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 410, -1, -1));
 
+        jButtonRegresar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonRegresar.setText("Regresar");
         jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRegresarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 610, -1, -1));
+        getContentPane().add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 610, -1, -1));
 
+        jTextPaneSinopsis.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jScrollPane2.setViewportView(jTextPaneSinopsis);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 460, 300, 100));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 460, 370, 100));
 
         jTextPaneActores.setEditable(false);
+        jTextPaneActores.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jScrollPane1.setViewportView(jTextPaneActores);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, 280, 90));

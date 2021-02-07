@@ -55,62 +55,71 @@ public class VistaVentaTicket extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jComboBoxPeliculasTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxPeliculasTicket.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pelicula 1", "Pelicula 2", "Pelicula 3", "Pelicula 4", " " }));
         getContentPane().add(jComboBoxPeliculasTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 150, -1));
 
+        jComboBoxHorarioTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxHorarioTicket.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "14:30", "16:30", "18:30", "20:30" }));
         getContentPane().add(jComboBoxHorarioTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 150, -1));
 
+        jComboBoxFormatoTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxFormatoTicket.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2D", "3D", "3D 4k" }));
         getContentPane().add(jComboBoxFormatoTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 380, 150, -1));
 
+        jComboBoxTipoTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxTipoTicket.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Niño", "Adulto", "Adulto Mayor" }));
         getContentPane().add(jComboBoxTipoTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, 150, -1));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("PELICULA:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("HORARIO:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("TIPO:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 40, 10));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 50, 20));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("CANTIDAD:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, -1, -1));
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("FORMATO:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, -1, -1));
 
+        jTableTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTableTicket.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Pelicula", "Horario", "Tipo", "Formato", "Cantidad", "Formato", "Precio"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTableTicket);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 1100, 240));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 990, 170));
+
+        jTextFieldCantidadTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         getContentPane().add(jTextFieldCantidadTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, 150, -1));
 
+        jToggleButtonAceptarTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jToggleButtonAceptarTicket.setText("ACEPTAR");
-        getContentPane().add(jToggleButtonAceptarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 370, 180, 40));
+        getContentPane().add(jToggleButtonAceptarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 380, 130, 30));
 
+        jToggleButtonRegresarTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jToggleButtonRegresarTicket.setText("REGRESAR");
         jToggleButtonRegresarTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,17 +128,21 @@ public class VistaVentaTicket extends javax.swing.JFrame {
         });
         getContentPane().add(jToggleButtonRegresarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 730, 120, 30));
 
+        jToggleButtonPagarTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jToggleButtonPagarTicket.setText("PAGAR");
         jToggleButtonPagarTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButtonPagarTicketActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButtonPagarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 740, 120, 30));
+        getContentPane().add(jToggleButtonPagarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 640, 120, 30));
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("PRECIO TOTAL:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 690, -1, -1));
-        getContentPane().add(jTextFieldPrecioTotalTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 690, 70, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 610, -1, 20));
+
+        jTextFieldPrecioTotalTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextFieldPrecioTotalTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 610, 70, -1));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Century Schoolbook", 1, 48)); // NOI18N
