@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import Controlador.*;
+import Modelo.*;
 import javax.swing.JOptionPane;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -31,6 +33,8 @@ public class InicioSesion extends javax.swing.JFrame {
         this.setExtendedState(6);
         initComponents();
     }
+
+    ControladorCuenta cc = new ControladorCuenta();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -110,36 +114,58 @@ public class InicioSesion extends javax.swing.JFrame {
 
     private void jButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarActionPerformed
         try {
-            switch ((String)jComboBoxUsuario.getSelectedItem()) {
-                case "Administrador":
-                    Scanner vc = new Scanner(new File("Admin.txt"));
-                    if (vc.hasNext());
-                    String linea1 = vc.nextLine();
-                    if (vc.hasNext());
-                    String linea2 = vc.nextLine();
-                    if (linea1.equals(jTextFieldUsuario.getText()) && linea2.equals(jPasswordFieldClave.getText())) {
-                        MenuAdministrador ma = new MenuAdministrador();
-                        ma.setVisible(true);
-                        this.dispose();
-                    } else {
-                        System.out.println("DATOS INCORRECTO");
-                    }
-                    break;
-                case "Taquillero":
-                    System.out.println("hola");
-                    break;
-                case "Vendedor":
-                    break;
+            if (VerficarAdministrador()) {
+                MenuAdministrador ma = new MenuAdministrador();
+                ma.setVisible(true);
+                this.dispose();
+            } else if (VerificarTaquillero(jTextFieldUsuario.getText(), jPasswordFieldClave.getText())) {
+                JOptionPane.showMessageDialog(null, "Taquillero");
+            } else if (VerificarVendedor(jTextFieldUsuario.getText(), jPasswordFieldClave.getText())) {
+                JOptionPane.showMessageDialog(null, "Vendedor");
+            } else {
+                JOptionPane.showMessageDialog(null, "Datos incorrectos");
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("Archivo no encontrado");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error intente de nuevo");
         }
     }//GEN-LAST:event_jButtonIngresarActionPerformed
+
+    private boolean VerficarAdministrador() throws FileNotFoundException {
+        Scanner vc = new Scanner(new File("Admin.txt"));
+        if (vc.hasNext());
+        String linea1 = vc.nextLine();
+        if (vc.hasNext());
+        String linea2 = vc.nextLine();
+        if (linea1.equals(jTextFieldUsuario.getText()) && linea2.equals(jPasswordFieldClave.getText())) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean VerificarTaquillero(String Usuario, String Clave) {
+        Cuenta cuenta = cc.traerCuenta(1);
+        if (cuenta.getUsu().getRol().getTpo().equals("Taquillero")) {
+            if (cuenta.getClave().equals(Clave)) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    private boolean VerificarVendedor(String Usuario, String Clave) {
+        Cuenta cuenta = cc.traerCuenta(1);
+        if (cuenta.getUsu().getRol().equals("Vendedor")) {
+            if (cuenta.getClave().equals(Clave)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     private void jTextFieldUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsuarioActionPerformed
 
     }//GEN-LAST:event_jTextFieldUsuarioActionPerformed
-
 
     class FondoPanel extends JPanel {
 

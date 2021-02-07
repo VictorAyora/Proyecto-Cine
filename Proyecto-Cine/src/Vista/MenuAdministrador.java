@@ -300,7 +300,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usario circulo.png"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 20, 60, 80));
 
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar.png"))); // NOI18N
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupaNegra.png"))); // NOI18N
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, -1, 50));
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N

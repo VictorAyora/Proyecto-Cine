@@ -4,11 +4,13 @@
  * and open the template in the editor.
  */
 package Vista;
-
+import Controlador.*;
+import Modelo.*;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,12 +18,12 @@ import javax.swing.JPanel;
  */
 public class AdmUsuarios extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AdmUsuarios
-     */
-       
+    
+    DefaultTableModel TablaAdmUsuarios;   
     FondoPanel fondo = new FondoPanel();
-
+    ControladorCuenta cc = new ControladorCuenta();
+    ControladorRol cr = new ControladorRol();
+    ControladorUsuario cu = new ControladorUsuario();
     public AdmUsuarios() {
         this.setContentPane(fondo);
         this.setResizable(false);//no redimenciona la ventana
@@ -114,7 +116,7 @@ public class AdmUsuarios extends javax.swing.JFrame {
         getContentPane().add(jTextFieldBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 480, 470, -1));
 
         jComboBoxTipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vendedor", "Taquillero" }));
         getContentPane().add(jComboBoxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 143, -1));
 
         jButtonRegistrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -214,7 +216,9 @@ public class AdmUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
     private void jButtonDardeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDardeBajaActionPerformed
-        // TODO add your handling code here:
+//        TablaAdmUsuarios = jTableAdmUsuarios.getModel();
+//        int idact = Integer.parseInt(modelo.getValueAt(i, 0).toString());
+//        modelo1.getValueAt(i, 0).toString()
     }//GEN-LAST:event_jButtonDardeBajaActionPerformed
 
     private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
@@ -224,11 +228,30 @@ public class AdmUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     private void jButtonRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrar1ActionPerformed
-        // TODO add your handling code here:
+        Cuenta c = new Cuenta();
+        Usuario u = new Usuario();
+        Rol r = new Rol();
+        
+        u.setNombre(jTextFieldNombre.getText());
+        u.setApellido(jTextFieldApellido.getText());
+        u.setCorreo(jTextFieldCorreo.getText());
+        u.setCedula(jTextFieldCedula.getText());
+        u.setTelefono(Integer.parseInt(jTextFieldTelefono.getText()));
+        u.setFoto("FotoXD");
+        r.setTpo((String)jComboBoxTipo.getSelectedItem());
+        u.setRol(r);
+        
+        c.setUsuario(jTextFieldCedula.getText());
+        c.setClave(jTextFieldCedula.getText());
+        c.setEstado_cuenta(true);
+        c.setUsu(u);
+        cr.registrarRol(r);
+        cu.registrarUsuario(u);
+        cc.registrarCuenta(c);
     }//GEN-LAST:event_jButtonRegistrar1ActionPerformed
 
     private void jButtonModificarDatos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarDatos1ActionPerformed
-        Cuenta c = new Cuenta();
+        VistaCuenta c = new VistaCuenta();
         c.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonModificarDatos1ActionPerformed

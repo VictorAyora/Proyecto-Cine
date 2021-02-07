@@ -44,7 +44,6 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel2.setOpaque(false);
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 400, 170, 50));
 
