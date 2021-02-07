@@ -5,9 +5,13 @@
  */
 package Vista;
 
+import Controlador.ControladorSala;
+import Modelo.Funcion;
+import Modelo.Sala;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -19,6 +23,7 @@ public class VistaAdministracionSalas extends javax.swing.JFrame {
     /**
      * Creates new form VistaAdministracionSalas
      */
+    ControladorSala cs = new ControladorSala();
     FondoPanel fondo = new FondoPanel();
 
     public VistaAdministracionSalas() {
@@ -84,6 +89,11 @@ public class VistaAdministracionSalas extends javax.swing.JFrame {
 
         jButtonRegistrarSala.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonRegistrarSala.setText("Registrar");
+        jButtonRegistrarSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrarSalaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonRegistrarSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 110, 30));
 
         jButtonCambiarEstadoSala.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -123,6 +133,15 @@ public class VistaAdministracionSalas extends javax.swing.JFrame {
         ma.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonRegresarActionPerformed
+
+    private void jButtonRegistrarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarSalaActionPerformed
+        // TODO add your handling code here:
+        Sala s = new Sala();
+        s.setNumeroSala(1);
+        s.setCapacidad(Integer.parseInt(jTextFieldCapacidadSala.getText()));
+        
+        cs.registrarSala(s);
+    }//GEN-LAST:event_jButtonRegistrarSalaActionPerformed
 
     /**
      * @param args the command line arguments

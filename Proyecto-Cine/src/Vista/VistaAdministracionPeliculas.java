@@ -5,10 +5,15 @@
  */
 package Vista;
 
+import Controlador.ControladorPelicula;
+import Modelo.Pelicula;
+import Modelo.Sala;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,8 +24,12 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
     /**
      * Creates new form VistaAdministracionPeliculas
      */
+    
+    DefaultTableModel TablaAdministrarPeliculas;   
     FondoPanel fondo = new FondoPanel();
-
+    ControladorPelicula cp = new ControladorPelicula();
+    
+    
     public VistaAdministracionPeliculas() {
         this.setContentPane(fondo);
         this.setExtendedState(6);
@@ -152,6 +161,11 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, -1, 20));
 
         jTextFieldTituloPelicula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldTituloPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldTituloPeliculaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextFieldTituloPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 270, -1));
 
         jTextFieldAnioPelicula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -301,6 +315,11 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
 
         jButtonRegistrarPelicula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonRegistrarPelicula.setText("Registrar");
+        jButtonRegistrarPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrarPeliculaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonRegistrarPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 430, 100, 30));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -450,6 +469,33 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
     private void jTextFieldBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldBuscarActionPerformed
+
+    private void jButtonRegistrarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarPeliculaActionPerformed
+        // TODO add your handling code here:
+        Pelicula c = new Pelicula();
+        c.setTitulo(jTextFieldTituloPelicula.getText());
+        c.setAnio(Integer.parseInt(jTextFieldAnioPelicula.getText()));
+        c.setSubtitulos(jRadioButtonSubtitulos.getVerifyInputWhenFocusTarget());
+        c.setDuracion(jSpinnerDuracionPelicula.getComponentCount());
+        c.setGenero(jRadioButtonFiccion.getName() + jRadioButtonAccion.getName() + jRadioButtonTerror.getName());
+        c.setProveedor(jTextFieldProveedor.getText());
+        c.setIdioma(jRadioButtonEspaniol.getName());
+        c.setSinopsis(jTextPaneSinopsisPelicula.getText());
+        c.setActores(jTextPaneActoresPelicula.getText());
+        c.setDirector(jTextFieldDirector.getText());
+        c.setFormato(jRadioButton2D.getName()+jRadioButton3D.getName());
+        c.setPortada("direccion");
+        
+        cp.registrarPelicula(c);    
+    }
+    private void jButtonRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {
+
+
+    }//GEN-LAST:event_jButtonRegistrarPeliculaActionPerformed
+
+    private void jTextFieldTituloPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTituloPeliculaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTituloPeliculaActionPerformed
 
     /**
      * @param args the command line arguments

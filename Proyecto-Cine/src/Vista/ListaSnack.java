@@ -57,7 +57,7 @@ public class ListaSnack extends javax.swing.JFrame {
         });
         getContentPane().add(jTextFieldBuscarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 470, 30));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 44)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 44)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("LISTA DE SNACK");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 610, 70));
@@ -112,8 +112,8 @@ public class ListaSnack extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldBuscarSnackActionPerformed
 
     private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
-        VistaAdministracionPeliculas ap = new VistaAdministracionPeliculas();
-        ap.setVisible(true);
+        VistaMenuVendedor vmv = new VistaMenuVendedor();
+        vmv.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonRegresarActionPerformed
 

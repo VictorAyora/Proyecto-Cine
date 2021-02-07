@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Modelo.Pelicula;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -64,6 +65,11 @@ public class TicketsDisponibles extends javax.swing.JFrame {
 
         jButtonBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 200, 90, 30));
 
         jTableTicketsDIsponibles.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -85,7 +91,7 @@ public class TicketsDisponibles extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableTicketsDIsponibles);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 980, 340));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 980, 340));
 
         jButtonRegresar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonRegresar.setText("Regresar");
@@ -114,17 +120,23 @@ public class TicketsDisponibles extends javax.swing.JFrame {
 
     private void jTextFieldBuscarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBuscarPeliculaActionPerformed
         // TODO add your handling code here:
+       
     }//GEN-LAST:event_jTextFieldBuscarPeliculaActionPerformed
 
     private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
-        TicketsDisponibles td = new TicketsDisponibles();
-        td.setVisible(true);
+        VistaMenuTaquillero vmt = new VistaMenuTaquillero();
+        vmt.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     private void jButtonGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarCambiosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonGuardarCambiosActionPerformed
+
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -130,6 +130,11 @@ public class AdmUsuarios extends javax.swing.JFrame {
 
         jButtonBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 480, -1, -1));
 
         jButtonDardeBaja.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -231,16 +236,16 @@ public class AdmUsuarios extends javax.swing.JFrame {
         Cuenta c = new Cuenta();
         Usuario u = new Usuario();
         Rol r = new Rol();
-        
+
         u.setNombre(jTextFieldNombre.getText());
         u.setApellido(jTextFieldApellido.getText());
         u.setCorreo(jTextFieldCorreo.getText());
         u.setCedula(jTextFieldCedula.getText());
         u.setTelefono(Integer.parseInt(jTextFieldTelefono.getText()));
         u.setFoto("FotoXD");
-        r.setTpo((String)jComboBoxTipo.getSelectedItem());
+        r.setTpo((String) jComboBoxTipo.getSelectedItem());
         u.setRol(r);
-        
+
         c.setUsuario(jTextFieldCedula.getText());
         c.setClave(jTextFieldCedula.getText());
         c.setEstado_cuenta(true);
@@ -255,6 +260,10 @@ public class AdmUsuarios extends javax.swing.JFrame {
         c.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonModificarDatos1ActionPerformed
+
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     /**
      * @param args the command line arguments

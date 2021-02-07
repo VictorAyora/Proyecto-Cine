@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import Controlador.ControladorSnack;
+import Modelo.Snack;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -19,6 +21,7 @@ public class VistaAdministracionSnacks extends javax.swing.JFrame {
     /**
      * Creates new form VistaAdministracionSnacks
      */
+    ControladorSnack cs = new ControladorSnack();
     FondoPanel fondo = new FondoPanel();
 
     public VistaAdministracionSnacks() {
@@ -103,6 +106,11 @@ public class VistaAdministracionSnacks extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Registrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 350, -1, -1));
 
         jTextFieldCantidadSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -216,6 +224,16 @@ public class VistaAdministracionSnacks extends javax.swing.JFrame {
         ma.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonRegresarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Snack s = new Snack();
+        s.setTipo_snack((String) jComboBoxTipoSnack.getSelectedItem());
+        s.setCantidad(Integer.parseInt(jTextFieldCantidadSnack1.getText()));
+        s.setTamanio((String) jComboBoxTamanioSnack.getSelectedItem());
+        s.setPrecio_snack(Double.parseDouble(jTextFieldCantidadSnack.getText()));
+        cs.registrarSala(s);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

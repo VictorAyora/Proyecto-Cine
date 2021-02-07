@@ -158,7 +158,7 @@ public class VistaVentaSnack extends javax.swing.JFrame {
 
     private void jToggleButtonPagarSnackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonPagarSnackActionPerformed
         // TODO add your handling code here:
-        Pago p = new Pago();
+        Pago p = new Pago(2);
         p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jToggleButtonPagarSnackActionPerformed

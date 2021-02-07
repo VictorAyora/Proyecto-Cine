@@ -16,6 +16,7 @@ import javax.swing.JPanel;
  */
 public class VistaVentaTicket extends javax.swing.JFrame {
 
+    
     FondoPanel fondo = new FondoPanel();
     public VistaVentaTicket() {
         this.setContentPane(fondo);
@@ -126,7 +127,7 @@ public class VistaVentaTicket extends javax.swing.JFrame {
                 jToggleButtonRegresarTicketActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButtonRegresarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 730, 120, 30));
+        getContentPane().add(jToggleButtonRegresarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 650, 120, 30));
 
         jToggleButtonPagarTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jToggleButtonPagarTicket.setText("PAGAR");
@@ -145,25 +146,25 @@ public class VistaVentaTicket extends javax.swing.JFrame {
         getContentPane().add(jTextFieldPrecioTotalTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 610, 70, -1));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Century Schoolbook", 1, 48)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("VENTA DE TICKETS");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 630, 60));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 630, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButtonRegresarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonRegresarTicketActionPerformed
         // TODO add your handling code here
-        VistaVentaTicket vvt = new VistaVentaTicket();
-        vvt.setVisible(true);
+        VistaMenuTaquillero vmt = new VistaMenuTaquillero();
+        vmt.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jToggleButtonRegresarTicketActionPerformed
 
     private void jToggleButtonPagarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonPagarTicketActionPerformed
         // TODO add your handling code here:
-        Pago p = new Pago();
+        Pago p = new Pago(1);
         p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jToggleButtonPagarTicketActionPerformed
