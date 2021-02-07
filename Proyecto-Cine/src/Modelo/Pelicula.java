@@ -1,9 +1,15 @@
 package Modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author Victor Ayora, Geovanny Poma, Veronica Placencia, Azucena Toledo
  */
+@Entity
 public class Pelicula {
 
     private int id_pelicula;
@@ -22,42 +28,44 @@ public class Pelicula {
     public String director;
     private Boolean estado_pelicula;
 
-    public Pelicula(int id, String external_id, String titulo, String sinopsis, Boolean subtitulos, String proveedor, String genero, String formato, int anio, String idioma, int duracion, String portada, String actores, String director, Boolean estado) {
-        this.id_pelicula = id;
-        this.external_id_pelicula = external_id;
-        this.titulo = titulo;
-        this.sinopsis = sinopsis;
-        this.subtitulos = subtitulos;
-        this.proveedor = proveedor;
-        this.genero = genero;
-        this.formato = formato;
-        this.anio = anio;
-        this.idioma = idioma;
-        this.duracion = duracion;
-        this.portada = portada;
-        this.actores = actores;
-        this.director = director;
-        this.estado_pelicula = estado;
-    }
+    private Cartelera carte;
 
-    public int getId() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public int getId_pelicula() {
         return id_pelicula;
     }
 
-    public void setId(int id) {
-        this.id_pelicula = id;
+    public void setId_pelicula(int id_pelicula) {
+        this.id_pelicula = id_pelicula;
     }
 
-    public String getExternal_id() {
+    public String getExternal_id_pelicula() {
         return external_id_pelicula;
     }
 
-    public void setExternal_id(String external_id) {
-        this.external_id_pelicula = external_id;
+    public void setExternal_id_pelicula(String external_id_pelicula) {
+        this.external_id_pelicula = external_id_pelicula;
     }
 
     public String getTitulo() {
         return titulo;
+    }
+
+    public Boolean getEstado_pelicula() {
+        return estado_pelicula;
+    }
+
+    public void setEstado_pelicula(Boolean estado_pelicula) {
+        this.estado_pelicula = estado_pelicula;
+    }
+
+    public Cartelera getCarte() {
+        return carte;
+    }
+
+    public void setCarte(Cartelera carte) {
+        this.carte = carte;
     }
 
     public void setTitulo(String titulo) {

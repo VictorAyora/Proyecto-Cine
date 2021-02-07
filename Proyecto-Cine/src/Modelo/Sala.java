@@ -20,31 +20,34 @@ public class Sala implements Serializable {
     private int numeroSala;
     private Boolean disponibilidad;
     private int capacidad;
+    
+    private Funcion funcio;
 
-    public Sala(int id, String external_id, int numeroSala, Boolean disponibilidad, int capacidad) {
-        this.id_sala = id;
-        this.external_id_sala = external_id;
-        this.numeroSala = numeroSala;
-        this.disponibilidad = disponibilidad;
-        this.capacidad = capacidad;
-    }
-
-    public int getId() {
+    public int getId_sala() {
         return id_sala;
     }
 
-    public void setId(int id) {
-        this.id_sala = id;
+    public void setId_sala(int id_sala) {
+        this.id_sala = id_sala;
     }
 
-    public String getExternal_id() {
+    public String getExternal_id_sala() {
         return external_id_sala;
     }
 
-    public void setExternal_id(String external_id) {
-        this.external_id_sala = external_id;
+    public void setExternal_id_sala(String external_id_sala) {
+        this.external_id_sala = external_id_sala;
     }
 
+    public Funcion getFuncio() {
+        return funcio;
+    }
+
+    public void setFuncio(Funcion funcio) {
+        this.funcio = funcio;
+    }
+
+    
     public int getNumeroSala() {
         return numeroSala;
     }

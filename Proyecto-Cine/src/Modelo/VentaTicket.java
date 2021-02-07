@@ -11,26 +11,28 @@ import javax.persistence.Id;
  */
 @Entity
 public class VentaTicket {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_ventaTicket;
     public String external_id_ventaTicket;
     private int numTicket;
-
-    public int getId() {
+    
+    private DetalleVentaTicket detalleventaT;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public int getId_ventaTicket() {
         return id_ventaTicket;
     }
 
-    public void setId(int id) {
-        this.id_ventaTicket = id;
+    public void setId_ventaTicket(int id_ventaTicket) {
+        this.id_ventaTicket = id_ventaTicket;
     }
 
-    public String getExternal_id() {
+    public String getExternal_id_ventaTicket() {
         return external_id_ventaTicket;
     }
 
-    public void setExternal_id(String external_id) {
-        this.external_id_ventaTicket = external_id;
+    public void setExternal_id_ventaTicket(String external_id_ventaTicket) {
+        this.external_id_ventaTicket = external_id_ventaTicket;
     }
 
     public int getNumTicket() {
