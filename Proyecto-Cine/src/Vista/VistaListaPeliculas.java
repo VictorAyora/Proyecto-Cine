@@ -42,10 +42,9 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
         jButtonBuscarPelicula = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableListaPeliculas = new javax.swing.JTable();
-        jButtonVerDetalles = new javax.swing.JButton();
+        jButtonRegresar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButtonBuscarPelicula1 = new javax.swing.JButton();
-        jButtonRegresar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,11 +77,11 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Película", "Año", "Subtítulos", "Duración", "Género", "Proveedor", "Formato", "Idioma"
+                "Película", "Formato", "Horario", "N° Ticket", "N° Sala", "Dias"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -93,14 +92,14 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 980, 340));
 
-        jButtonVerDetalles.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonVerDetalles.setText("Ver Detalles");
-        jButtonVerDetalles.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRegresar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVerDetallesActionPerformed(evt);
+                jButtonRegresarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonVerDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(1087, 200, 110, 30));
+        getContentPane().add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 650, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Película:");
@@ -110,15 +109,6 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
         jButtonBuscarPelicula1.setText("Buscar");
         getContentPane().add(jButtonBuscarPelicula1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 200, 120, 30));
 
-        jButtonRegresar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonRegresar1.setText("Regresar");
-        jButtonRegresar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRegresar1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonRegresar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 650, -1, -1));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -126,19 +116,15 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldBuscarPeliculaActionPerformed
 
-    private void jButtonVerDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerDetallesActionPerformed
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
         VistaAdministracionPeliculas ap = new VistaAdministracionPeliculas();
         ap.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButtonVerDetallesActionPerformed
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     private void jButtonBuscarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarPeliculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonBuscarPeliculaActionPerformed
-
-    private void jButtonRegresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonRegresar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,8 +164,7 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscarPelicula;
     private javax.swing.JButton jButtonBuscarPelicula1;
-    private javax.swing.JButton jButtonRegresar1;
-    private javax.swing.JButton jButtonVerDetalles;
+    private javax.swing.JButton jButtonRegresar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
