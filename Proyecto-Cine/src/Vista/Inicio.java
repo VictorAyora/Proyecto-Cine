@@ -5,11 +5,14 @@
  */
 package Vista;
 
+import Modelo.Cuenta;
+import Modelo.Rol;
+import Modelo.Usuario;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-
+import Controlador.*;
 /**
  *
  * @author Victor Ayora, Geovanny Poma, Veronica Placencia, Azucena Toledo

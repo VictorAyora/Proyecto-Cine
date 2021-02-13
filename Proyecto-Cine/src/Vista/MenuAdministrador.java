@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Modelo.placeHolder;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -23,6 +24,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.setContentPane(fondo);
         this.setExtendedState(6);
         this.setResizable(false);//no redimenciona la ventana
+        //placeHolder place1 = new placeHolder("Ejm: Carolina", jTextFieldBuscar);
         initComponents();
         jPanelUsuario.setVisible(false);
         jPanelCartelera.setVisible(false);
@@ -30,6 +32,8 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jPanelSala.setVisible(false);
         jPanelSnacks.setVisible(false);
         jPanelSalir.setVisible(false);
+        jPanelCuenta.setVisible(false);
+        
     }
 
     /**
@@ -65,11 +69,13 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jPanelSalirI = new javax.swing.JPanel();
         jLabelImagenSalir = new javax.swing.JLabel();
         jLabelSalir = new javax.swing.JLabel();
+        jPanelCuenta = new javax.swing.JPanel();
+        jPanelCuentaI = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldBuscar = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -289,6 +295,30 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jLabelSalir.setText("SALIR");
         getContentPane().add(jLabelSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 620, -1, -1));
 
+        jPanelCuenta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelCuenta.setOpaque(false);
+        jPanelCuenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelCuentaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanelCuentaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanelCuentaMouseExited(evt);
+            }
+        });
+        jPanelCuenta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanelCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 30, 180, 60));
+
+        jPanelCuentaI.setOpaque(false);
+        jPanelCuentaI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanelCuentaIMouseEntered(evt);
+            }
+        });
+        getContentPane().add(jPanelCuentaI, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 30, 180, 60));
+
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
         jLabel1.setText("MI CUENTA ");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 30, 120, 70));
@@ -303,8 +333,13 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupaNegra.png"))); // NOI18N
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, -1, 50));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 530, 70));
+        jTextFieldBuscar.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jTextFieldBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldBuscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 530, 70));
 
         jTextField2.setEditable(false);
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 30, 130, 70));
@@ -327,7 +362,9 @@ public class MenuAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelUsuarioMouseClicked
 
     private void jPanelSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelSalirMouseClicked
-        System.exit(0);
+        InicioSesion is = new InicioSesion();
+        is.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jPanelSalirMouseClicked
 
     private void jPanelSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelSalirMouseEntered
@@ -442,6 +479,30 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jPanelSalir.setVisible(true);
     }//GEN-LAST:event_jPanelSalirIMouseEntered
 
+    private void jTextFieldBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldBuscarActionPerformed
+
+    private void jPanelCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCuentaMouseClicked
+        InicioSesion is = new InicioSesion();
+        int id_usr = is.cc.getCuenta().getId_cuenta();
+        VistaCuenta vc = new VistaCuenta(-1, id_usr);
+        vc.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jPanelCuentaMouseClicked
+
+    private void jPanelCuentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCuentaMouseEntered
+        
+    }//GEN-LAST:event_jPanelCuentaMouseEntered
+
+    private void jPanelCuentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCuentaMouseExited
+        jPanelCuenta.setVisible(false);
+    }//GEN-LAST:event_jPanelCuentaMouseExited
+
+    private void jPanelCuentaIMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCuentaIMouseEntered
+        jPanelCuenta.setVisible(true);
+    }//GEN-LAST:event_jPanelCuentaIMouseEntered
+
     /**
      * @param args the command line arguments
      */
@@ -508,6 +569,8 @@ public class MenuAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JPanel jPanelCartelera;
     private javax.swing.JPanel jPanelCarteleraI;
+    private javax.swing.JPanel jPanelCuenta;
+    private javax.swing.JPanel jPanelCuentaI;
     private javax.swing.JPanel jPanelPelicula;
     private javax.swing.JPanel jPanelPeliculaI;
     private javax.swing.JPanel jPanelSala;
@@ -518,7 +581,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelSnacksI;
     private javax.swing.JPanel jPanelUsuario;
     private javax.swing.JPanel jPanelUsuarioI;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextFieldBuscar;
     // End of variables declaration//GEN-END:variables
 }

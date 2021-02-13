@@ -4,11 +4,15 @@
  * and open the template in the editor.
  */
 package Vista;
+
 import Controlador.*;
-import Modelo.*;
+import Modelo.Cuenta;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,19 +22,28 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AdmUsuarios extends javax.swing.JFrame {
 
-    
-    DefaultTableModel TablaAdmUsuarios;   
+    DefaultTableModel TablaAdmUsuarios; //Codigo que crea el modelo de la tabla
     FondoPanel fondo = new FondoPanel();
     ControladorCuenta cc = new ControladorCuenta();
     ControladorRol cr = new ControladorRol();
     ControladorUsuario cu = new ControladorUsuario();
+    List<Cuenta> lc = cc.cargarCuentas();
+    static int id_ex; 
     public AdmUsuarios() {
         this.setContentPane(fondo);
         this.setResizable(false);//no redimenciona la ventana
         this.setExtendedState(6);
+//        placeHolder place1 = new placeHolder("Ejm: Carolina", jTextFieldNombre);
+//        placeHolder place2 = new placeHolder("Ejm: Paredes", jTextFieldApellido);
+//        placeHolder place3 = new placeHolder("Ejm: nombreapellido@gmail.com", jTextFieldCorreo);
+//        placeHolder place4 = new placeHolder("Ejm: 0991704302", jTextFieldTelefono);
+//        placeHolder place5 = new placeHolder("Ejm: 1104758920", jTextFieldCedula);
+//        placeHolder place6 = new placeHolder("Escriba el numero de cedula  o apellidos de la cuenta a buscar", jTextFieldBuscar);
         initComponents();
+        cargarTabla();
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,7 +69,7 @@ public class AdmUsuarios extends javax.swing.JFrame {
         jComboBoxTipo = new javax.swing.JComboBox<>();
         jButtonRegistrar = new javax.swing.JButton();
         jButtonBuscar = new javax.swing.JButton();
-        jButtonDardeBaja = new javax.swing.JButton();
+        jButtonCambiarEstado = new javax.swing.JButton();
         jButtonRegresar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabelAgregarImagen = new javax.swing.JLabel();
@@ -113,7 +126,7 @@ public class AdmUsuarios extends javax.swing.JFrame {
         getContentPane().add(jTextFieldCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 143, -1));
 
         jTextFieldBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(jTextFieldBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 480, 470, -1));
+        getContentPane().add(jTextFieldBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, 470, -1));
 
         jComboBoxTipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vendedor", "Taquillero" }));
@@ -126,7 +139,7 @@ public class AdmUsuarios extends javax.swing.JFrame {
                 jButtonRegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 390, -1, -1));
+        getContentPane().add(jButtonRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 360, -1, -1));
 
         jButtonBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonBuscar.setText("Buscar");
@@ -135,16 +148,16 @@ public class AdmUsuarios extends javax.swing.JFrame {
                 jButtonBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 480, -1, -1));
+        getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 440, -1, -1));
 
-        jButtonDardeBaja.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonDardeBaja.setText("Dar de Baja");
-        jButtonDardeBaja.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCambiarEstado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonCambiarEstado.setText("Cambiar Estado");
+        jButtonCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDardeBajaActionPerformed(evt);
+                jButtonCambiarEstadoActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonDardeBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 560, 130, -1));
+        getContentPane().add(jButtonCambiarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 500, 130, -1));
 
         jButtonRegresar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonRegresar.setText("Regresar");
@@ -169,7 +182,7 @@ public class AdmUsuarios extends javax.swing.JFrame {
             .addGap(0, 170, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 210, 220, 170));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 180, 220, 170));
 
         jLabelAgregarImagen.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         getContentPane().add(jLabelAgregarImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 390, -1, -1));
@@ -180,11 +193,11 @@ public class AdmUsuarios extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cuenta", "Tipo de Cuenta", "Estado"
+                "Id", "Usuario", "Apellido", "Nombre", "Tipo_Cuenta", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, true, true, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -193,7 +206,7 @@ public class AdmUsuarios extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableAdmUsuarios);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 510, 690, 110));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 480, 690, 140));
 
         jButtonRegistrar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonRegistrar1.setText("Registrar");
@@ -202,7 +215,7 @@ public class AdmUsuarios extends javax.swing.JFrame {
                 jButtonRegistrar1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonRegistrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 440, 110, -1));
+        getContentPane().add(jButtonRegistrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 390, 110, -1));
 
         jButtonModificarDatos1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonModificarDatos1.setText("Modificar Datos");
@@ -211,7 +224,7 @@ public class AdmUsuarios extends javax.swing.JFrame {
                 jButtonModificarDatos1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonModificarDatos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 600, 130, -1));
+        getContentPane().add(jButtonModificarDatos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 550, 130, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -220,11 +233,32 @@ public class AdmUsuarios extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
-    private void jButtonDardeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDardeBajaActionPerformed
-//        TablaAdmUsuarios = jTableAdmUsuarios.getModel();
-//        int idact = Integer.parseInt(modelo.getValueAt(i, 0).toString());
-//        modelo1.getValueAt(i, 0).toString()
-    }//GEN-LAST:event_jButtonDardeBajaActionPerformed
+    private void jButtonCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCambiarEstadoActionPerformed
+        int FilaTable = jTableAdmUsuarios.getSelectedRow();
+        if (FilaTable >= 0) {
+            int id = (int) TablaAdmUsuarios.getValueAt(FilaTable, 0);
+            if (id == 1) {
+                JOptionPane.showMessageDialog(null, "No puede modificar estado del administrador");
+            } else {
+                cc.setCuenta(cc.traerCuenta(id));
+                if (cc.getCuenta().isEstado_cuenta()) {
+                    cc.getCuenta().setEstado_cuenta(false);
+                } else {
+                    cc.getCuenta().setEstado_cuenta(true);
+                }
+                cc.actualizarCuenta(cc.getCuenta());
+                int var = TablaAdmUsuarios.getRowCount();
+                for (int i = 0; i < var; i++) {
+                    TablaAdmUsuarios.removeRow(0);
+                }
+                lc = cc.cargarCuentas();
+                cargarTabla();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila");
+        }
+
+    }//GEN-LAST:event_jButtonCambiarEstadoActionPerformed
 
     private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
         MenuAdministrador ma = new MenuAdministrador();
@@ -233,30 +267,37 @@ public class AdmUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     private void jButtonRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrar1ActionPerformed
-        Cuenta c = new Cuenta();
-        Usuario u = new Usuario();
-        Rol r = new Rol();
-
-        u.setNombre(jTextFieldNombre.getText());
-        u.setApellido(jTextFieldApellido.getText());
-        u.setCorreo(jTextFieldCorreo.getText());
-        u.setCedula(jTextFieldCedula.getText());
-        u.setTelefono(Integer.parseInt(jTextFieldTelefono.getText()));
-        u.setFoto("FotoXD");
-        r.setTpo((String) jComboBoxTipo.getSelectedItem());
-        u.setRol(r);
-
-        c.setUsuario(jTextFieldCedula.getText());
-        c.setClave(jTextFieldCedula.getText());
-        c.setEstado_cuenta(true);
-        c.setUsu(u);
-        cr.registrarRol(r);
-        cu.registrarUsuario(u);
-        cc.registrarCuenta(c);
+        //registro rol
+        cr.getRol();
+        cr.getRol().setTpo((String) jComboBoxTipo.getSelectedItem());
+        cr.registrarRol(cr.getRol());
+        //regitro usuario
+        cu.getUsuario();
+        cu.getUsuario().setNombre(jTextFieldNombre.getText());
+        cu.getUsuario().setApellido(jTextFieldApellido.getText());
+        cu.getUsuario().setCorreo(jTextFieldCorreo.getText());
+        cu.getUsuario().setCedula(jTextFieldCedula.getText());
+        cu.getUsuario().setTelefono(jTextFieldTelefono.getText());
+        cu.getUsuario().setFoto("FotoXD");
+        cu.getUsuario().setRol(cr.getRol());
+        cu.registrarUsuario(cu.getUsuario());
+        //registro cuenta
+        cc.getCuenta();
+        cc.getCuenta().setUsuario(jTextFieldCedula.getText());
+        cc.getCuenta().setClave(jTextFieldCedula.getText());
+        cc.getCuenta().setEstado_cuenta(true);
+        cc.getCuenta().setUsu(cu.getUsuario());
+        cc.registrarCuenta(cc.getCuenta());
     }//GEN-LAST:event_jButtonRegistrar1ActionPerformed
 
     private void jButtonModificarDatos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarDatos1ActionPerformed
-        VistaCuenta c = new VistaCuenta();
+        int FilaTable = jTableAdmUsuarios.getSelectedRow();
+        if (FilaTable >= 0) {
+            id_ex = (int) TablaAdmUsuarios.getValueAt(FilaTable, 0);
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila");
+        }
+        VistaCuenta c = new VistaCuenta(0,id_ex);
         c.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonModificarDatos1ActionPerformed
@@ -300,9 +341,16 @@ public class AdmUsuarios extends javax.swing.JFrame {
         });
     }
 
+    private void cargarTabla() {
+        TablaAdmUsuarios = (DefaultTableModel) jTableAdmUsuarios.getModel();
+        for (int i = 0; i < lc.size(); i++) {                                    //Bucle que recorre la consulta obtenida
+            TablaAdmUsuarios.addRow(new Object[]{lc.get(i).getId_cuenta(), lc.get(i).getUsuario(), lc.get(i).getUsu().getApellido(),
+                lc.get(i).getUsu().getNombre(), lc.get(i).getUsu().getRol().getTpo(), lc.get(i).isEstado_cuenta()});
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;
-    private javax.swing.JButton jButtonDardeBaja;
+    private javax.swing.JButton jButtonCambiarEstado;
     private javax.swing.JButton jButtonModificarDatos1;
     private javax.swing.JButton jButtonRegistrar;
     private javax.swing.JButton jButtonRegistrar1;

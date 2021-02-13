@@ -5,10 +5,14 @@
  */
 package Vista;
 
+import Controlador.ControladorCuenta;
+import Controlador.ControladorUsuario;
+import Modelo.placeHolder;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+
 /**
  *
  * @author Veronica Estefania
@@ -18,14 +22,21 @@ public class VistaCuenta extends javax.swing.JFrame {
     /**
      * Creates new form VistaCuenta
      */
-    
+    int id_externo;
+    int id_usuario;
     FondoPanel fondo = new FondoPanel();
-
-    public VistaCuenta() {
+    ControladorCuenta cc = new ControladorCuenta();
+    ControladorUsuario cu = new ControladorUsuario();
+    
+    public VistaCuenta(int id_ex, int id_usr) {
         this.setContentPane(fondo);
         this.setResizable(false);//no redimenciona la ventana
         this.setExtendedState(6);
+        //placeHolder place1 = new placeHolder("Ejm: ¿Que desea buscar?", jTextFieldBuscar);
         initComponents();
+        id_externo = id_ex;
+        id_usuario = id_usr;
+        cargarDatos();
     }
 
     /**
@@ -44,9 +55,7 @@ public class VistaCuenta extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jTextFieldBuscar = new javax.swing.JTextField();
-        jTextFieldDireccion = new javax.swing.JTextField();
         jLabelNombre = new javax.swing.JLabel();
         jLabelApellido = new javax.swing.JLabel();
         jLabelCedula = new javax.swing.JLabel();
@@ -55,9 +64,12 @@ public class VistaCuenta extends javax.swing.JFrame {
         jButtonEditarImagen2 = new javax.swing.JButton();
         jButtonModificarClave = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jTextFieldCorreo = new javax.swing.JTextField();
+        jLabelTelefono = new javax.swing.JLabel();
         jTextFieldTelefono = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        jTextFieldApellido = new javax.swing.JTextField();
+        jTextFieldNombre = new javax.swing.JTextField();
+        jTextFieldCedula = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -84,7 +96,7 @@ public class VistaCuenta extends javax.swing.JFrame {
                 jButtonGuardarCambiosActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonGuardarCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 640, -1, -1));
+        getContentPane().add(jButtonGuardarCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 630, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Nombre:");
@@ -106,10 +118,6 @@ public class VistaCuenta extends javax.swing.JFrame {
         jLabel5.setText("Correo:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 440, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Dirección:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 490, -1, -1));
-
         jTextFieldBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldBuscarActionPerformed(evt);
@@ -117,28 +125,21 @@ public class VistaCuenta extends javax.swing.JFrame {
         });
         getContentPane().add(jTextFieldBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 380, 40));
 
-        jTextFieldDireccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDireccionActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextFieldDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 490, 260, 85));
-
         jLabelNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelNombre.setText("Nombre");
-        getContentPane().add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 270, -1, -1));
+        getContentPane().add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 270, 190, -1));
 
         jLabelApellido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelApellido.setText("Apellido");
-        getContentPane().add(jLabelApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 320, -1, -1));
+        getContentPane().add(jLabelApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 320, 200, -1));
 
         jLabelCedula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelCedula.setText("Cedula");
-        getContentPane().add(jLabelCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 360, -1, -1));
+        getContentPane().add(jLabelCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 360, 190, -1));
 
         jLabelCorreo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelCorreo.setText("Correo");
-        getContentPane().add(jLabelCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 440, 130, -1));
+        getContentPane().add(jLabelCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 440, 280, -1));
 
         jButtonEditarImagen1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonEditarImagen1.setText("Editar Imagen");
@@ -156,7 +157,7 @@ public class VistaCuenta extends javax.swing.JFrame {
                 jButtonEditarImagen2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonEditarImagen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 650, -1, -1));
+        getContentPane().add(jButtonEditarImagen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 640, -1, -1));
 
         jButtonModificarClave.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonModificarClave.setText("Modificar Clave");
@@ -165,10 +166,21 @@ public class VistaCuenta extends javax.swing.JFrame {
                 jButtonModificarClaveActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonModificarClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 640, -1, -1));
+        getContentPane().add(jButtonModificarClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 630, -1, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar.png"))); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, 60, 40));
+
+        jTextFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCorreoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 440, 131, -1));
+
+        jLabelTelefono.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelTelefono.setText("Telefono");
+        getContentPane().add(jLabelTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 400, 220, -1));
 
         jTextFieldTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,13 +189,26 @@ public class VistaCuenta extends javax.swing.JFrame {
         });
         getContentPane().add(jTextFieldTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 400, 131, -1));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI Symbol", 1, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Mi Cuenta");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 40, -1, -1));
+        jTextFieldApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldApellidoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 320, 131, -1));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IconoMiCuenta.png"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 20, 70, 60));
+        jTextFieldNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNombreActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 270, 131, -1));
+
+        jTextFieldCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCedulaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 360, 131, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -192,12 +217,25 @@ public class VistaCuenta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldBuscarActionPerformed
 
-    private void jTextFieldDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDireccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDireccionActionPerformed
-
     private void jButtonGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarCambiosActionPerformed
-        // TODO add your handling code here:
+        if(id_usuario==1){
+            cu.setUsuario(cc.getCuenta().getUsu());
+            cu.getUsuario().setNombre(jTextFieldNombre.getText());
+            cu.getUsuario().setApellido(jTextFieldApellido.getText());
+            cu.getUsuario().setCedula(jTextFieldCedula.getText());
+            cu.getUsuario().setTelefono(jTextFieldTelefono.getText());
+            cu.getUsuario().setCorreo(jTextFieldCorreo.getText());
+            cu.actualizarUsuario(cu.getUsuario());
+            cc.getCuenta().setUsuario(jTextFieldCedula.getText());
+            cc.getCuenta().setClave(jTextFieldCedula.getText());
+            cc.getCuenta().setUsu(cu.getUsuario());
+            cc.actualizarCuenta(cc.getCuenta());
+        }else{
+            cu.setUsuario(cc.getCuenta().getUsu());
+            cu.getUsuario().setTelefono(jTextFieldTelefono.getText());
+            cu.getUsuario().setCorreo(jTextFieldCorreo.getText());
+            cu.actualizarUsuario(cu.getUsuario());
+        }
     }//GEN-LAST:event_jButtonGuardarCambiosActionPerformed
 
     private void jButtonEditarImagen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarImagen1ActionPerformed
@@ -205,84 +243,89 @@ public class VistaCuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditarImagen1ActionPerformed
 
     private void jButtonEditarImagen2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarImagen2ActionPerformed
-        AdmUsuarios au = new AdmUsuarios();
-        au.setVisible(true);
+        switch (id_externo) {
+            case -1:
+                MenuAdministrador ma = new MenuAdministrador();
+                ma.setVisible(true);
+                break;
+            case 0:
+                AdmUsuarios au = new AdmUsuarios();
+                au.setVisible(true);
+                break;
+        }
         this.dispose();
+
     }//GEN-LAST:event_jButtonEditarImagen2ActionPerformed
 
     private void jButtonModificarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarClaveActionPerformed
-        ModificarClave mc = new ModificarClave();
+        ModificarClave mc = new ModificarClave(id_usuario);
         mc.setVisible(true);
+        mc.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButtonModificarClaveActionPerformed
+
+    private void jTextFieldCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCorreoActionPerformed
 
     private void jTextFieldTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTelefonoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaCuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaCuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaCuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaCuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    private void jTextFieldApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldApellidoActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaCuenta().setVisible(true);
-            }
-        });
+    private void jTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNombreActionPerformed
+
+    private void jTextFieldCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCedulaActionPerformed
+
+    private void cargarDatos() {
+        cc.setCuenta(cc.traerCuenta(id_usuario));
+        switch (id_externo) {
+            case -1:
+                jTextFieldNombre.setVisible(false);
+                jTextFieldApellido.setVisible(false);
+                jTextFieldCedula.setVisible(false);
+                jTextFieldTelefono.setVisible(false);
+                jTextFieldCorreo.setVisible(false);
+                jLabelNombre.setText(cc.getCuenta().getUsu().getNombre());
+                jLabelApellido.setText(cc.getCuenta().getUsu().getApellido());
+                jLabelCedula.setText(cc.getCuenta().getUsu().getCedula());
+                jLabelTelefono.setText(cc.getCuenta().getUsu().getTelefono());
+                jLabelCorreo.setText(cc.getCuenta().getUsu().getCorreo());
+                jButtonGuardarCambios.setVisible(false);
+                break;
+            case 0:
+                if (id_usuario == 1) {
+                    jLabelNombre.setVisible(false);
+                    jLabelApellido.setVisible(false);
+                    jLabelCedula.setVisible(false);
+                    jLabelTelefono.setVisible(false);
+                    jLabelCorreo.setVisible(false);
+                    jTextFieldNombre.setText(cc.getCuenta().getUsu().getNombre());
+                    jTextFieldApellido.setText(cc.getCuenta().getUsu().getApellido());
+                    jTextFieldCedula.setText(cc.getCuenta().getUsu().getCedula());
+                    jTextFieldTelefono.setText(cc.getCuenta().getUsu().getTelefono());
+                    jTextFieldCorreo.setText(cc.getCuenta().getUsu().getCorreo());
+                } else {
+                    jTextFieldNombre.setVisible(false);
+                    jTextFieldApellido.setVisible(false);
+                    jTextFieldCedula.setVisible(false);
+                    jLabelTelefono.setVisible(false);
+                    jLabelCorreo.setVisible(false);
+                    jLabelNombre.setText(cc.getCuenta().getUsu().getNombre());
+                    jLabelApellido.setText(cc.getCuenta().getUsu().getApellido());
+                    jLabelCedula.setText(cc.getCuenta().getUsu().getCedula());
+                    jTextFieldTelefono.setText(cc.getCuenta().getUsu().getTelefono());
+                    jTextFieldCorreo.setText(cc.getCuenta().getUsu().getCorreo());
+                }
+                break;
+
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -295,17 +338,18 @@ public class VistaCuenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelApellido;
     private javax.swing.JLabel jLabelCedula;
     private javax.swing.JLabel jLabelCorreo;
     private javax.swing.JLabel jLabelNombre;
+    private javax.swing.JLabel jLabelTelefono;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextFieldApellido;
     private javax.swing.JTextField jTextFieldBuscar;
-    private javax.swing.JTextField jTextFieldDireccion;
+    private javax.swing.JTextField jTextFieldCedula;
+    private javax.swing.JTextField jTextFieldCorreo;
+    private javax.swing.JTextField jTextFieldNombre;
     private javax.swing.JTextField jTextFieldTelefono;
     // End of variables declaration//GEN-END:variables
     class FondoPanel extends JPanel {

@@ -10,11 +10,9 @@ import Modelo.*;
 import javax.swing.JOptionPane;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+
 
 /**
  *
@@ -23,6 +21,7 @@ import javax.swing.JPanel;
 public class InicioSesion extends javax.swing.JFrame {
 
     FondoPanel fondo = new FondoPanel();
+    public static ControladorCuenta cc = new ControladorCuenta();
 
     /**
      * Creates new form InicioSesion
@@ -31,10 +30,11 @@ public class InicioSesion extends javax.swing.JFrame {
         this.setContentPane(fondo);
         this.setResizable(false);//no redimenciona la ventana
         this.setExtendedState(6);
+        //placeHolder place1 = new placeHolder("Ejm: 1104795232", jTextFieldUsuario);
+        //placeHolder place2 = new placeHolder("Escriba aqui su clave", jPasswordFieldClave);
         initComponents();
     }
 
-    ControladorCuenta cc = new ControladorCuenta();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,23 +45,17 @@ public class InicioSesion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBoxUsuario = new javax.swing.JComboBox<>();
         jTextFieldUsuario = new javax.swing.JTextField();
         jButtonIngresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPasswordFieldClave = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jComboBoxUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBoxUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Taquillero", "Vendedor" }));
-        getContentPane().add(jComboBoxUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 600, -1, -1));
 
         jTextFieldUsuario.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jTextFieldUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -94,10 +88,6 @@ public class InicioSesion extends javax.swing.JFrame {
         jLabel3.setText("INICIO DE SESION");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 290, 310, 30));
 
-        jLabel4.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 36)); // NOI18N
-        jLabel4.setText("Rol:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 590, 70, 50));
-
         jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 36)); // NOI18N
         jLabel6.setText("Usuario:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 360, 160, 30));
@@ -114,51 +104,71 @@ public class InicioSesion extends javax.swing.JFrame {
 
     private void jButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarActionPerformed
         try {
-            if (VerficarAdministrador()) {
+            if (VerficarAdministrador(jTextFieldUsuario.getText(), jPasswordFieldClave.getText())) {
                 MenuAdministrador ma = new MenuAdministrador();
                 ma.setVisible(true);
                 this.dispose();
             } else if (VerificarTaquillero(jTextFieldUsuario.getText(), jPasswordFieldClave.getText())) {
-                JOptionPane.showMessageDialog(null, "Taquillero");
+                VistaMenuTaquillero mt = new VistaMenuTaquillero();
+                mt.setVisible(true);
+                this.dispose();
             } else if (VerificarVendedor(jTextFieldUsuario.getText(), jPasswordFieldClave.getText())) {
-                JOptionPane.showMessageDialog(null, "Vendedor");
+                VistaMenuVendedor mv = new VistaMenuVendedor();
+                mv.setVisible(true);
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Datos incorrectos");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error intente de nuevo");
+            JOptionPane.showMessageDialog(null, "Error intente de nuevo" + e);
         }
     }//GEN-LAST:event_jButtonIngresarActionPerformed
 
-    private boolean VerficarAdministrador() throws FileNotFoundException {
-        Scanner vc = new Scanner(new File("Admin.txt"));
-        if (vc.hasNext());
-        String linea1 = vc.nextLine();
-        if (vc.hasNext());
-        String linea2 = vc.nextLine();
-        if (linea1.equals(jTextFieldUsuario.getText()) && linea2.equals(jPasswordFieldClave.getText())) {
-            return true;
+    private boolean VerficarAdministrador(String Usuario, String Clave) {
+        cc.setCuenta(cc.traerCuenta(1));
+        if (cc.getCuenta().isEstado_cuenta()) {
+            if (cc.getCuenta().getUsu().getRol().getTpo().equalsIgnoreCase("Administrador")) {
+                if (cc.getCuenta().getUsuario().equals(Usuario)) {
+                    if (cc.getCuenta().getClave().equals(Clave)) {
+                        return true;
+                    }
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Cuenta Deshabilitada");
         }
         return false;
     }
 
     private boolean VerificarTaquillero(String Usuario, String Clave) {
-        Cuenta cuenta = cc.traerCuenta(1);
-        if (cuenta.getUsu().getRol().getTpo().equals("Taquillero")) {
-            if (cuenta.getClave().equals(Clave)) {
-                return true;
+        cc.setCuenta(cc.traeCuenta(Usuario));
+        if (cc.getCuenta().isEstado_cuenta()==true) {
+            if (cc.getCuenta().getUsu().getRol().getTpo().equalsIgnoreCase("Taquillero")) {
+                if (cc.getCuenta().getUsuario().equals(Usuario)) {
+                    if (cc.getCuenta().getClave().equals(Clave)) {
+                        return true;
+                    }
+                }
             }
-
+        } else {
+            JOptionPane.showMessageDialog(null, "Cuenta Deshabilitada");
         }
+
         return false;
     }
 
     private boolean VerificarVendedor(String Usuario, String Clave) {
-        Cuenta cuenta = cc.traerCuenta(1);
-        if (cuenta.getUsu().getRol().equals("Vendedor")) {
-            if (cuenta.getClave().equals(Clave)) {
-                return true;
+        cc.setCuenta(cc.traeCuenta(Usuario));
+        if (cc.getCuenta().isEstado_cuenta()==true) {
+            if (cc.getCuenta().getUsu().getRol().getTpo().equalsIgnoreCase("Vendedor")) {
+                if (cc.getCuenta().getUsuario().equals(Usuario)) {
+                    if (cc.getCuenta().getClave().equals(Clave)) {
+                        return true;
+                    }
+                }
             }
+        } else if (cc.getCuenta().isEstado_cuenta()==false){
+            JOptionPane.showMessageDialog(null, "Cuenta Deshabilitada");
         }
         return false;
     }
@@ -183,11 +193,9 @@ public class InicioSesion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonIngresar;
-    private javax.swing.JComboBox<String> jComboBoxUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPasswordField jPasswordFieldClave;

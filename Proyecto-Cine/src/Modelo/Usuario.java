@@ -23,7 +23,7 @@ public class Usuario implements Serializable{
     private String apellido;
     private String correo;
     private String cedula; 
-    private int telefono;
+    private String telefono;
     private String foto;
     
     @OneToOne
@@ -71,11 +71,11 @@ public class Usuario implements Serializable{
         this.cedula = cedula;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

@@ -13,7 +13,19 @@ import util.NewHibernateUtil;
  */
 public class ControladorRol {
     private Session st;
+    private Rol rol;
 
+    public Rol getRol() {
+        if(rol == null){
+            rol = new Rol();
+        }
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+    
     public ControladorRol() {
         sessionHibernate();
     }
@@ -23,7 +35,6 @@ public class ControladorRol {
     }
 
     public void registrarRol(Rol r) {
-
         try {
             st.beginTransaction();
             st.save(r);
@@ -33,13 +44,10 @@ public class ControladorRol {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al guardar los datos");
         }
-
     }
 
     public List<Rol> cargarRol(List<Rol> lis) {
-
         try {
-
             lis = (List<Rol>) st.createQuery("from Rol").list();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al traer Datos");

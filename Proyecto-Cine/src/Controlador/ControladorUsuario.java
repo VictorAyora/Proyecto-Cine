@@ -13,7 +13,19 @@ import util.NewHibernateUtil;
  */
 public class ControladorUsuario {
     private Session st;
+    private Usuario usuario;
 
+    public Usuario getUsuario() {
+        if(usuario==null){
+            usuario=new Usuario();
+        }
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+   
     public ControladorUsuario() {
         sessionHibernate();
     }

@@ -1,8 +1,10 @@
 package Controlador;
 
 import Modelo.Cuenta;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import util.NewHibernateUtil;
 
@@ -13,6 +15,18 @@ import util.NewHibernateUtil;
 public class ControladorCuenta {
 
     private Session st;
+    private Cuenta cuenta;
+
+    public Cuenta getCuenta() {
+        if (cuenta == null) {
+            cuenta = new Cuenta();
+        }
+        return cuenta;
+    }
+
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
+    }
 
     public ControladorCuenta() {
         sessionHibernate();
@@ -36,15 +50,29 @@ public class ControladorCuenta {
 
     }
 
-    public List<Cuenta> cargarCuenta(List<Cuenta> lis) {
+    public List<Cuenta> cargarCuentas() {
 
+        List<Cuenta> lista = new ArrayList();
         try {
-
-            lis = (List<Cuenta>) st.createQuery("from Cuenta").list();
+            lista = (List<Cuenta>) st.createQuery("from Cuenta").list();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al traer Datos");
         }
-        return lis;
+        return lista;
+    }
+
+    public Cuenta traeCuenta(String usuario) {
+        Cuenta cuenta = null;
+
+        try {
+            Query query = st.createQuery("From Cuenta where usuario =?");
+            query.setParameter(0, usuario);
+            cuenta = (Cuenta) query.uniqueResult();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al traer Cliente" + e);
+        }
+        return cuenta;
     }
 
     public Cuenta traerCuenta(int id) {
