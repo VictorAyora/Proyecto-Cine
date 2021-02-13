@@ -28,7 +28,8 @@ public class AdmUsuarios extends javax.swing.JFrame {
     ControladorRol cr = new ControladorRol();
     ControladorUsuario cu = new ControladorUsuario();
     List<Cuenta> lc = cc.cargarCuentas();
-    static int id_ex; 
+    static int id_ex;
+
     public AdmUsuarios() {
         this.setContentPane(fondo);
         this.setResizable(false);//no redimenciona la ventana
@@ -267,10 +268,14 @@ public class AdmUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     private void jButtonRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrar1ActionPerformed
-        //registro rol
-        cr.getRol();
-        cr.getRol().setTpo((String) jComboBoxTipo.getSelectedItem());
-        cr.registrarRol(cr.getRol());
+        switch ((String) (jComboBoxTipo.getSelectedItem())) {
+            case "Taquillero":
+                cr.setRol(cr.traerRol(3));
+                break;
+            case "Vendedor":
+                cr.setRol(cr.traerRol(4));
+                break;
+        }
         //regitro usuario
         cu.getUsuario();
         cu.getUsuario().setNombre(jTextFieldNombre.getText());
@@ -288,6 +293,13 @@ public class AdmUsuarios extends javax.swing.JFrame {
         cc.getCuenta().setEstado_cuenta(true);
         cc.getCuenta().setUsu(cu.getUsuario());
         cc.registrarCuenta(cc.getCuenta());
+        cc.actualizarCuenta(cc.getCuenta());
+        int var = TablaAdmUsuarios.getRowCount();
+        for (int i = 0; i < var; i++) {
+            TablaAdmUsuarios.removeRow(0);
+        }
+        lc = cc.cargarCuentas();
+        cargarTabla();
     }//GEN-LAST:event_jButtonRegistrar1ActionPerformed
 
     private void jButtonModificarDatos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarDatos1ActionPerformed
@@ -297,7 +309,7 @@ public class AdmUsuarios extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         }
-        VistaCuenta c = new VistaCuenta(0,id_ex);
+        VistaCuenta c = new VistaCuenta(0, id_ex);
         c.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonModificarDatos1ActionPerformed
@@ -344,8 +356,14 @@ public class AdmUsuarios extends javax.swing.JFrame {
     private void cargarTabla() {
         TablaAdmUsuarios = (DefaultTableModel) jTableAdmUsuarios.getModel();
         for (int i = 0; i < lc.size(); i++) {                                    //Bucle que recorre la consulta obtenida
+            String estado;
+            if(lc.get(i).isEstado_cuenta()==true){
+                estado = "Disponible";
+            }else{
+                estado = "No Disponible";
+            }
             TablaAdmUsuarios.addRow(new Object[]{lc.get(i).getId_cuenta(), lc.get(i).getUsuario(), lc.get(i).getUsu().getApellido(),
-                lc.get(i).getUsu().getNombre(), lc.get(i).getUsu().getRol().getTpo(), lc.get(i).isEstado_cuenta()});
+                lc.get(i).getUsu().getNombre(), lc.get(i).getUsu().getRol().getTipo_rol(), estado});
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

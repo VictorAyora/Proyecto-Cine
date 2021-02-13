@@ -4,6 +4,7 @@ package Controlador;
 import Modelo.Rol;
 import java.util.List;
 import javax.swing.JOptionPane;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import util.NewHibernateUtil;
 
@@ -67,6 +68,19 @@ public class ControladorRol {
         return r;
     }
 
+    public Rol traeRol(String tipo) {
+        Rol rol = null;
+
+        try {
+            Query query = st.createQuery("From Rol where tipo_rol =?");
+            query.setParameter(0, tipo);
+            rol = (Rol) query.uniqueResult();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al traer Rol" + e);
+        }
+        return rol;
+    }
     public void actualizarRol(Rol r) {
         try {
             st.beginTransaction();

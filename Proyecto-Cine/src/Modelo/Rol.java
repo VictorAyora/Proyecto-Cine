@@ -14,26 +14,26 @@ import javax.persistence.Id;
 public class Rol implements Serializable {
     
     //Atributos de la clase Rol
-    private int id_rol;
+    private int id;
     private String tipo_rol; 
     
+   
     //Getters y Setters
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
-        return id_rol;
+        return id;
     }
 
     public void setId(int id) {
-        this.id_rol = id;
+        this.id = id;
     }
 
-    public String getTpo() {
+    public String getTipo_rol() {
         return tipo_rol;
     }
 
-    public void setTpo(String tpo) {
-        this.tipo_rol = tpo;
+    public void setTipo_rol(String tipo_rol) {
+        this.tipo_rol = tipo_rol;
     }
-    
 }

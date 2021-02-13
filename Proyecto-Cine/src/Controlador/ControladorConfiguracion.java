@@ -13,7 +13,20 @@ import util.NewHibernateUtil;
 public class ControladorConfiguracion {
 
     private Session st;
+    private Configuracion configuracion;
 
+    public Configuracion getConfiguracion() {
+        if(configuracion == null){
+            configuracion = new Configuracion();
+        }
+        return configuracion;
+    }
+
+    public void setConfiguracion(Configuracion configuracion) {
+        this.configuracion = configuracion;
+    }
+    
+    
     public ControladorConfiguracion() {
         sessionHibernate();
     }

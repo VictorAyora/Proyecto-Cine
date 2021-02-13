@@ -6,7 +6,6 @@
 package Vista;
 
 import Controlador.*;
-import Modelo.*;
 import javax.swing.JOptionPane;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -22,7 +21,7 @@ public class InicioSesion extends javax.swing.JFrame {
 
     FondoPanel fondo = new FondoPanel();
     public static ControladorCuenta cc = new ControladorCuenta();
-
+    
     /**
      * Creates new form InicioSesion
      */
@@ -127,48 +126,43 @@ public class InicioSesion extends javax.swing.JFrame {
     private boolean VerficarAdministrador(String Usuario, String Clave) {
         cc.setCuenta(cc.traerCuenta(1));
         if (cc.getCuenta().isEstado_cuenta()) {
-            if (cc.getCuenta().getUsu().getRol().getTpo().equalsIgnoreCase("Administrador")) {
+            if (cc.getCuenta().getUsu().getRol().getTipo_rol().equalsIgnoreCase("Administrador")) {
                 if (cc.getCuenta().getUsuario().equals(Usuario)) {
                     if (cc.getCuenta().getClave().equals(Clave)) {
                         return true;
                     }
                 }
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "Cuenta Deshabilitada");
         }
         return false;
     }
 
     private boolean VerificarTaquillero(String Usuario, String Clave) {
+        cc=new ControladorCuenta();
         cc.setCuenta(cc.traeCuenta(Usuario));
         if (cc.getCuenta().isEstado_cuenta()==true) {
-            if (cc.getCuenta().getUsu().getRol().getTpo().equalsIgnoreCase("Taquillero")) {
+            if (cc.getCuenta().getUsu().getRol().getTipo_rol().equalsIgnoreCase("Taquillero")) {
                 if (cc.getCuenta().getUsuario().equals(Usuario)) {
                     if (cc.getCuenta().getClave().equals(Clave)) {
                         return true;
                     }
                 }
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Cuenta Deshabilitada");
         }
-
         return false;
     }
 
     private boolean VerificarVendedor(String Usuario, String Clave) {
+        cc=new ControladorCuenta();
         cc.setCuenta(cc.traeCuenta(Usuario));
         if (cc.getCuenta().isEstado_cuenta()==true) {
-            if (cc.getCuenta().getUsu().getRol().getTpo().equalsIgnoreCase("Vendedor")) {
+            if (cc.getCuenta().getUsu().getRol().getTipo_rol().equalsIgnoreCase("Vendedor")) {
                 if (cc.getCuenta().getUsuario().equals(Usuario)) {
                     if (cc.getCuenta().getClave().equals(Clave)) {
                         return true;
                     }
                 }
             }
-        } else if (cc.getCuenta().isEstado_cuenta()==false){
-            JOptionPane.showMessageDialog(null, "Cuenta Deshabilitada");
         }
         return false;
     }

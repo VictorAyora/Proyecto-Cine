@@ -486,6 +486,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
     private void jPanelCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCuentaMouseClicked
         InicioSesion is = new InicioSesion();
         int id_usr = is.cc.getCuenta().getId_cuenta();
+        System.out.println(id_usr);
         VistaCuenta vc = new VistaCuenta(-1, id_usr);
         vc.setVisible(true);
         this.dispose();

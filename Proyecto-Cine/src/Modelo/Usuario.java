@@ -1,12 +1,11 @@
-package Modelo;
+    package Modelo;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -26,7 +25,7 @@ public class Usuario implements Serializable{
     private String telefono;
     private String foto;
     
-    @OneToOne
+    @ManyToOne
     private Rol rol;
     
     //Getters y Setters 
@@ -94,7 +93,6 @@ public class Usuario implements Serializable{
     public void setId_usuario(int id_usuario) {
         this.id_usuario = id_usuario;
     }
-
 
     public Rol getRol() {
         return rol;
