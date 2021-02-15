@@ -144,9 +144,9 @@ public class ModificarClave extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarCambiosActionPerformed
-        if(cc.getCuenta().getClave().equals(jPasswordFieldClaveActual.getText())){
+        if(cc.getCuenta().getClave().equals(cc.getMD5(jPasswordFieldClaveActual.getText()))){
             if(jPasswordFieldNuevaClave.getText().equals(jPasswordFieldConfirmarClave.getText())){
-                cc.getCuenta().setClave(jPasswordFieldNuevaClave.getText());
+                cc.getCuenta().setClave(cc.getMD5(jPasswordFieldNuevaClave.getText()));
                 cc.actualizarCuenta(cc.getCuenta());
             }
         }else{

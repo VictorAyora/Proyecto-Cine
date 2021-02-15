@@ -6,15 +6,17 @@
 package Vista;
 
 import Controlador.*;
-import Modelo.Cuenta;
+import Controlador.placeHolder;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
+import java.io.FileInputStream;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -27,20 +29,24 @@ public class AdmUsuarios extends javax.swing.JFrame {
     ControladorCuenta cc = new ControladorCuenta();
     ControladorRol cr = new ControladorRol();
     ControladorUsuario cu = new ControladorUsuario();
-    List<Cuenta> lc = cc.cargarCuentas();
     static int id_ex;
-
+    JFileChooser seleccionar = new JFileChooser();
+    File archivo;
+    byte[] imagen;
+    FileInputStream entrada;
+    String direccion="";
+    
     public AdmUsuarios() {
         this.setContentPane(fondo);
         this.setResizable(false);//no redimenciona la ventana
         this.setExtendedState(6);
-//        placeHolder place1 = new placeHolder("Ejm: Carolina", jTextFieldNombre);
-//        placeHolder place2 = new placeHolder("Ejm: Paredes", jTextFieldApellido);
-//        placeHolder place3 = new placeHolder("Ejm: nombreapellido@gmail.com", jTextFieldCorreo);
-//        placeHolder place4 = new placeHolder("Ejm: 0991704302", jTextFieldTelefono);
-//        placeHolder place5 = new placeHolder("Ejm: 1104758920", jTextFieldCedula);
-//        placeHolder place6 = new placeHolder("Escriba el numero de cedula  o apellidos de la cuenta a buscar", jTextFieldBuscar);
         initComponents();
+        placeHolder place1 = new placeHolder("Ejm: Carolina", jTextFieldNombre);
+        placeHolder place2 = new placeHolder("Ejm: Paredes", jTextFieldApellido);
+        placeHolder place3 = new placeHolder("Ejm: nombreapellido@gmail.com", jTextFieldCorreo);
+        placeHolder place4 = new placeHolder("Ejm: 0991704302", jTextFieldTelefono);
+        placeHolder place5 = new placeHolder("Ejm: 1104758920", jTextFieldCedula);
+        placeHolder place6 = new placeHolder("Escriba el numero de cedula  o apellidos de la cuenta a buscar", jTextFieldBuscar);
         cargarTabla();
 
     }
@@ -68,15 +74,16 @@ public class AdmUsuarios extends javax.swing.JFrame {
         jTextFieldCedula = new javax.swing.JTextField();
         jTextFieldBuscar = new javax.swing.JTextField();
         jComboBoxTipo = new javax.swing.JComboBox<>();
-        jButtonRegistrar = new javax.swing.JButton();
+        jButtonAgregarImagen = new javax.swing.JButton();
         jButtonBuscar = new javax.swing.JButton();
         jButtonCambiarEstado = new javax.swing.JButton();
         jButtonRegresar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        jLabelImagen = new javax.swing.JLabel();
+        jPanelImagen = new javax.swing.JPanel();
         jLabelAgregarImagen = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAdmUsuarios = new javax.swing.JTable();
-        jButtonRegistrar1 = new javax.swing.JButton();
+        jButtonRegistrar = new javax.swing.JButton();
         jButtonModificarDatos1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -133,14 +140,14 @@ public class AdmUsuarios extends javax.swing.JFrame {
         jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vendedor", "Taquillero" }));
         getContentPane().add(jComboBoxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 143, -1));
 
-        jButtonRegistrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonRegistrar.setText("Agregar Imagen");
-        jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAgregarImagen.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonAgregarImagen.setText("Agregar Imagen");
+        jButtonAgregarImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRegistrarActionPerformed(evt);
+                jButtonAgregarImagenActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 360, -1, -1));
+        getContentPane().add(jButtonAgregarImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 360, -1, -1));
 
         jButtonBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonBuscar.setText("Buscar");
@@ -169,21 +176,24 @@ public class AdmUsuarios extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 640, 130, -1));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setForeground(new java.awt.Color(204, 255, 204));
+        jLabelImagen.setText("Imagen");
+        getContentPane().add(jLabelImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(814, 180, 210, 170));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelImagen.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelImagen.setForeground(new java.awt.Color(204, 255, 204));
+
+        javax.swing.GroupLayout jPanelImagenLayout = new javax.swing.GroupLayout(jPanelImagen);
+        jPanelImagen.setLayout(jPanelImagenLayout);
+        jPanelImagenLayout.setHorizontalGroup(
+            jPanelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 220, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelImagenLayout.setVerticalGroup(
+            jPanelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 170, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 180, 220, 170));
+        getContentPane().add(jPanelImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 180, 220, 170));
 
         jLabelAgregarImagen.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         getContentPane().add(jLabelAgregarImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 390, -1, -1));
@@ -194,11 +204,11 @@ public class AdmUsuarios extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Usuario", "Apellido", "Nombre", "Tipo_Cuenta", "Estado"
+                "Usuario", "Apellido", "Nombre", "Tipo_Cuenta", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true, false, true
+                false, true, true, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -209,14 +219,14 @@ public class AdmUsuarios extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 480, 690, 140));
 
-        jButtonRegistrar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonRegistrar1.setText("Registrar");
-        jButtonRegistrar1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRegistrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonRegistrar.setText("Registrar");
+        jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRegistrar1ActionPerformed(evt);
+                jButtonRegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonRegistrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 390, 110, -1));
+        getContentPane().add(jButtonRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 360, 110, -1));
 
         jButtonModificarDatos1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonModificarDatos1.setText("Modificar Datos");
@@ -230,9 +240,24 @@ public class AdmUsuarios extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonRegistrarActionPerformed
+    private void jButtonAgregarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarImagenActionPerformed
+         // Abrir archivo
+       if (seleccionar.showDialog(null, null) == JFileChooser.APPROVE_OPTION) {
+           archivo = seleccionar.getSelectedFile();
+           if (archivo.canRead()) {
+               if (archivo.getName().endsWith("jpg") || archivo.getName().endsWith("png")) {
+                   direccion=(archivo.getAbsolutePath());
+                   imagen = AbrirArchivo(archivo);
+                   Image i = new ImageIcon(imagen).getImage();
+                   ImageIcon img = new ImageIcon(i.getScaledInstance(jLabelImagen.getWidth(),jLabelImagen.getHeight() , Image.SCALE_SMOOTH));
+                   jLabelImagen.setIcon(img);
+               } else {
+                   JOptionPane.showMessageDialog(null, "Archivo no compatible.");
+
+               }
+           }
+       }
+    }//GEN-LAST:event_jButtonAgregarImagenActionPerformed
 
     private void jButtonCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCambiarEstadoActionPerformed
         int FilaTable = jTableAdmUsuarios.getSelectedRow();
@@ -252,7 +277,7 @@ public class AdmUsuarios extends javax.swing.JFrame {
                 for (int i = 0; i < var; i++) {
                     TablaAdmUsuarios.removeRow(0);
                 }
-                lc = cc.cargarCuentas();
+                cc.setCuentas(cc.cargarCuentas());
                 cargarTabla();
             }
         } else {
@@ -267,15 +292,9 @@ public class AdmUsuarios extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonRegresarActionPerformed
 
-    private void jButtonRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrar1ActionPerformed
-        switch ((String) (jComboBoxTipo.getSelectedItem())) {
-            case "Taquillero":
-                cr.setRol(cr.traerRol(3));
-                break;
-            case "Vendedor":
-                cr.setRol(cr.traerRol(4));
-                break;
-        }
+    private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
+        cr.setRol(cr.traeRol((String)jComboBoxTipo.getSelectedItem()));
+        
         //regitro usuario
         cu.getUsuario();
         cu.getUsuario().setNombre(jTextFieldNombre.getText());
@@ -283,13 +302,16 @@ public class AdmUsuarios extends javax.swing.JFrame {
         cu.getUsuario().setCorreo(jTextFieldCorreo.getText());
         cu.getUsuario().setCedula(jTextFieldCedula.getText());
         cu.getUsuario().setTelefono(jTextFieldTelefono.getText());
-        cu.getUsuario().setFoto("FotoXD");
+        if(direccion.equals("")){
+            JOptionPane.showMessageDialog(null, "No se registro imagen");
+        }
+        cu.getUsuario().setFoto(direccion);
         cu.getUsuario().setRol(cr.getRol());
         cu.registrarUsuario(cu.getUsuario());
         //registro cuenta
         cc.getCuenta();
         cc.getCuenta().setUsuario(jTextFieldCedula.getText());
-        cc.getCuenta().setClave(jTextFieldCedula.getText());
+        cc.getCuenta().setClave(cc.getMD5(jTextFieldCedula.getText()));
         cc.getCuenta().setEstado_cuenta(true);
         cc.getCuenta().setUsu(cu.getUsuario());
         cc.registrarCuenta(cc.getCuenta());
@@ -298,17 +320,22 @@ public class AdmUsuarios extends javax.swing.JFrame {
         for (int i = 0; i < var; i++) {
             TablaAdmUsuarios.removeRow(0);
         }
-        lc = cc.cargarCuentas();
+        cc.setCuentas(cc.cargarCuentas());
         cargarTabla();
-    }//GEN-LAST:event_jButtonRegistrar1ActionPerformed
+    }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
     private void jButtonModificarDatos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarDatos1ActionPerformed
         int FilaTable = jTableAdmUsuarios.getSelectedRow();
         if (FilaTable >= 0) {
-            id_ex = (int) TablaAdmUsuarios.getValueAt(FilaTable, 0);
+            cc.setCuenta(cc.traeCuenta((String)TablaAdmUsuarios.getValueAt(FilaTable, 0)));
+            id_ex = cc.getCuenta().getId_cuenta();
+            System.out.println("hla");
+            
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         }
+        System.out.println("hla");
+            
         VistaCuenta c = new VistaCuenta(0, id_ex);
         c.setVisible(true);
         this.dispose();
@@ -353,25 +380,40 @@ public class AdmUsuarios extends javax.swing.JFrame {
         });
     }
 
+    public byte[] AbrirArchivo(File archivo) {
+       byte[] imagen = new byte[1024 * 100];
+       try {
+           entrada = new FileInputStream(archivo);
+           entrada.read(imagen);
+       } catch (Exception e) {
+       }
+       return imagen;
+   }
+    
+    
+    
     private void cargarTabla() {
+        cc.setCuentas(cc.cargarCuentas());
         TablaAdmUsuarios = (DefaultTableModel) jTableAdmUsuarios.getModel();
-        for (int i = 0; i < lc.size(); i++) {                                    //Bucle que recorre la consulta obtenida
+        for (int i = 0; i < cc.getCuentas().size(); i++) {                                    //Bucle que recorre la consulta obtenida
             String estado;
-            if(lc.get(i).isEstado_cuenta()==true){
+            if(cc.getCuentas().get(i).isEstado_cuenta()==true){
                 estado = "Disponible";
             }else{
                 estado = "No Disponible";
             }
-            TablaAdmUsuarios.addRow(new Object[]{lc.get(i).getId_cuenta(), lc.get(i).getUsuario(), lc.get(i).getUsu().getApellido(),
-                lc.get(i).getUsu().getNombre(), lc.get(i).getUsu().getRol().getTipo_rol(), estado});
+            TablaAdmUsuarios.addRow(new Object[]{
+                cc.getCuentas().get(i).getUsuario(), cc.getCuentas().get(i).getUsu().getApellido(),
+                cc.getCuentas().get(i).getUsu().getNombre(), cc.getCuentas().get(i).getUsu().getRol().getTipo_rol(),
+                estado});
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAgregarImagen;
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCambiarEstado;
     private javax.swing.JButton jButtonModificarDatos1;
     private javax.swing.JButton jButtonRegistrar;
-    private javax.swing.JButton jButtonRegistrar1;
     private javax.swing.JButton jButtonRegresar;
     private javax.swing.JComboBox<String> jComboBoxTipo;
     private javax.swing.JLabel jLabel1;
@@ -382,7 +424,8 @@ public class AdmUsuarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelAgregarImagen;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabelImagen;
+    private javax.swing.JPanel jPanelImagen;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableAdmUsuarios;
     private javax.swing.JTextField jTextFieldApellido;

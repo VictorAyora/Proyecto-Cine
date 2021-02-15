@@ -7,10 +7,14 @@ package Vista;
 
 import Controlador.ControladorCuenta;
 import Controlador.ControladorUsuario;
-import Modelo.placeHolder;
+import Controlador.placeHolder;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.File;
+import java.io.FileInputStream;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -27,16 +31,22 @@ public class VistaCuenta extends javax.swing.JFrame {
     FondoPanel fondo = new FondoPanel();
     ControladorCuenta cc = new ControladorCuenta();
     ControladorUsuario cu = new ControladorUsuario();
-    
+    byte[] imagen;
+    File archivo;
+    FileInputStream entrada;
+    JFileChooser seleccionar = new JFileChooser();
+    String direccion = "";
+
     public VistaCuenta(int id_ex, int id_usr) {
         this.setContentPane(fondo);
         this.setResizable(false);//no redimenciona la ventana
         this.setExtendedState(6);
-        //placeHolder place1 = new placeHolder("Ejm: ¿Que desea buscar?", jTextFieldBuscar);
         initComponents();
         id_externo = id_ex;
         id_usuario = id_usr;
         cargarDatos();
+        placeHolder place1 = new placeHolder("Ejm: ¿Que desea buscar?", jTextFieldBuscar);
+
     }
 
     /**
@@ -49,6 +59,7 @@ public class VistaCuenta extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabelFoto = new javax.swing.JLabel();
         jButtonGuardarCambios = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -80,14 +91,18 @@ public class VistaCuenta extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 210, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 180, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 210, 180));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 240, 180));
 
         jButtonGuardarCambios.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonGuardarCambios.setText("Guardar Cambios");
@@ -218,7 +233,7 @@ public class VistaCuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldBuscarActionPerformed
 
     private void jButtonGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarCambiosActionPerformed
-        if(id_usuario==1){
+        if (id_usuario == 1) {
             cu.setUsuario(cc.getCuenta().getUsu());
             cu.getUsuario().setNombre(jTextFieldNombre.getText());
             cu.getUsuario().setApellido(jTextFieldApellido.getText());
@@ -227,10 +242,10 @@ public class VistaCuenta extends javax.swing.JFrame {
             cu.getUsuario().setCorreo(jTextFieldCorreo.getText());
             cu.actualizarUsuario(cu.getUsuario());
             cc.getCuenta().setUsuario(jTextFieldCedula.getText());
-            cc.getCuenta().setClave(jTextFieldCedula.getText());
+            cc.getCuenta().setClave(cc.getMD5(jTextFieldCedula.getText()));
             cc.getCuenta().setUsu(cu.getUsuario());
             cc.actualizarCuenta(cc.getCuenta());
-        }else{
+        } else {
             cu.setUsuario(cc.getCuenta().getUsu());
             cu.getUsuario().setTelefono(jTextFieldTelefono.getText());
             cu.getUsuario().setCorreo(jTextFieldCorreo.getText());
@@ -239,7 +254,24 @@ public class VistaCuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGuardarCambiosActionPerformed
 
     private void jButtonEditarImagen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarImagen1ActionPerformed
-        // TODO add your handling code here:
+        if (seleccionar.showDialog(null, null) == JFileChooser.APPROVE_OPTION) {
+            archivo = seleccionar.getSelectedFile();
+            if (archivo.canRead()) {
+                if (archivo.getName().endsWith("jpg") || archivo.getName().endsWith("png")) {
+                    direccion = (archivo.getAbsolutePath());
+                    imagen = AbrirArchivo(archivo);
+                    Image i = new ImageIcon(imagen).getImage();
+                    ImageIcon img = new ImageIcon(i.getScaledInstance(jLabelFoto.getWidth(), jLabelFoto.getHeight(), Image.SCALE_SMOOTH));
+                    jLabelFoto.setIcon(img);
+                    cc.getCuenta().getUsu().setFoto(direccion);
+                    cc.actualizarCuenta(cc.getCuenta());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Archivo no compatible.");
+                }
+            }
+        }
+
+
     }//GEN-LAST:event_jButtonEditarImagen1ActionPerformed
 
     private void jButtonEditarImagen2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarImagen2ActionPerformed
@@ -285,6 +317,14 @@ public class VistaCuenta extends javax.swing.JFrame {
 
     private void cargarDatos() {
         cc.setCuenta(cc.traerCuenta(id_usuario));
+        System.out.println(cc.getCuenta().getUsu().getFoto());
+        if (!cc.getCuenta().getUsu().getFoto().isEmpty()) {
+            imagen = AbrirArchivo(new File(cc.getCuenta().getUsu().getFoto()));
+            Image i = new ImageIcon(imagen).getImage();
+            ImageIcon img = new ImageIcon(i.getScaledInstance(jLabelFoto.getWidth(), jLabelFoto.getHeight(), Image.SCALE_SMOOTH));
+            jLabelFoto.setIcon(img);
+        }
+
         switch (id_externo) {
             case -1:
                 jTextFieldNombre.setVisible(false);
@@ -328,6 +368,15 @@ public class VistaCuenta extends javax.swing.JFrame {
         }
     }
 
+    public byte[] AbrirArchivo(File archivo) {
+        byte[] imagen = new byte[1024 * 100];
+        try {
+            entrada = new FileInputStream(archivo);
+            entrada.read(imagen);
+        } catch (Exception e) {
+        }
+        return imagen;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEditarImagen1;
     private javax.swing.JButton jButtonEditarImagen2;
@@ -342,6 +391,7 @@ public class VistaCuenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelApellido;
     private javax.swing.JLabel jLabelCedula;
     private javax.swing.JLabel jLabelCorreo;
+    private javax.swing.JLabel jLabelFoto;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JLabel jLabelTelefono;
     private javax.swing.JPanel jPanel1;

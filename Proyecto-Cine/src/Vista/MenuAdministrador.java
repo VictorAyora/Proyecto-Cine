@@ -5,7 +5,7 @@
  */
 package Vista;
 
-import Modelo.placeHolder;
+import Controlador.placeHolder;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
