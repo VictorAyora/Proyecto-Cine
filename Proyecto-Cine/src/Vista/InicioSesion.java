@@ -103,15 +103,15 @@ public class InicioSesion extends javax.swing.JFrame {
 
     private void jButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarActionPerformed
         try {
-            if (VerficarAdministrador(jTextFieldUsuario.getText(), jPasswordFieldClave.getText())) {
+            if (VerficarAdministrador(jTextFieldUsuario.getText(), cc.getMD5(jPasswordFieldClave.getText()))) {
                 MenuAdministrador ma = new MenuAdministrador();
                 ma.setVisible(true);
                 this.dispose();
-            } else if (VerificarTaquillero(jTextFieldUsuario.getText(), jPasswordFieldClave.getText())) {
+            } else if (VerificarTaquillero(jTextFieldUsuario.getText(), cc.getMD5(jPasswordFieldClave.getText()))) {
                 VistaMenuTaquillero mt = new VistaMenuTaquillero();
                 mt.setVisible(true);
                 this.dispose();
-            } else if (VerificarVendedor(jTextFieldUsuario.getText(), jPasswordFieldClave.getText())) {
+            } else if (VerificarVendedor(jTextFieldUsuario.getText(), cc.getMD5(jPasswordFieldClave.getText()))) {
                 VistaMenuVendedor mv = new VistaMenuVendedor();
                 mv.setVisible(true);
                 this.dispose();
