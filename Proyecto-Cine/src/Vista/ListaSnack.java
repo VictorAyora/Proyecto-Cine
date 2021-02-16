@@ -5,14 +5,18 @@
  */
 package Vista;
 
+import Controlador.ControladorSnack;
+import Controlador.placeHolder;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Veronica Estefania
+ * @author Victor Ayora, Veronica Placencia, Geovanny Poma, Azucena Toledo
  */
 public class ListaSnack extends javax.swing.JFrame {
 
@@ -20,12 +24,19 @@ public class ListaSnack extends javax.swing.JFrame {
      * Creates new form ListaSnack
      */
     FondoPanel fondo = new FondoPanel();
+    ControladorSnack cs = new ControladorSnack();
+    DefaultTableModel TablaSnacks;
 
     public ListaSnack() {
         this.setContentPane(fondo);
         this.setExtendedState(6);
         initComponents();
+        placeHolder place1 = new placeHolder("Escriba aqui el Snack", jTextFieldBuscarSnack);
+        place1.setForeground(Color.gray);
         this.setResizable(false);//no redimenciona la ventana
+        cs.getSnacks();
+        cs.setSnacks(cs.cargarSnack(cs.getSnacks()));
+        cargarTabla();
     }
 
     /**
@@ -72,11 +83,11 @@ public class ListaSnack extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Snack", "Tamaño", "Precio"
+                "Snack", "Tamaño", "Cantidad", "Precio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -151,6 +162,18 @@ public class ListaSnack extends javax.swing.JFrame {
                 new ListaSnack().setVisible(true);
             }
         });
+
+    }
+
+    private void cargarTabla() {
+        TablaSnacks = (DefaultTableModel) jTableListaSnack.getModel();
+        for (int i = 0; i < cs.getSnacks().size(); i++) {                                    //Bucle que recorre la consulta obtenida
+            if (cs.getSnacks().get(i).getEstado_snack() == true) {
+                TablaSnacks.addRow(new Object[]{cs.getSnacks().get(i).getTipo_snack(), cs.getSnacks().get(i).getTamanio(),
+                    cs.getSnacks().get(i).getCantidad(), cs.getSnacks().get(i).getPrecio_snack()});
+            }
+
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -163,7 +186,7 @@ public class ListaSnack extends javax.swing.JFrame {
     private javax.swing.JTable jTableListaSnack;
     private javax.swing.JTextField jTextFieldBuscarSnack;
     // End of variables declaration//GEN-END:variables
-    
+
     class FondoPanel extends JPanel {
 
         private Image imagen;
