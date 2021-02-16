@@ -13,7 +13,21 @@ import util.NewHibernateUtil;
 public class ControladorVentaSnack {
 
     private Session st;
+    VentaSnack vs;
+    
+    
+    public VentaSnack getVs() {
+        if(vs==null){
+            vs=new VentaSnack();
+        }
+        return vs;
+    }
 
+    public void setVs(VentaSnack vs) {
+        this.vs = vs;
+    }
+    
+    
     public ControladorVentaSnack() {
         sessionHibernate();
     }

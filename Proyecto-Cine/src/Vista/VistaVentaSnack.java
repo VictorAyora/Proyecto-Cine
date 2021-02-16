@@ -5,26 +5,58 @@
  */
 package Vista;
 
+import Controlador.ControladorSnack;
+import Controlador.ControladorVentaSnack;
+import Controlador.placeHolder;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Victor Ayora, Geovanny Poma, Veronica Placencia, Azucena Toledo
  */
 public class VistaVentaSnack extends javax.swing.JFrame {
-    
+
     FondoPanel fondo = new FondoPanel();
+    ControladorSnack cs = new ControladorSnack();
+    DefaultTableModel TablaSnacks; //Codigo que crea el modelo de la tabla
+    ControladorVentaSnack cvs = new ControladorVentaSnack();
+    
     public VistaVentaSnack() {
         this.setContentPane(fondo);
         this.setResizable(false);
         this.setExtendedState(6);
         initComponents();
+        placeHolder place1 = new placeHolder("Ejm: 20", jTextFieldCantidadSnack);
+        cs.setSnacks(cs.cargarSnack());
+        jComboBoxTipoSnack.removeAllItems();
+        for (int i = 0; i < cs.getSnacks().size(); i++) {
+            if (cs.getSnacks().get(i).getEstado_snack() == true) {
+                int cont;
+                if (jComboBoxTipoSnack.getItemCount() == 0) {
+                    jComboBoxTipoSnack.addItem(cs.getSnacks().get(i).getTipo_snack());
+                } else {
+                    cont=0;
+                    for (int j = 0; j < jComboBoxTipoSnack.getItemCount(); j++) {
+                        if (jComboBoxTipoSnack.getItemAt(j).equals(cs.getSnacks().get(i).getTipo_snack())) {
+                            cont++;
+                        }
+                        
+                    }
+                    if(cont==0){
+                        jComboBoxTipoSnack.addItem(cs.getSnacks().get(i).getTipo_snack());
+                    }
+                }
+            }
+            }        
+        
+       
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,14 +67,13 @@ public class VistaVentaSnack extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabelTitVentTick = new javax.swing.JLabel();
-        jComboBoxSnack = new javax.swing.JComboBox<>();
-        jComboBoxTamañoSnack = new javax.swing.JComboBox<>();
+        jComboBoxTipoSnack = new javax.swing.JComboBox<>();
+        jComboBoxTamanioSnack = new javax.swing.JComboBox<>();
         jTextFieldCantidadSnack = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldPrecioSnack = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSnack = new javax.swing.JTable();
         jToggleButtonAceptarSnack = new javax.swing.JToggleButton();
@@ -50,6 +81,7 @@ public class VistaVentaSnack extends javax.swing.JFrame {
         jTextFieldPrecioTotalSnack = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jToggleButtonRegresarSnack = new javax.swing.JToggleButton();
+        jLabelPrecio = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -61,20 +93,40 @@ public class VistaVentaSnack extends javax.swing.JFrame {
         jLabelTitVentTick.setText("VENTA DE SNACK");
         getContentPane().add(jLabelTitVentTick, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, 630, 60));
 
-        jComboBoxSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBoxSnack.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Palomitas", "Nachos", "Gaseosa", " " }));
-        jComboBoxSnack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxSnackActionPerformed(evt);
+        jComboBoxTipoSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxTipoSnack.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        jComboBoxTipoSnack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxTipoSnackMouseClicked(evt);
             }
         });
-        getContentPane().add(jComboBoxSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 130, -1));
+        jComboBoxTipoSnack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTipoSnackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBoxTipoSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 130, -1));
 
-        jComboBoxTamañoSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBoxTamañoSnack.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pequeño", "Mediano", "Grande" }));
-        getContentPane().add(jComboBoxTamañoSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, 130, -1));
+        jComboBoxTamanioSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxTamanioSnack.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pequeño", "Mediano", "Grande" }));
+        jComboBoxTamanioSnack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTamanioSnackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBoxTamanioSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, 130, -1));
 
         jTextFieldCantidadSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldCantidadSnack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jTextFieldCantidadSnackMouseEntered(evt);
+            }
+        });
+        jTextFieldCantidadSnack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCantidadSnackActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextFieldCantidadSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 130, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -93,16 +145,13 @@ public class VistaVentaSnack extends javax.swing.JFrame {
         jLabel4.setText("PRECIO:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, -1, -1));
 
-        jTextFieldPrecioSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(jTextFieldPrecioSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 380, 130, 30));
-
         jTableSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTableSnack.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Snack", "Cantidad", "Tamaño", "Precio"
+                "Snack", "Tamaño", "Cantidad", "Precio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -115,10 +164,15 @@ public class VistaVentaSnack extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableSnack);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 980, 180));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, 980, 180));
 
         jToggleButtonAceptarSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jToggleButtonAceptarSnack.setText("ACEPTAR");
+        jToggleButtonAceptarSnack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonAceptarSnackActionPerformed(evt);
+            }
+        });
         getContentPane().add(jToggleButtonAceptarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 380, 140, 30));
 
         jToggleButtonPagarSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -146,6 +200,10 @@ public class VistaVentaSnack extends javax.swing.JFrame {
         });
         getContentPane().add(jToggleButtonRegresarSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 660, 120, -1));
 
+        jLabelPrecio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelPrecio.setText("0.00 $");
+        getContentPane().add(jLabelPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -163,46 +221,74 @@ public class VistaVentaSnack extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jToggleButtonPagarSnackActionPerformed
 
-    private void jComboBoxSnackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSnackActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxSnackActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaVentaSnack.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaVentaSnack.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaVentaSnack.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaVentaSnack.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void jComboBoxTipoSnackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoSnackActionPerformed
+        //se mostrara el precio
+        if (jTextFieldCantidadSnack.getText().equals("")) {
+        } else {
+            cs.setSnack(cs.traeSnack((String) jComboBoxTipoSnack.getSelectedItem(), (String) jComboBoxTamanioSnack.getSelectedItem()));
+            jLabelPrecio.setText(String.valueOf(cs.getSnack().getPrecio_snack() * (Double.parseDouble(jTextFieldCantidadSnack.getText()))));
         }
-        //</editor-fold>
-        //</editor-fold>
+    }//GEN-LAST:event_jComboBoxTipoSnackActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaVentaSnack().setVisible(true);
+    private void jToggleButtonAceptarSnackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAceptarSnackActionPerformed
+        if (!(jTextFieldCantidadSnack.getText().equals(""))) {
+            
+            cs.setSnack(cs.traeSnack((String) jComboBoxTipoSnack.getSelectedItem(), (String) jComboBoxTamanioSnack.getSelectedItem()));
+            if (Integer.parseInt(jTextFieldCantidadSnack.getText()) <= cs.getSnack().getCantidad()) {
+                cvs.getVs();
+                cvs.getVs().getSnacks();
+                cvs.getVs().getSnacks().add(cs.getSnack());
+                cs.setSnacks(cvs.getVs().getSnacks());
+                cargarTabla();
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay suficiente stock");
             }
-        });
+        }
+    }//GEN-LAST:event_jToggleButtonAceptarSnackActionPerformed
+
+    private void jTextFieldCantidadSnackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldCantidadSnackMouseEntered
+
+
+    }//GEN-LAST:event_jTextFieldCantidadSnackMouseEntered
+
+    private void jComboBoxTipoSnackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxTipoSnackMouseClicked
+
+    }//GEN-LAST:event_jComboBoxTipoSnackMouseClicked
+
+    private void jComboBoxTamanioSnackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTamanioSnackActionPerformed
+        //se mostrara el precio
+        if (jTextFieldCantidadSnack.getText().equals("")) {
+        } else {
+            cs.setSnack(cs.traeSnack((String) jComboBoxTipoSnack.getSelectedItem(), (String) jComboBoxTamanioSnack.getSelectedItem()));
+            jLabelPrecio.setText(String.valueOf(cs.getSnack().getPrecio_snack() * (Double.parseDouble(jTextFieldCantidadSnack.getText()))));
+        }
+    }//GEN-LAST:event_jComboBoxTamanioSnackActionPerformed
+
+    private void jTextFieldCantidadSnackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCantidadSnackActionPerformed
+        //se mostrara el precio
+        if (jTextFieldCantidadSnack.getText().equals("")) {
+        } else {
+            cs.setSnack(cs.traeSnack((String) jComboBoxTipoSnack.getSelectedItem(), (String) jComboBoxTamanioSnack.getSelectedItem()));
+            if (Integer.parseInt(jTextFieldCantidadSnack.getText()) <= cs.getSnack().getCantidad()) {
+                jLabelPrecio.setText(String.valueOf(cs.getSnack().getPrecio_snack() * (Double.parseDouble(jTextFieldCantidadSnack.getText()))));
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay suficiente stock");
+            }
+        }
+    }//GEN-LAST:event_jTextFieldCantidadSnackActionPerformed
+
+    private void cargarTabla() {
+        TablaSnacks = (DefaultTableModel) jTableSnack.getModel();
+        for (int i = 0; i < cs.getSnacks().size(); i++) {                                    //Bucle que recorre la consulta obtenida
+            if (cs.getSnacks().get(i).getEstado_snack() == true) {
+                TablaSnacks.addRow(new Object[]{cs.getSnacks().get(i).getTipo_snack(), cs.getSnacks().get(i).getTamanio(),
+                    cs.getSnacks().get(i).getCantidad(), cs.getSnacks().get(i).getPrecio_snack()});
+            }
+
+        }
     }
-class FondoPanel extends JPanel {
+
+    class FondoPanel extends JPanel {
 
         private Image imagen;
 
@@ -213,24 +299,23 @@ class FondoPanel extends JPanel {
             setOpaque(false);
             super.paint(g);
         }
-}
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBoxSnack;
-    private javax.swing.JComboBox<String> jComboBoxTamañoSnack;
+    private javax.swing.JComboBox<String> jComboBoxTamanioSnack;
+    private javax.swing.JComboBox<String> jComboBoxTipoSnack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelPrecio;
     private javax.swing.JLabel jLabelTitVentTick;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableSnack;
     private javax.swing.JTextField jTextFieldCantidadSnack;
-    private javax.swing.JTextField jTextFieldPrecioSnack;
     private javax.swing.JTextField jTextFieldPrecioTotalSnack;
     private javax.swing.JToggleButton jToggleButtonAceptarSnack;
     private javax.swing.JToggleButton jToggleButtonPagarSnack;
     private javax.swing.JToggleButton jToggleButtonRegresarSnack;
     // End of variables declaration//GEN-END:variables
 }
-
