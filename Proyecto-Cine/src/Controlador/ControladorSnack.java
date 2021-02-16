@@ -1,8 +1,10 @@
 package Controlador;
 
 import Modelo.Snack;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import util.NewHibernateUtil;
 
@@ -14,7 +16,33 @@ public class ControladorSnack {
 
  
     private Session st;
+    Snack snack; 
+    List<Snack> snacks;
+    
+    public Snack getSnack() {
+        if(snack==null){
+            snack=new Snack();
+        }
+        return snack;
+    }
 
+    public void setSnack(Snack snack) {
+        this.snack = snack;
+    }
+
+    public List<Snack> getSnacks() {
+        if(snacks==null){
+            snacks = new ArrayList();
+        }
+        return snacks;
+    }
+
+    public void setSnacks(List<Snack> snacks) {
+        this.snacks = snacks;
+    }
+    
+    
+    
     public ControladorSnack() {
         sessionHibernate();
     }
@@ -23,7 +51,7 @@ public class ControladorSnack {
         st = NewHibernateUtil.getSessionFactory().openSession();
     }
 
-    public void registrarSala(Snack s) {
+    public void registrarSnack(Snack s) {
 
         try {
             st.beginTransaction();
@@ -37,8 +65,8 @@ public class ControladorSnack {
 
     }
 
-    public List<Snack> cargarSala(List<Snack> lis) {
-
+    public List<Snack> cargarSnack() {
+        List<Snack> lis = null;
         try {
 
             lis = (List<Snack>) st.createQuery("from Snack").list();
@@ -48,7 +76,7 @@ public class ControladorSnack {
         return lis;
     }
 
-    public Snack traerSala(int id) {
+    public Snack traerSnack(int id) {
 
         Snack s = null;
 
@@ -59,8 +87,38 @@ public class ControladorSnack {
         }
         return s;
     }
+    
+    public Snack traeSnack(String tipo) {
+        Snack snack = null;
 
-    public void actualizarSala(Snack s) {
+        try {
+            Query query = st.createQuery("From Snack where tipo_snack =?");
+            query.setParameter(0, tipo);
+            snack = (Snack) query.uniqueResult();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al traer Cliente" + e);
+        }
+        return snack;
+    }
+
+     public Snack traeSnack(String tipo, String tamanio) {
+        Snack s = null;
+
+        try {
+            Query query = st.createQuery("From Snack where tipo_snack =? and tamanio=?");
+            query.setParameter(0, tipo);
+            query.setParameter(1, tamanio);
+            s = (Snack) query.uniqueResult();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al traer Snack" + e);
+        }
+        return s;
+    }
+
+
+    public void actualizarSnack(Snack s) {
         try {
             st.beginTransaction();
             st.update(s);
