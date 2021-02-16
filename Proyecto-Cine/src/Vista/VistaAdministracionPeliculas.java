@@ -8,9 +8,14 @@ package Vista;
 import Controlador.ControladorPelicula;
 import Modelo.Pelicula;
 import Modelo.Sala;
+import Controlador.placeHolder;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.File;
+import java.io.FileInputStream;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -24,17 +29,28 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
     /**
      * Creates new form VistaAdministracionPeliculas
      */
-    
-    DefaultTableModel TablaAdministrarPeliculas;   
+    DefaultTableModel TablaAdministrarPeliculas = new DefaultTableModel();
     FondoPanel fondo = new FondoPanel();
     ControladorPelicula cp = new ControladorPelicula();
-    
-    
+    JFileChooser seleccionar = new JFileChooser();
+    File archivo;
+    byte[] imagen;
+    FileInputStream entrada;
+    String direccion = "";
+
     public VistaAdministracionPeliculas() {
         this.setContentPane(fondo);
         this.setExtendedState(6);
+
         initComponents();
+        placeHolder place1 = new placeHolder("Ejm: Albin y las Ardillas", jTextFieldTituloPelicula);
+        place1.setForeground(Color.gray);
+        placeHolder place2 = new placeHolder("Ejm: 2007", jTextFieldAnioPelicula);
+        placeHolder place3 = new placeHolder("Ejm: El conjuro", jTextFieldBuscar);
+        placeHolder place4 = new placeHolder("Ejm: Juan Peres", jTextFieldDirector);
+        placeHolder place5 = new placeHolder("Ejm: CINEMAX", jTextFieldProveedor);
         this.setResizable(false);//no redimenciona la ventana
+        cargarTabla();
     }
 
     /**
@@ -59,7 +75,7 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jTextFieldTituloPelicula = new javax.swing.JTextField();
-        jTextFieldAnioPelicula = new javax.swing.JTextField();
+        jTextFieldDuracion = new javax.swing.JTextField();
         jRadioButtonSubtitulos = new javax.swing.JRadioButton();
         jLabel10 = new javax.swing.JLabel();
         jRadioButtonComedia = new javax.swing.JRadioButton();
@@ -77,7 +93,7 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         jRadioButtonPortugues = new javax.swing.JRadioButton();
         jRadioButtonFrances = new javax.swing.JRadioButton();
         jPanelPortadaPelicula = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
+        jLabelPortada = new javax.swing.JLabel();
         jButtonAgregarPortada = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -91,15 +107,14 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         jButtonCambiarEstadoPelicula = new javax.swing.JButton();
         jButtonModificarDatosPelicula = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
-        jSpinnerDuracionPelicula = new javax.swing.JSpinner();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextPaneSinopsisPelicula = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPaneActoresPelicula = new javax.swing.JTextPane();
-        jTextPaneBuscarPelicula = new javax.swing.JTextPane();
         jTextFieldBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAdministrarPeliculas = new javax.swing.JTable();
+        jTextFieldAnioPelicula = new javax.swing.JTextField();
 
         jTableAdministracionPelicula.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -168,13 +183,13 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         });
         getContentPane().add(jTextFieldTituloPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 270, -1));
 
-        jTextFieldAnioPelicula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextFieldAnioPelicula.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldDuracion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldDuracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAnioPeliculaActionPerformed(evt);
+                jTextFieldDuracionActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldAnioPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 70, -1));
+        getContentPane().add(jTextFieldDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 70, -1));
 
         jRadioButtonSubtitulos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         getContentPane().add(jRadioButtonSubtitulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, -1, -1));
@@ -240,7 +255,7 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
 
         jRadioButton3D.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton3D.setText("3D");
-        getContentPane().add(jRadioButton3D, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 410, -1, -1));
+        getContentPane().add(jRadioButton3D, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 430, -1, -1));
 
         jRadioButtonEspaniol.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButtonEspaniol.setText("Español");
@@ -271,24 +286,18 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         jPanelPortadaPelicula.setBackground(new java.awt.Color(255, 255, 255));
         jPanelPortadaPelicula.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel11.setText("Portada");
+        jLabelPortada.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelPortada.setText("Portada");
 
         javax.swing.GroupLayout jPanelPortadaPeliculaLayout = new javax.swing.GroupLayout(jPanelPortadaPelicula);
         jPanelPortadaPelicula.setLayout(jPanelPortadaPeliculaLayout);
         jPanelPortadaPeliculaLayout.setHorizontalGroup(
             jPanelPortadaPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPortadaPeliculaLayout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jLabel11)
-                .addContainerGap(76, Short.MAX_VALUE))
+            .addComponent(jLabelPortada, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
         jPanelPortadaPeliculaLayout.setVerticalGroup(
             jPanelPortadaPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPortadaPeliculaLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jLabel11)
-                .addContainerGap(51, Short.MAX_VALUE))
+            .addComponent(jLabelPortada, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanelPortadaPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 160, 200, 120));
@@ -367,7 +376,6 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonModificarDatosPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 590, -1, 30));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, 1160, 30));
-        getContentPane().add(jSpinnerDuracionPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 80, 20));
 
         jTextPaneSinopsisPelicula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jScrollPane4.setViewportView(jTextPaneSinopsisPelicula);
@@ -378,7 +386,6 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTextPaneActoresPelicula);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 300, 270, 60));
-        getContentPane().add(jTextPaneBuscarPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jTextFieldBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -392,11 +399,11 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Titulo", "Año", "Género", "Duración", "Subtitulos", "Proveedor", "Formato"
+                "Titulo", "Año", "Director", "Género", "Duración", "Subtitulos", "Formato", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, true, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -407,12 +414,20 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 860, 110));
 
+        jTextFieldAnioPelicula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldAnioPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldAnioPeliculaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldAnioPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 70, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldAnioPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnioPeliculaActionPerformed
+    private void jTextFieldDuracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDuracionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAnioPeliculaActionPerformed
+    }//GEN-LAST:event_jTextFieldDuracionActionPerformed
 
     private void jRadioButtonComediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonComediaActionPerformed
         // TODO add your handling code here:
@@ -447,7 +462,25 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldProveedorActionPerformed
 
     private void jButtonAgregarPortadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarPortadaActionPerformed
-        // TODO add your handling code here:
+        //Imagen
+        // Abrir archivo
+        if (seleccionar.showDialog(null, null) == JFileChooser.APPROVE_OPTION) {
+            archivo = seleccionar.getSelectedFile();
+            if (archivo.canRead()) {
+                if (archivo.getName().endsWith("jpg") || archivo.getName().endsWith("png")) {
+                    direccion = (archivo.getAbsolutePath());
+                    System.out.println(direccion);
+                    imagen = AbrirArchivo(archivo);
+                    Image i = new ImageIcon(imagen).getImage();
+                    ImageIcon img = new ImageIcon(i.getScaledInstance(jLabelPortada.getWidth(), jLabelPortada.getHeight(), Image.SCALE_SMOOTH));
+                    jLabelPortada.setIcon(img);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Archivo no compatible.");
+
+                }
+            }
+        }
+
     }//GEN-LAST:event_jButtonAgregarPortadaActionPerformed
 
     private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
@@ -463,7 +496,28 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonMostrarTodosPeliculaActionPerformed
 
     private void jButtonCambiarEstadoPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCambiarEstadoPeliculaActionPerformed
-        // TODO add your handling code here:
+        int FilaTable = jTableAdministrarPeliculas.getSelectedRow();
+        if (FilaTable >= 0) {
+
+            cp.setPelicula(cp.traePelicula((String) TablaAdministrarPeliculas.getValueAt(FilaTable, 0),
+                    (String) TablaAdministrarPeliculas.getValueAt(FilaTable, 2)));
+
+            if (cp.getPelicula().getEstado_pelicula()) {
+                cp.getPelicula().setEstado_pelicula(false);
+            } else {
+                cp.getPelicula().setEstado_pelicula(true);
+            }
+            cp.actualizarPelicula(cp.getPelicula());
+            int var = TablaAdministrarPeliculas.getRowCount();
+            for (int i = 0; i < var; i++) {
+                TablaAdministrarPeliculas.removeRow(0);
+            }
+            cp.setPeliculas(cp.cargarPeliculas());
+            cargarTabla();
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila");
+        }
+
     }//GEN-LAST:event_jButtonCambiarEstadoPeliculaActionPerformed
 
     private void jTextFieldBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBuscarActionPerformed
@@ -472,22 +526,116 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
 
     private void jButtonRegistrarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarPeliculaActionPerformed
         // TODO add your handling code here:
-        Pelicula c = new Pelicula();
-        c.setTitulo(jTextFieldTituloPelicula.getText());
-        c.setAnio(Integer.parseInt(jTextFieldAnioPelicula.getText()));
-        c.setSubtitulos(jRadioButtonSubtitulos.getVerifyInputWhenFocusTarget());
-        c.setDuracion(jSpinnerDuracionPelicula.getComponentCount());
-        c.setGenero(jRadioButtonFiccion.getName() + jRadioButtonAccion.getName() + jRadioButtonTerror.getName());
-        c.setProveedor(jTextFieldProveedor.getText());
-        c.setIdioma(jRadioButtonEspaniol.getName());
-        c.setSinopsis(jTextPaneSinopsisPelicula.getText());
-        c.setActores(jTextPaneActoresPelicula.getText());
-        c.setDirector(jTextFieldDirector.getText());
-        c.setFormato(jRadioButton2D.getName()+jRadioButton3D.getName());
-        c.setPortada("direccion");
-        
-        cp.registrarPelicula(c);    
+        if ("".equals(direccion)) {
+            JOptionPane.showMessageDialog(null, "Ingrese una portada");
+        } else {
+            String genero = "";
+            if (jRadioButtonFiccion.isSelected()) {
+                genero = "Ficcion";
+            }
+            if (jRadioButtonTerror.isSelected()) {
+                if (!genero.equals("")) {
+                    genero += ",Terror";
+                } else {
+                    genero = "Terror";
+                }
+            }
+            if (jRadioButtonRomance.isSelected()) {
+                if (!genero.equals("")) {
+                    genero += ",Romance";
+                } else {
+                    genero = "Romance";
+                }
+            }
+            if (jRadioButtonComedia.isSelected()) {
+                if (!genero.equals("")) {
+                    genero += ",Comedia";
+                } else {
+                    genero = "Comedia";
+                }
+            }
+            if (jRadioButtonAccion.isSelected()) {
+                if (!genero.equals("")) {
+                    genero += ",Accion";
+                } else {
+                    genero = "Accion";
+                }
+            }
+            if (jRadioButtonDrama.isSelected()) {
+                if (!genero.equals("")) {
+                    genero += ",Drama";
+                } else {
+                    genero = "Drama";
+                }
+            }
+            if (jRadioButtonInfantilFamiliar.isSelected()) {
+                if (!genero.equals("")) {
+                    genero += ",Infantil/Familiar";
+                } else {
+                    genero = "Infantil/Familiar";
+                }
+            }
+
+            String idioma = "";
+            if (jRadioButtonEspaniol.isSelected()) {
+                idioma += "Español";
+            }
+            if (jRadioButtonIngles.isSelected()) {
+                if (!idioma.equals("")) {
+                    idioma += ",Ingles";
+                } else {
+                    idioma = "Ingles";
+                }
+            }
+            if (jRadioButtonPortugues.isSelected()) {
+                if (!idioma.equals("")) {
+                    idioma += ",Portugues";
+                } else {
+                    idioma = "Portugues";
+                }
+            }
+            if (jRadioButtonFrances.isSelected()) {
+                if (!idioma.equals("")) {
+                    idioma += ",Frances";
+                } else {
+                    idioma = "Frances";
+                }
+            }
+            cp.getPelicula();
+            cp.getPelicula().setTitulo(jTextFieldTituloPelicula.getText());
+            cp.getPelicula().setAnio(Integer.parseInt(jTextFieldAnioPelicula.getText()));
+            cp.getPelicula().setSubtitulos(jRadioButtonSubtitulos.isSelected());
+            cp.getPelicula().setDuracion(Integer.parseInt(jTextFieldDuracion.getText()));
+            cp.getPelicula().setGenero(genero);
+            cp.getPelicula().setProveedor(jTextFieldProveedor.getText());
+            cp.getPelicula().setIdioma(idioma);
+            cp.getPelicula().setSinopsis(jTextPaneSinopsisPelicula.getText());
+            cp.getPelicula().setActores(jTextPaneActoresPelicula.getText());
+            cp.getPelicula().setDirector(jTextFieldDirector.getText());
+            cp.getPelicula().setFormato2D(jRadioButton2D.isSelected());
+            cp.getPelicula().setFormato3D(jRadioButton3D.isSelected());
+            cp.getPelicula().setPortada(direccion);
+            cp.getPelicula().setEstado_pelicula(true);
+            cp.registrarPelicula(cp.getPelicula());
+            int var = TablaAdministrarPeliculas.getRowCount();
+            for (int i = 0; i < var; i++) {
+                TablaAdministrarPeliculas.removeRow(0);
+            }
+            cargarTabla();
+        }
+
     }
+
+    public byte[] AbrirArchivo(File archivo) {
+        byte[] imagen = new byte[1024 * 100];
+        try {
+            entrada = new FileInputStream(archivo);
+            entrada.read(imagen);
+        } catch (Exception e) {
+        }
+        return imagen;
+    }
+
     private void jButtonRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {
 
 
@@ -496,6 +644,10 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
     private void jTextFieldTituloPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTituloPeliculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTituloPeliculaActionPerformed
+
+    private void jTextFieldAnioPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnioPeliculaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldAnioPeliculaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -532,6 +684,44 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
         });
     }
 
+    private void cargarTabla() {
+        cp.setPeliculas(cp.cargarPeliculas());
+        TablaAdministrarPeliculas = (DefaultTableModel) jTableAdministrarPeliculas.getModel();
+        for (int i = 0; i < cp.getPeliculas().size(); i++) {                                    //Bucle que recorre la consulta obtenida
+            String estado;
+            String sub;
+            if (cp.getPeliculas().get(i).getEstado_pelicula() == true) {
+                estado = "Disponible";
+            } else {
+                estado = "No Disponible";
+            }
+            if (cp.getPeliculas().get(i).getSubtitulos() == true) {
+                sub = "SI";
+            } else {
+                sub = "NO";
+            }
+            String formato = "";
+            if (cp.getPeliculas().get(i).isFormato2D()) {
+                if (cp.getPeliculas().get(i).isFormato3D()) {
+                    formato = "2D, 3D";
+                } else {
+                    formato = "2D";
+                }
+            }
+            if (cp.getPeliculas().get(i).isFormato3D()) {
+                if (cp.getPeliculas().get(i).isFormato2D()) {
+                    formato = "2D, 3D";
+                } else {
+                    formato = "3D";
+                }
+            }
+            TablaAdministrarPeliculas.addRow(new Object[]{
+                cp.getPeliculas().get(i).getTitulo(), cp.getPeliculas().get(i).getAnio(), cp.getPeliculas().get(i).getDirector(),
+                cp.getPeliculas().get(i).getGenero(), cp.getPeliculas().get(i).getDuracion(), sub, formato, estado
+            });
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButtonAgregarPortada;
@@ -543,7 +733,6 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -555,6 +744,7 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelPortada;
     private javax.swing.JPanel jPanelPortadaPelicula;
     private javax.swing.JRadioButton jRadioButton2D;
     private javax.swing.JRadioButton jRadioButton3D;
@@ -576,16 +766,15 @@ public class VistaAdministracionPeliculas extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSpinner jSpinnerDuracionPelicula;
     private javax.swing.JTable jTableAdministracionPelicula;
     private javax.swing.JTable jTableAdministrarPeliculas;
     private javax.swing.JTextField jTextFieldAnioPelicula;
     private javax.swing.JTextField jTextFieldBuscar;
     private javax.swing.JTextField jTextFieldDirector;
+    private javax.swing.JTextField jTextFieldDuracion;
     private javax.swing.JTextField jTextFieldProveedor;
     private javax.swing.JTextField jTextFieldTituloPelicula;
     private javax.swing.JTextPane jTextPaneActoresPelicula;
-    private javax.swing.JTextPane jTextPaneBuscarPelicula;
     private javax.swing.JTextPane jTextPaneSinopsisPelicula;
     // End of variables declaration//GEN-END:variables
     class FondoPanel extends JPanel {
