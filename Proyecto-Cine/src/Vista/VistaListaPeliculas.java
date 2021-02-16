@@ -5,27 +5,38 @@
  */
 package Vista;
 
+import Controlador.ControladorPelicula;
+import Controlador.placeHolder;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author David
+ * @author Victor Ayora, Veronica Placencia, Geovanny Poma, Azucena Toledo
  */
 public class VistaListaPeliculas extends javax.swing.JFrame {
 
     /**
      * Creates new form VistaListaPeliculas
      */
+    DefaultTableModel TablaListaPeliculas = new DefaultTableModel();
     FondoPanel fondo = new FondoPanel();
+    ControladorPelicula cp = new ControladorPelicula();
+    int id_ex;
 
     public VistaListaPeliculas() {
         this.setContentPane(fondo);
         this.setExtendedState(6);
         initComponents();
+        placeHolder place1 = new placeHolder("Ejm: Bob esponja la pelicula", jTextFieldBuscarPelicula);
+        place1.setForeground(Color.gray);
         this.setResizable(false);//no redimenciona la ventana
+        cargarTabla();
     }
 
     /**
@@ -42,9 +53,10 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
         jButtonBuscarPelicula = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableListaPeliculas = new javax.swing.JTable();
-        jButtonRegresar = new javax.swing.JButton();
+        jButtonVerDetalles = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButtonBuscarPelicula1 = new javax.swing.JButton();
+        jButtonRegresar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -77,11 +89,11 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Película", "Formato", "Horario", "N° Ticket", "N° Sala", "Dias"
+                "Película", "Año", "Director", "Género", "Duración", "Subtítulos", "Formato", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -92,14 +104,14 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 980, 340));
 
-        jButtonRegresar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonRegresar.setText("Regresar");
-        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonVerDetalles.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonVerDetalles.setText("Ver Detalles");
+        jButtonVerDetalles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRegresarActionPerformed(evt);
+                jButtonVerDetallesActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 650, -1, -1));
+        getContentPane().add(jButtonVerDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(1087, 200, 110, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Película:");
@@ -109,6 +121,15 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
         jButtonBuscarPelicula1.setText("Buscar");
         getContentPane().add(jButtonBuscarPelicula1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 200, 120, 30));
 
+        jButtonRegresar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonRegresar1.setText("Regresar");
+        jButtonRegresar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresar1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonRegresar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 650, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -116,15 +137,28 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldBuscarPeliculaActionPerformed
 
-    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
-        VistaAdministracionPeliculas ap = new VistaAdministracionPeliculas();
-        ap.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButtonRegresarActionPerformed
+    private void jButtonVerDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerDetallesActionPerformed
+        int FilaTable = jTableListaPeliculas.getSelectedRow();
+        if (FilaTable >= 0) {
+            cp.setPelicula(cp.traePelicula((String) TablaListaPeliculas.getValueAt(FilaTable, 0),
+                    (String) TablaListaPeliculas.getValueAt(FilaTable, 2)));
+            id_ex = cp.getPelicula().getId_pelicula();
+            VistaDetallePelicula vdp = new VistaDetallePelicula(id_ex);
+            vdp.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila");
+        }
+
+    }//GEN-LAST:event_jButtonVerDetallesActionPerformed
 
     private void jButtonBuscarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarPeliculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonBuscarPeliculaActionPerformed
+
+    private void jButtonRegresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonRegresar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,10 +195,49 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
         });
     }
 
+    private void cargarTabla() {
+        cp.setPeliculas(cp.cargarPeliculas());
+        TablaListaPeliculas = (DefaultTableModel) jTableListaPeliculas.getModel();
+        for (int i = 0; i < cp.getPeliculas().size(); i++) {                                    //Bucle que recorre la consulta obtenida
+            String estado;
+            String sub;
+            if (cp.getPeliculas().get(i).getEstado_pelicula() == true) {
+                estado = "Disponible";
+            } else {
+                estado = "No Disponible";
+            }
+            if (cp.getPeliculas().get(i).getSubtitulos() == true) {
+                sub = "SI";
+            } else {
+                sub = "NO";
+            }
+            String formato = "";
+            if (cp.getPeliculas().get(i).isFormato2D()) {
+                if (cp.getPeliculas().get(i).isFormato3D()) {
+                    formato = "2D, 3D";
+                } else {
+                    formato = "2D";
+                }
+            }
+            if (cp.getPeliculas().get(i).isFormato3D()) {
+                if (cp.getPeliculas().get(i).isFormato2D()) {
+                    formato = "2D, 3D";
+                } else {
+                    formato = "3D";
+                }
+            }
+            TablaListaPeliculas.addRow(new Object[]{
+                cp.getPeliculas().get(i).getTitulo(), cp.getPeliculas().get(i).getAnio(), cp.getPeliculas().get(i).getDirector(),
+                cp.getPeliculas().get(i).getGenero(), cp.getPeliculas().get(i).getDuracion(), sub, formato, estado
+            });
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscarPelicula;
     private javax.swing.JButton jButtonBuscarPelicula1;
-    private javax.swing.JButton jButtonRegresar;
+    private javax.swing.JButton jButtonRegresar1;
+    private javax.swing.JButton jButtonVerDetalles;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;

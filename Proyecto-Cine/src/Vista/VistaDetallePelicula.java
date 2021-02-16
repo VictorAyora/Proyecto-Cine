@@ -5,27 +5,42 @@
  */
 package Vista;
 
+import Controlador.ControladorPelicula;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.File;
+import java.io.FileInputStream;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
 /**
  *
- * @author Victor Ayora, Geovanny Poma, Veronica Placencia, Azucena Toledo
+ * @author Victor Ayora, Veronica Placencia, Geovanny Poma, Azucena Toledo
  */
 public class VistaDetallePelicula extends javax.swing.JFrame {
 
     /**
      * Creates new form VistaDetallePelicula
      */
+    int id_externo;
     FondoPanel fondo = new FondoPanel();
+    ControladorPelicula cp = new ControladorPelicula();
+    byte[] imagen;
+    File archivo;
+    FileInputStream entrada;
+    JFileChooser seleccionar = new JFileChooser();
+    String direccion = "";
 
-    public VistaDetallePelicula() {
+    public VistaDetallePelicula(int id_ex) {
         this.setContentPane(fondo);
         this.setExtendedState(6);
         initComponents();
         this.setResizable(false);//no redimenciona la ventana
+//        cp.setPelicula(cp.traerPelicula(id_ex));
+        id_externo = id_ex;
+        cargarDatos();
+
     }
 
     /**
@@ -37,6 +52,7 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelPortada = new javax.swing.JLabel();
         jPanelPortada = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabelNombrePelicula = new javax.swing.JLabel();
@@ -66,6 +82,7 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jLabelPortada, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 340, 210));
 
         jPanelPortada.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -80,7 +97,7 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
             .addGap(0, 210, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelPortada, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 340, 210));
+        getContentPane().add(jPanelPortada, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 340, 210));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Idioma:");
@@ -191,39 +208,57 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonRegresarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaDetallePelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaDetallePelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaDetallePelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaDetallePelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void cargarDatos() {
+        cp.setPelicula(cp.traerPelicula(id_externo));
+        if (!cp.getPelicula().getPortada().isEmpty()) {
+            imagen = AbrirArchivo(new File(cp.getPelicula().getPortada()));
+            jLabelPortada.setIcon(new ImageIcon(imagen));
+        } 
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaDetallePelicula().setVisible(true);
+        String sub;
+
+        if (cp.getPelicula().getSubtitulos() == true) {
+            sub = "SI";
+        } else {
+            sub = "NO";
+        }
+        String formato = "";
+        if (cp.getPelicula().isFormato2D()) {
+            if (cp.getPelicula().isFormato3D()) {
+                formato = "2D, 3D";
+            } else {
+                formato = "2D";
             }
-        });
+        }
+        if (cp.getPelicula().isFormato3D()) {
+            if (cp.getPelicula().isFormato2D()) {
+                formato = "2D, 3D";
+            } else {
+                formato = "3D";
+            }
+        }
+        jLabelNombrePelicula.setText(cp.getPelicula().getTitulo());
+        jLabelAnioPelicula.setText(Integer.toString(cp.getPelicula().getAnio()));
+        jLabelGeneroPelicula.setText(cp.getPelicula().getGenero());
+        jLabelFormatoPelicula.setText(formato);
+        jLabelProveedorPelicula.setText(cp.getPelicula().getProveedor());
+        jLabelIdiomaPelicula.setText(cp.getPelicula().getIdioma());
+        jLabelSubtitulosPelicula.setText(sub);
+        jLabelDuracionPelicula.setText(Integer.toString(cp.getPelicula().getDuracion()));
+        jTextPaneActores.setText(cp.getPelicula().getActores());
+        jTextPaneSinopsis.setText(cp.getPelicula().getSinopsis());
+        jLabelDirectorPelicula.setText(cp.getPelicula().getDirector());
+
+    }
+
+    public byte[] AbrirArchivo(File archivo) {
+        byte[] imagen = new byte[1024 * 100];
+        try {
+            entrada = new FileInputStream(archivo);
+            entrada.read(imagen);
+        } catch (Exception e) {
+        }
+        return imagen;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -246,6 +281,7 @@ public class VistaDetallePelicula extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelGeneroPelicula;
     private javax.swing.JLabel jLabelIdiomaPelicula;
     private javax.swing.JLabel jLabelNombrePelicula;
+    private javax.swing.JLabel jLabelPortada;
     private javax.swing.JLabel jLabelProveedorPelicula;
     private javax.swing.JLabel jLabelSubtitulosPelicula;
     private javax.swing.JPanel jPanelPortada;
