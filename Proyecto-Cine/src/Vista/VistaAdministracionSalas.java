@@ -8,11 +8,13 @@ package Vista;
 import Controlador.ControladorSala;
 import Modelo.Funcion;
 import Modelo.Sala;
+import Controlador.placeHolder;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,12 +27,22 @@ public class VistaAdministracionSalas extends javax.swing.JFrame {
      */
     ControladorSala cs = new ControladorSala();
     FondoPanel fondo = new FondoPanel();
+    public static int numSala;
+    DefaultTableModel TablaSalas; //modelo de la tabla
 
     public VistaAdministracionSalas() {
         this.setContentPane(fondo);
         this.setExtendedState(6);
         initComponents();
         this.setResizable(false);//no redimenciona la ventana
+        placeHolder place1 = new placeHolder("Ejm: 40", jTextFieldCapacidadSala);
+
+        //llamar con el controlador la lista de salas
+        cs.setSalas(cs.cargarSalas());
+        numSala = cs.getSalas().size() + 1;
+        jLabelNumSala.setText(String.valueOf(numSala));
+        cargarTabla();
+
     }
 
     /**
@@ -63,7 +75,7 @@ public class VistaAdministracionSalas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Número de Sala", "Estado", "Capacidad"
+                "Número de Sala", "Capacidad", "Dsiponibilidad"
             }
         ));
         jScrollPane1.setViewportView(jTableAdministracionSalas);
@@ -98,10 +110,20 @@ public class VistaAdministracionSalas extends javax.swing.JFrame {
 
         jButtonCambiarEstadoSala.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCambiarEstadoSala.setText("Cambiar Estado");
+        jButtonCambiarEstadoSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCambiarEstadoSalaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonCambiarEstadoSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 310, -1, -1));
 
         jButtonModificarDatosSala.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonModificarDatosSala.setText("ModificarDatos");
+        jButtonModificarDatosSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarDatosSalaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonModificarDatosSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 360, 130, -1));
 
         jButtonRegresar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -136,12 +158,68 @@ public class VistaAdministracionSalas extends javax.swing.JFrame {
 
     private void jButtonRegistrarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarSalaActionPerformed
         // TODO add your handling code here:
-        Sala s = new Sala();
-        s.setNumeroSala(1);
-        s.setCapacidad(Integer.parseInt(jTextFieldCapacidadSala.getText()));
-        
-        cs.registrarSala(s);
+        cs.getSala();
+        cs.getSala().setNumeroSala(numSala);
+        cs.getSala().setCapacidad(Integer.parseInt(jTextFieldCapacidadSala.getText()));
+        cs.getSala().setDisponibilidad(true);
+        cs.registrarSala(cs.getSala());
+        numSala++;
+        int var = TablaSalas.getRowCount();
+        for (int i = 0; i < var; i++) {
+            TablaSalas.removeRow(0);
+        }
+        cs.setSalas(cs.cargarSalas());
+        cargarTabla();
     }//GEN-LAST:event_jButtonRegistrarSalaActionPerformed
+
+    private void jButtonCambiarEstadoSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCambiarEstadoSalaActionPerformed
+        // TODO add your handling code here:
+
+        int FilaTable = jTableAdministracionSalas.getSelectedRow();
+        if (FilaTable >= 0) {
+
+            cs.setSala(cs.traeSala((int) TablaSalas.getValueAt(FilaTable, 0)));
+
+            if (cs.getSala().getDisponibilidad()) {
+                cs.getSala().setDisponibilidad(false);
+            } else {
+                cs.getSala().setDisponibilidad(true);
+            }
+            cs.actualizarSala(cs.getSala());
+            int var = TablaSalas.getRowCount();
+            for (int i = 0; i < var; i++) {
+                TablaSalas.removeRow(0);
+            }
+            cs.setSalas(cs.cargarSalas());
+            cargarTabla();
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila");
+        }
+
+    }//GEN-LAST:event_jButtonCambiarEstadoSalaActionPerformed
+
+    private void jButtonModificarDatosSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarDatosSalaActionPerformed
+        int FilaTable = jTableAdministracionSalas.getSelectedRow();
+        if (FilaTable >= 0) {
+            try {
+                cs.setSala(cs.traeSala((int) TablaSalas.getValueAt(FilaTable, 0)));
+
+                int capacidad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la nueva capacidad"));
+                cs.getSala().setCapacidad(capacidad);
+                cs.actualizarSala(cs.getSala());
+                int var = TablaSalas.getRowCount();
+                for (int i = 0; i < var; i++) {
+                    TablaSalas.removeRow(0);
+                }
+                cs.setSalas(cs.cargarSalas());
+                cargarTabla();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "No se guardaron cambios");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila");
+        }
+    }//GEN-LAST:event_jButtonModificarDatosSalaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,6 +280,22 @@ public class VistaAdministracionSalas extends javax.swing.JFrame {
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
             super.paint(g);
+        }
+    }
+
+    private void cargarTabla() {
+        cs.setSalas(cs.cargarSalas());
+        TablaSalas = (DefaultTableModel) jTableAdministracionSalas.getModel();
+        for (int i = 0; i < cs.getSalas().size(); i++) {                                    //Bucle que recorre la consulta obtenida
+            String disponibilidad;
+            if (cs.getSalas().get(i).getDisponibilidad() == true) {
+                disponibilidad = "Disponible";
+            } else {
+                disponibilidad = "No Disponible";
+            }
+            TablaSalas.addRow(new Object[]{
+                cs.getSalas().get(i).getNumeroSala(), cs.getSalas().get(i).getCapacidad(), disponibilidad
+            });
         }
     }
 }

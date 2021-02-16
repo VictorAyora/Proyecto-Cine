@@ -35,8 +35,8 @@ public class VistaCuenta extends javax.swing.JFrame {
     File archivo;
     FileInputStream entrada;
     JFileChooser seleccionar = new JFileChooser();
-    String direccion = "";
-
+    String direccion="";
+    
     public VistaCuenta(int id_ex, int id_usr) {
         this.setContentPane(fondo);
         this.setResizable(false);//no redimenciona la ventana
@@ -46,7 +46,9 @@ public class VistaCuenta extends javax.swing.JFrame {
         id_usuario = id_usr;
         cargarDatos();
         placeHolder place1 = new placeHolder("Ejm: ¿Que desea buscar?", jTextFieldBuscar);
-
+        
+        
+        
     }
 
     /**
@@ -59,7 +61,6 @@ public class VistaCuenta extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabelFoto = new javax.swing.JLabel();
         jButtonGuardarCambios = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -81,6 +82,7 @@ public class VistaCuenta extends javax.swing.JFrame {
         jTextFieldApellido = new javax.swing.JTextField();
         jTextFieldNombre = new javax.swing.JTextField();
         jTextFieldCedula = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -91,18 +93,14 @@ public class VistaCuenta extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+            .addGap(0, 210, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(0, 180, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 240, 180));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 210, 180));
 
         jButtonGuardarCambios.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonGuardarCambios.setText("Guardar Cambios");
@@ -225,6 +223,9 @@ public class VistaCuenta extends javax.swing.JFrame {
         });
         getContentPane().add(jTextFieldCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 360, 131, -1));
 
+        jLabel6.setText("jLabel6");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -255,23 +256,21 @@ public class VistaCuenta extends javax.swing.JFrame {
 
     private void jButtonEditarImagen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarImagen1ActionPerformed
         if (seleccionar.showDialog(null, null) == JFileChooser.APPROVE_OPTION) {
-            archivo = seleccionar.getSelectedFile();
-            if (archivo.canRead()) {
-                if (archivo.getName().endsWith("jpg") || archivo.getName().endsWith("png")) {
-                    direccion = (archivo.getAbsolutePath());
-                    imagen = AbrirArchivo(archivo);
-                    Image i = new ImageIcon(imagen).getImage();
-                    ImageIcon img = new ImageIcon(i.getScaledInstance(jLabelFoto.getWidth(), jLabelFoto.getHeight(), Image.SCALE_SMOOTH));
-                    jLabelFoto.setIcon(img);
-                    cc.getCuenta().getUsu().setFoto(direccion);
-                    cc.actualizarCuenta(cc.getCuenta());
-                } else {
-                    JOptionPane.showMessageDialog(null, "Archivo no compatible.");
-                }
-            }
-        }
+           archivo = seleccionar.getSelectedFile();
+           if (archivo.canRead()) {
+               if (archivo.getName().endsWith("jpg") || archivo.getName().endsWith("png")) {
+                   direccion=(archivo.getAbsolutePath());
+                   imagen = AbrirArchivo(archivo);
+                   jLabel6.setIcon(new ImageIcon(imagen));
+               } else {
+                   JOptionPane.showMessageDialog(null, "Archivo no compatible.");
 
-
+               }
+           }
+       }
+        cc.getCuenta().getUsu().setFoto(direccion);
+        cc.actualizarCuenta(cc.getCuenta());
+        
     }//GEN-LAST:event_jButtonEditarImagen1ActionPerformed
 
     private void jButtonEditarImagen2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarImagen2ActionPerformed
@@ -318,13 +317,12 @@ public class VistaCuenta extends javax.swing.JFrame {
     private void cargarDatos() {
         cc.setCuenta(cc.traerCuenta(id_usuario));
         System.out.println(cc.getCuenta().getUsu().getFoto());
-        if (!cc.getCuenta().getUsu().getFoto().isEmpty()) {
+        if(!cc.getCuenta().getUsu().getFoto().isEmpty()){
             imagen = AbrirArchivo(new File(cc.getCuenta().getUsu().getFoto()));
-            Image i = new ImageIcon(imagen).getImage();
-            ImageIcon img = new ImageIcon(i.getScaledInstance(jLabelFoto.getWidth(), jLabelFoto.getHeight(), Image.SCALE_SMOOTH));
-            jLabelFoto.setIcon(img);
+            jLabel6.setIcon(new ImageIcon(imagen));
         }
-
+        
+        
         switch (id_externo) {
             case -1:
                 jTextFieldNombre.setVisible(false);
@@ -387,11 +385,11 @@ public class VistaCuenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelApellido;
     private javax.swing.JLabel jLabelCedula;
     private javax.swing.JLabel jLabelCorreo;
-    private javax.swing.JLabel jLabelFoto;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JLabel jLabelTelefono;
     private javax.swing.JPanel jPanel1;
