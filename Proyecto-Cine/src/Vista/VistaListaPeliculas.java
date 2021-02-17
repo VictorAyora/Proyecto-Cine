@@ -153,11 +153,14 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVerDetallesActionPerformed
 
     private void jButtonBuscarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarPeliculaActionPerformed
-        // TODO add your handling code here:
+        buscar(jTextFieldBuscarPelicula.getText());
     }//GEN-LAST:event_jButtonBuscarPeliculaActionPerformed
 
     private void jButtonRegresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresar1ActionPerformed
-        // TODO add your handling code here:
+        VistaAdministracionPeliculas vap = new VistaAdministracionPeliculas();
+        vap.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_jButtonRegresar1ActionPerformed
 
     /**
@@ -231,6 +234,52 @@ public class VistaListaPeliculas extends javax.swing.JFrame {
                 cp.getPeliculas().get(i).getGenero(), cp.getPeliculas().get(i).getDuracion(), sub, formato, estado
             });
         }
+    }
+
+    private void buscar(String peli) {
+        cp.setPelicula(cp.traePeliculaTitulo(peli));
+        try {
+            if (cp.getPelicula().getId_pelicula() != 0) {
+                int var = TablaListaPeliculas.getRowCount();
+                for (int i = 0; i < var; i++) {
+                    TablaListaPeliculas.removeRow(0);
+                }
+                String estado;
+                String sub;
+                if (cp.getPelicula().getEstado_pelicula() == true) {
+                    estado = "Disponible";
+                } else {
+                    estado = "No Disponible";
+                }
+                if (cp.getPelicula().getSubtitulos() == true) {
+                    sub = "SI";
+                } else {
+                    sub = "NO";
+                }
+                String formato = "";
+                if (cp.getPelicula().isFormato2D()) {
+                    if (cp.getPelicula().isFormato3D()) {
+                        formato = "2D, 3D";
+                    } else {
+                        formato = "2D";
+                    }
+                }
+                if (cp.getPelicula().isFormato3D()) {
+                    if (cp.getPelicula().isFormato2D()) {
+                        formato = "2D, 3D";
+                    } else {
+                        formato = "3D";
+                    }
+                }
+                TablaListaPeliculas.addRow(new Object[]{
+                    cp.getPelicula().getTitulo(), cp.getPelicula().getAnio(), cp.getPelicula().getDirector(),
+                    cp.getPelicula().getGenero(), cp.getPelicula().getDuracion(), sub, formato, estado});
+            } else {
+                JOptionPane.showMessageDialog(null, "La película no existe.");
+            }
+        } catch (Exception e) {
+        }
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
