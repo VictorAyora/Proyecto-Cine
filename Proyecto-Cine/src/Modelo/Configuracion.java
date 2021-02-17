@@ -27,9 +27,6 @@ public class Configuracion implements Serializable {
     private double precio3D;
     private double descuentoNinio;
     private double descuentoAdultoMayor;
-    private Date Horario1;
-    private Date Horario2;
-    private Date Horario3;
     
     
     public int getId_configuracion() {
@@ -72,29 +69,5 @@ public class Configuracion implements Serializable {
         this.descuentoAdultoMayor = descuentoAdultoMayor;
     }
 
-
-    public Date getHorario1() {
-        return Horario1;
-    }
-
-    public void setHorario1(Date Horario1) {
-        this.Horario1 = Horario1;
-    }
-
-    public Date getHorario2() {
-        return Horario2;
-    }
-
-    public void setHorario2(Date Horario2) {
-        this.Horario2 = Horario2;
-    }
-
-    public Date getHorario3() {
-        return Horario3;
-    }
-
-    public void setHorario3(Date Horario3) {
-        this.Horario3 = Horario3;
-    }
     
 }

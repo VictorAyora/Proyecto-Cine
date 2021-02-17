@@ -5,10 +5,17 @@
  */
 package Vista;
 
+import Controlador.ControladorConfiguracion;
+import Controlador.ControladorHorario;
+import Controlador.ControladorSnack;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,8 +23,10 @@ import javax.swing.JPanel;
  */
 public class Configuracion extends javax.swing.JFrame {
 
-    
+    ControladorConfiguracion cc = new ControladorConfiguracion();
     FondoPanel fondo = new FondoPanel();
+    ControladorSnack cs = new ControladorSnack();
+    ControladorHorario ch = new ControladorHorario();
     /**
      * Creates new form Configuracion
      */
@@ -26,8 +35,32 @@ public class Configuracion extends javax.swing.JFrame {
         this.setResizable(false);//no redimenciona la ventana
         this.setExtendedState(6);
         initComponents();
+        cs.setSnacks(cs.cargarSnack());
+        jComboBoxTipoSnack.removeAllItems();
+        for (int i = 0; i < cs.getSnacks().size(); i++) {
+            if (!(cs.getSnacks().get(i).getEstado_snack()== null)) {
+                if (cs.getSnacks().get(i).getEstado_snack() == true) {
+                int cont;
+                if (jComboBoxTipoSnack.getItemCount() == 0) {
+                    jComboBoxTipoSnack.addItem(cs.getSnacks().get(i).getTipo_snack());
+                } else {
+                    cont=0;
+                    for (int j = 0; j < jComboBoxTipoSnack.getItemCount(); j++) {
+                        if (jComboBoxTipoSnack.getItemAt(j).equals(cs.getSnacks().get(i).getTipo_snack())) {
+                            cont++;
+                        }
+                        
+                    }
+                    if(cont==0){
+                        jComboBoxTipoSnack.addItem(cs.getSnacks().get(i).getTipo_snack());
+                    }
+                }
+            }
+            }        
+        }
+                
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,39 +72,23 @@ public class Configuracion extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jTextFieldDescuentoNinio = new javax.swing.JTextField();
+        jTextFieldDescuentoAdultoMayor = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jComboBox7 = new javax.swing.JComboBox<>();
-        jComboBox8 = new javax.swing.JComboBox<>();
-        jComboBox9 = new javax.swing.JComboBox<>();
-        jComboBox11 = new javax.swing.JComboBox<>();
-        jComboBox13 = new javax.swing.JComboBox<>();
-        jComboBox14 = new javax.swing.JComboBox<>();
-        jComboBox15 = new javax.swing.JComboBox<>();
+        jTextFieldPrecio2D = new javax.swing.JTextField();
+        jTextFieldPrecio3D = new javax.swing.JTextField();
+        jComboBoxHora3 = new javax.swing.JComboBox<>();
+        jComboBoxMinutos1 = new javax.swing.JComboBox<>();
+        jComboBoxHora1 = new javax.swing.JComboBox<>();
+        jComboBoxMinutos2 = new javax.swing.JComboBox<>();
         jComboBox17 = new javax.swing.JComboBox<>();
-        jComboBox19 = new javax.swing.JComboBox<>();
-        jComboBox21 = new javax.swing.JComboBox<>();
+        jComboBoxMinutos3 = new javax.swing.JComboBox<>();
         jComboBox23 = new javax.swing.JComboBox<>();
-        jComboBox24 = new javax.swing.JComboBox<>();
-        jComboBox25 = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -79,10 +96,13 @@ public class Configuracion extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        jTextFieldTipoSnack = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jComboBox6 = new javax.swing.JComboBox<>();
+        jComboBoxTipoSnack = new javax.swing.JComboBox<>();
+        jComboBoxHora4 = new javax.swing.JComboBox<>();
+        jComboBoxHora2 = new javax.swing.JComboBox<>();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -96,11 +116,6 @@ public class Configuracion extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("PRECIOS PELICULAS");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("FECHA Y HORA DEL SISTEMA");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 250, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -116,16 +131,11 @@ public class Configuracion extends javax.swing.JFrame {
         jLabel6.setText("NIÑO:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("ADULTO:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, -1, -1));
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("ADULTO MAYOR:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 150, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 150, -1));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 150, -1));
+        getContentPane().add(jTextFieldDescuentoNinio, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 150, -1));
+        getContentPane().add(jTextFieldDescuentoAdultoMayor, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 150, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("2D:");
@@ -135,91 +145,39 @@ public class Configuracion extends javax.swing.JFrame {
         jLabel11.setText("3D:");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 330, -1, -1));
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, 80, -1));
+        jTextFieldPrecio2D.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextFieldPrecio2D, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, 80, -1));
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 80, -1));
+        jTextFieldPrecio3D.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextFieldPrecio3D, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 80, -1));
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel12.setText("FECHA:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 280, -1, 30));
+        jComboBoxHora3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxHora3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        getContentPane().add(jComboBoxHora3, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 570, 60, -1));
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel13.setText("HORA:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 320, -1, 20));
+        jComboBoxMinutos1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxMinutos1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60" }));
+        getContentPane().add(jComboBoxMinutos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 490, 60, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", " " }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 280, -1, -1));
+        jComboBoxHora1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxHora1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        getContentPane().add(jComboBoxHora1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 490, 60, -1));
 
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 280, -1, -1));
-
-        jComboBox3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021", "2022", "2023", "2024", " " }));
-        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 280, -1, -1));
-
-        jComboBox4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", " " }));
-        getContentPane().add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 320, -1, -1));
-
-        jComboBox5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60" }));
-        getContentPane().add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 320, 50, -1));
-
-        jComboBox7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60" }));
-        getContentPane().add(jComboBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 320, -1, -1));
-
-        jComboBox8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", " " }));
-        getContentPane().add(jComboBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 490, 60, -1));
-
-        jComboBox9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60" }));
-        getContentPane().add(jComboBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 490, 60, -1));
-
-        jComboBox11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60" }));
-        getContentPane().add(jComboBox11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 490, 60, -1));
-
-        jComboBox13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", " " }));
-        getContentPane().add(jComboBox13, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 490, 60, -1));
-
-        jComboBox14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", " " }));
-        getContentPane().add(jComboBox14, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 530, 60, -1));
-
-        jComboBox15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox15.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60" }));
-        getContentPane().add(jComboBox15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 530, 60, -1));
+        jComboBoxMinutos2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxMinutos2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60" }));
+        getContentPane().add(jComboBoxMinutos2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 530, 60, -1));
 
         jComboBox17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox17.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60" }));
         getContentPane().add(jComboBox17, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 530, 60, -1));
 
-        jComboBox19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox19.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", " " }));
-        getContentPane().add(jComboBox19, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 530, 60, -1));
-
-        jComboBox21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox21.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60" }));
-        getContentPane().add(jComboBox21, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 570, 60, -1));
+        jComboBoxMinutos3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxMinutos3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60" }));
+        getContentPane().add(jComboBoxMinutos3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 570, 60, -1));
 
         jComboBox23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox23.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60" }));
         getContentPane().add(jComboBox23, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 570, 60, -1));
-
-        jComboBox24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox24.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", " " }));
-        getContentPane().add(jComboBox24, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 570, 60, -1));
-
-        jComboBox25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox25.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", " " }));
-        getContentPane().add(jComboBox25, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 570, 60, -1));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Hora 3:");
@@ -249,23 +207,104 @@ public class Configuracion extends javax.swing.JFrame {
         jLabel20.setText("Tipo:");
         getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 510, -1, -1));
 
-        jTextField6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 510, 90, -1));
+        jTextFieldTipoSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextFieldTipoSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 510, 90, -1));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Crear");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 560, 90, -1));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("Dar de Baja");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 560, -1, -1));
 
-        jComboBox6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Palomitas", "Nachos", "Gaseosa", " " }));
-        getContentPane().add(jComboBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 510, 110, -1));
+        jComboBoxTipoSnack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jComboBoxTipoSnack, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 510, 110, -1));
+
+        jComboBoxHora4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxHora4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        getContentPane().add(jComboBoxHora4, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 490, 60, -1));
+
+        jComboBoxHora2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxHora2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        getContentPane().add(jComboBoxHora2, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 530, 60, -1));
+
+        jButton3.setText("Guardar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 670, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        cs.getSnack();
+        cs.getSnack().setTipo_snack(jTextFieldTipoSnack.getText());
+        cs.getSnack().setEstado_snack(false);
+        cs.registrarSnack(cs.getSnack());
+        jComboBoxTipoSnack.removeAllItems();
+        for (int i = 0; i < cs.getSnacks().size(); i++) {
+            int cont;
+            if (jComboBoxTipoSnack.getItemCount() == 0) {
+                jComboBoxTipoSnack.addItem(cs.getSnacks().get(i).getTipo_snack());
+            } else {
+                cont = 0;
+                for (int j = 0; j < jComboBoxTipoSnack.getItemCount(); j++) {
+                    if (jComboBoxTipoSnack.getItemAt(j).equals(cs.getSnacks().get(i).getTipo_snack())) {
+                        cont++;
+                    }
+
+                }
+                if (cont == 0) {
+                    jComboBoxTipoSnack.addItem(cs.getSnacks().get(i).getTipo_snack());
+                }
+            }
+
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        cs.setSnack(cs.traeSnack((String)jComboBoxTipoSnack.getSelectedItem()));
+        cs.getSnack().setEstado_snack(false);
+        cs.actualizarSnack(cs.getSnack());
+        jComboBoxTipoSnack.removeAllItems();
+        for (int i = 0; i < cs.getSnacks().size(); i++) {
+            int cont;
+            if (jComboBoxTipoSnack.getItemCount() == 0) {
+                jComboBoxTipoSnack.addItem(cs.getSnacks().get(i).getTipo_snack());
+            } else {
+                cont = 0;
+                for (int j = 0; j < jComboBoxTipoSnack.getItemCount(); j++) {
+                    if (jComboBoxTipoSnack.getItemAt(j).equals(cs.getSnacks().get(i).getTipo_snack())) {
+                        cont++;
+                    }
+
+                }
+                if (cont == 0) {
+                    jComboBoxTipoSnack.addItem(cs.getSnacks().get(i).getTipo_snack());
+                }
+            }
+
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,45 +340,39 @@ public class Configuracion extends javax.swing.JFrame {
             }
         });
     }
+
     class FondoPanel extends JPanel {
 
         private Image imagen;
 
         @Override
         public void paint(Graphics g) {
-            imagen = new ImageIcon(getClass().getResource("/Imagenes/Config.jpg")).getImage();
+            imagen = new ImageIcon(getClass().getResource("/Imagenes/Config.png")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
             super.paint(g);
         }
     }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox11;
-    private javax.swing.JComboBox<String> jComboBox13;
-    private javax.swing.JComboBox<String> jComboBox14;
-    private javax.swing.JComboBox<String> jComboBox15;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox17;
-    private javax.swing.JComboBox<String> jComboBox19;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox21;
     private javax.swing.JComboBox<String> jComboBox23;
-    private javax.swing.JComboBox<String> jComboBox24;
-    private javax.swing.JComboBox<String> jComboBox25;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JComboBox<String> jComboBox8;
-    private javax.swing.JComboBox<String> jComboBox9;
+    private javax.swing.JComboBox<String> jComboBoxHora1;
+    private javax.swing.JComboBox<String> jComboBoxHora2;
+    private javax.swing.JComboBox<String> jComboBoxHora3;
+    private javax.swing.JComboBox<String> jComboBoxHora4;
+    private javax.swing.JComboBox<String> jComboBoxMinutos1;
+    private javax.swing.JComboBox<String> jComboBoxMinutos2;
+    private javax.swing.JComboBox<String> jComboBoxMinutos3;
+    private javax.swing.JComboBox<String> jComboBoxTipoSnack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -348,17 +381,14 @@ public class Configuracion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextFieldDescuentoAdultoMayor;
+    private javax.swing.JTextField jTextFieldDescuentoNinio;
+    private javax.swing.JTextField jTextFieldPrecio2D;
+    private javax.swing.JTextField jTextFieldPrecio3D;
+    private javax.swing.JTextField jTextFieldTipoSnack;
     // End of variables declaration//GEN-END:variables
 }

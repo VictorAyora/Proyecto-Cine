@@ -5,28 +5,58 @@
  */
 package Vista;
 
+import Controlador.ControladorDetalleVentaSnack;
+import Controlador.placeHolder;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.Date;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
- * @author SAMAEL
+ * @author Victor Ayora, Veronica Placencia, Geovanny Poma, Azucena Toledo
  */
 public class Pago extends javax.swing.JFrame {
+
     FondoPanel fondo = new FondoPanel();
-    /**
-     * Creates new form Pago
-     */
+    ControladorDetalleVentaSnack cds = new ControladorDetalleVentaSnack();
+
     public static int identificador;
-    
+
+    /**
+     * Método constructor de la ventana Pago
+     *
+     */
     public Pago(int identificador) {
         this.setContentPane(fondo);
         this.setResizable(false);//no redimenciona la ventana
         this.setExtendedState(6);
         initComponents();
-        this.identificador=identificador;
+        placeHolder place1 = new placeHolder("Ejm: Carolina", jTextFieldNombre);
+        placeHolder place2 = new placeHolder("Ejm: Paredes", jTextFieldApellido);
+        placeHolder place3 = new placeHolder("Ejm: nombreapellido@gmail.com", jTextFieldCorreo);
+        placeHolder place4 = new placeHolder("Ejm: 21704302", jTextFieldTelefono);
+        placeHolder place5 = new placeHolder("Ejm: 1104758920", jTextFieldCedula);
+        placeHolder place6 = new placeHolder("Ejm: Daniel Alvarez", jTextFieldDireccion);
+        placeHolder place7 = new placeHolder("Ejm:9632165315", jTextFieldNumTarjeta);
+        placeHolder place8 = new placeHolder("Ejm: 25/11/2021", jTextFieldFechaVencimiento);
+        placeHolder place9 = new placeHolder("Ejm: ", jTextFieldCVV);
+        place1.setForeground(Color.gray);
+        place2.setForeground(Color.gray);
+        place3.setForeground(Color.gray);
+        place4.setForeground(Color.gray);
+        place5.setForeground(Color.gray);
+        place6.setForeground(Color.gray);
+        place7.setForeground(Color.gray);
+        place8.setForeground(Color.gray);
+        place9.setForeground(Color.gray);
+        this.identificador = identificador;
+        jTextFieldNumTarjeta.setEnabled(false);
+        jTextFieldFechaVencimiento.setEnabled(false);
+        jTextFieldCVV.setEnabled(false);
     }
 
     /**
@@ -44,21 +74,21 @@ public class Pago extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        jTextFieldNombre = new javax.swing.JTextField();
+        jTextFieldTelefono = new javax.swing.JTextField();
+        jTextFieldCorreo = new javax.swing.JTextField();
+        jTextFieldApellido = new javax.swing.JTextField();
+        jTextFieldCedula = new javax.swing.JTextField();
+        jTextFieldDireccion = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
+        jTextFieldNumTarjeta = new javax.swing.JTextField();
+        jTextFieldFechaVencimiento = new javax.swing.JTextField();
+        jTextFieldCVV = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -91,33 +121,33 @@ public class Pago extends javax.swing.JFrame {
         jLabel6.setText("DIRECCIÓN:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 330, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 410, 30));
+        jTextFieldNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextFieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 410, 30));
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldTelefono.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTextFieldTelefonoActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 410, 30));
+        getContentPane().add(jTextFieldTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 410, 30));
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldCorreo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                jTextFieldCorreoActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 410, 30));
+        getContentPane().add(jTextFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 410, 30));
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jTextFieldApellidoActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 200, 410, 30));
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 260, 410, 30));
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 320, 410, 50));
+        getContentPane().add(jTextFieldApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 200, 410, 30));
+        getContentPane().add(jTextFieldCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 260, 410, 30));
+        getContentPane().add(jTextFieldDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 320, 410, 50));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("TIPO:");
@@ -125,6 +155,11 @@ public class Pago extends javax.swing.JFrame {
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Tarjeta de Credito", "Terjeta de Debito" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, 170, -1));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
@@ -145,14 +180,14 @@ public class Pago extends javax.swing.JFrame {
         jLabel11.setText("CVV:");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 500, -1, -1));
 
-        jTextField7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 500, 350, -1));
+        jTextFieldNumTarjeta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextFieldNumTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 500, 350, -1));
 
-        jTextField8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 540, 350, -1));
+        jTextFieldFechaVencimiento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextFieldFechaVencimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 540, 350, -1));
 
-        jTextField9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 500, 320, -1));
+        jTextFieldCVV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextFieldCVV, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 500, 320, -1));
 
         jTextField10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
@@ -168,6 +203,11 @@ public class Pago extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("PAGAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 630, 160, -1));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -182,25 +222,25 @@ public class Pago extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTextFieldTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefonoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jTextFieldTelefonoActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jTextFieldCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCorreoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_jTextFieldCorreoActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jTextFieldApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldApellidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jTextFieldApellidoActionPerformed
 
     private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField10ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        if (identificador==1) {
+        //Regresa a la ventana de la que vino
+        if (identificador == 1) {
             VistaVentaTicket vvt = new VistaVentaTicket();
             vvt.setVisible(true);
             this.dispose();
@@ -211,14 +251,95 @@ public class Pago extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        if (!(((String) jComboBox1.getSelectedItem()).equals("Efectivo"))) {
+            jTextFieldNumTarjeta.setEnabled(true);
+            jTextFieldFechaVencimiento.setEnabled(true);
+            jTextFieldCVV.setEnabled(true);
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //si todos los datos estan llenos se presenta un recibo en pantalla
+        if (((String) jComboBox1.getSelectedItem()).equals("Efectivo")) {
+            if (!((jTextFieldNombre.getText().equals("")) && (jTextFieldApellido.getText().equals(""))
+                    && (jTextFieldTelefono.getText().equals("")) && (jTextFieldCedula.getText().equals(""))
+                    && (jTextFieldCorreo.getText().equals("")) && (jTextFieldDireccion.getText().equals("")))) {
+
+                presentarRecibo(identificador);
+            }
+        } else {
+            if (!((jTextFieldNombre.getText().equals("")) && (jTextFieldApellido.getText().equals(""))
+                    && (jTextFieldTelefono.getText().equals("")) && (jTextFieldCedula.getText().equals(""))
+                    && (jTextFieldCorreo.getText().equals("")) && (jTextFieldDireccion.getText().equals(""))
+                    && (jTextFieldNumTarjeta.getText().equals("")) && (jTextFieldFechaVencimiento.getText().equals(""))
+                    && (jTextFieldCVV.getText().equals("")))) {
+                presentarRecibo(identificador);
+            }
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+    /**
+     * Este método sirve para presentar el recibo en un JOptionPane
+
+     *
+     * @param identificador que es de tipo int
+     * @return void
+     */
+    public void presentarRecibo(int identificador) {
+        if (identificador == 1) {
+            VistaVentaTicket vvt = new VistaVentaTicket();
+            vvt.setVisible(true);
+            this.dispose();
+        } else {
+            VistaVentaSnack vvs = new VistaVentaSnack();
+            vvs.cvs.registrarVentaSnack(vvs.cvs.getVs());
+            cds.getDvs();
+            cds.getDvs().setIva_snack(0.12);
+            cds.getDvs().setFechaVenta_snack(new Date());
+            cds.getDvs().setPrecioTotal_snack(vvs.precio);
+            cds.getDvs().setSubTotal_snack(vvs.precio - (vvs.precio * 0.12));
+            cds.getDvs().setVentaSnack(vvs.cvs.getVs());
+            InicioSesion is = new InicioSesion();
+            cds.getDvs().setUsuario(is.cc.getCuenta().getUsu());
+            cds.registrarDetalleVentaSnack(cds.getDvs());
+            //recibo
+            String recibo = "";
+            recibo += "----RECIBO DE VENTA------\n"
+                    + "Cliente: " + jTextFieldNombre.getText() + "\n"
+                    + "Apellido: " + jTextFieldApellido.getText() + "\n"
+                    + "Telefono: " + jTextFieldTelefono.getText() + "\n"
+                    + "Cedula: " + jTextFieldCedula.getText() + "\n"
+                    + "Direccion: " + jTextFieldDireccion.getText() + "\n"
+                    + "Correo: " + jTextFieldCorreo.getText() + "\n";
+            recibo += "Snack       Tamaño     Cantidad     P.Unitario     P.Total\n";
+            for (int i = 0; i < vvs.cvs.getVs().getSnacks().size(); i++) {
+                recibo += vvs.cvs.getVs().getSnacks().get(i).getTipo_snack() + "    ";
+                recibo += vvs.cvs.getVs().getSnacks().get(i).getTamanio() + "         ";
+                recibo += String.valueOf(vvs.cantidades.get(i)) + "           ";
+                recibo += String.valueOf(vvs.cvs.getVs().getSnacks().get(i).getPrecio_snack()) + "         ";
+                recibo += String.valueOf(vvs.cantidades.get(i) * vvs.cvs.getVs().getSnacks().get(i).getPrecio_snack() + "\n");
+            }
+            recibo += "Subtotal: " + cds.getDvs().getSubTotal_snack() + "\n";
+            recibo += "Total: " + cds.getDvs().getPrecioTotal_snack() + "\n";
+            JOptionPane.showMessageDialog(null, recibo);
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
-    
     class FondoPanel extends JPanel {
 
         private Image imagen;
 
+        /**
+         * Este método sirve para agregar imagen
+         *
+         * @param g que es de tipo Graphics
+         * @return void
+         */
         @Override
         public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/Imagenes/PAGO.png")).getImage();
@@ -243,15 +364,15 @@ public class Pago extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jTextFieldApellido;
+    private javax.swing.JTextField jTextFieldCVV;
+    private javax.swing.JTextField jTextFieldCedula;
+    private javax.swing.JTextField jTextFieldCorreo;
+    private javax.swing.JTextField jTextFieldDireccion;
+    private javax.swing.JTextField jTextFieldFechaVencimiento;
+    private javax.swing.JTextField jTextFieldNombre;
+    private javax.swing.JTextField jTextFieldNumTarjeta;
+    private javax.swing.JTextField jTextFieldTelefono;
     // End of variables declaration//GEN-END:variables
 }

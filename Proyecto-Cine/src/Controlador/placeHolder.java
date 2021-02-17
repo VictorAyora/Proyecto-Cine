@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controlador;
 
 import java.awt.*;
@@ -12,150 +11,138 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.event.*;
 import javax.swing.text.*;
+
 /**
+ * Clase para el placeHolder para ayudas del sistema
  *
- * @author Veronica Estefania
+ * @author Victor Ayora, Geovanny Poma, Veronica Placencia, Azucena Toledo
  */
-//clase externa para hacer más amigable el sistema con el usuario (place Holder)
-
 public class placeHolder extends JLabel
-        implements FocusListener, DocumentListener
-{
-	public enum Show {
-		ALWAYS,
-		FOCUS_GAINED,
-		FOCUS_LOST;
-	}
+        implements FocusListener, DocumentListener {
 
-	private JTextComponent component;
-	private Document document;
+    /**
+     * Este método sirve para enumerar
+     *
+     * @return void
+     */
+    public enum Show {
+        ALWAYS,
+        FOCUS_GAINED,
+        FOCUS_LOST;
+    }
 
-	private Show show;
-	private boolean showPromptOnce;
-	private int focusLost;
+    private JTextComponent component;
+    private Document document;
 
-	public placeHolder(String text, JTextComponent component)
-	{
-		this(text, component, Show.ALWAYS);
-	}
+    private Show show;
+    private boolean showPromptOnce;
+    private int focusLost;
 
-	public placeHolder(String text, JTextComponent component, Show show)
-	{
-		this.component = component;
-		setShow( show );
-		document = component.getDocument();
+    public placeHolder(String text, JTextComponent component) {
+        this(text, component, Show.ALWAYS);
+    }
 
-		setText( text );
-		setFont( component.getFont() );
-		setForeground( component.getForeground() );
-		setBorder( new EmptyBorder(component.getInsets()) );
-		setHorizontalAlignment(JLabel.LEADING);
+    public placeHolder(String text, JTextComponent component, Show show) {
+        this.component = component;
+        setShow(show);
+        document = component.getDocument();
 
-		component.addFocusListener( this );
-		document.addDocumentListener( this );
+        setText(text);
+        setFont(component.getFont());
+        setForeground(component.getForeground());
+        setBorder(new EmptyBorder(component.getInsets()));
+        setHorizontalAlignment(JLabel.LEADING);
 
-		component.setLayout( new BorderLayout() );
-		component.add( this );
-		checkForPrompt();
-	}
+        component.addFocusListener(this);
+        document.addDocumentListener(this);
 
-	
-	public void changeAlpha(float alpha)
-	{
-		changeAlpha( (int)(alpha * 255) );
-	}
+        component.setLayout(new BorderLayout());
+        component.add(this);
+        checkForPrompt();
+    }
 
-	public void changeAlpha(int alpha)
-	{
-		alpha = alpha > 255 ? 255 : alpha < 0 ? 0 : alpha;
+    public void changeAlpha(float alpha) {
+        changeAlpha((int) (alpha * 255));
+    }
 
-		Color foreground = getForeground();
-		int red = foreground.getRed();
-		int green = foreground.getGreen();
-		int blue = foreground.getBlue();
+    public void changeAlpha(int alpha) {
+        alpha = alpha > 255 ? 255 : alpha < 0 ? 0 : alpha;
 
-		Color withAlpha = new Color(red, green, blue, alpha);
-		super.setForeground( withAlpha );
-	}
+        Color foreground = getForeground();
+        int red = foreground.getRed();
+        int green = foreground.getGreen();
+        int blue = foreground.getBlue();
 
-	public void changeStyle(int style)
-	{
-		setFont( getFont().deriveFont( style ) );
-	}
+        Color withAlpha = new Color(red, green, blue, alpha);
+        super.setForeground(withAlpha);
+    }
 
-	public Show getShow()
-	{
-		return show;
-	}
+    public void changeStyle(int style) {
+        setFont(getFont().deriveFont(style));
+    }
 
-	public void setShow(Show show)
-	{
-		this.show = show;
-	}
-	
-	public boolean getShowPromptOnce()
-	{
-		return showPromptOnce;
-	}
+    public Show getShow() {
+        return show;
+    }
 
-	public void setShowPromptOnce(boolean showPromptOnce)
-	{
-		this.showPromptOnce = showPromptOnce;
-	}
+    public void setShow(Show show) {
+        this.show = show;
+    }
 
-	private void checkForPrompt()
-	{
+    public boolean getShowPromptOnce() {
+        return showPromptOnce;
+    }
 
-		if (document.getLength() > 0)
-		{
-			setVisible( false );
-			return;
-		}
+    public void setShowPromptOnce(boolean showPromptOnce) {
+        this.showPromptOnce = showPromptOnce;
+    }
 
-		if (showPromptOnce && focusLost > 0)
-		{
-			setVisible(false);
-			return;
-		}
+    private void checkForPrompt() {
 
-        if (component.hasFocus())
-        {
-        	if (show == Show.ALWAYS
-        	||  show ==	Show.FOCUS_GAINED)
-        		setVisible( true );
-        	else
-        		setVisible( false );
+        if (document.getLength() > 0) {
+            setVisible(false);
+            return;
         }
-        else
-        {
-        	if (show == Show.ALWAYS
-        	||  show ==	Show.FOCUS_LOST)
-        		setVisible( true );
-        	else
-        		setVisible( false );
+
+        if (showPromptOnce && focusLost > 0) {
+            setVisible(false);
+            return;
         }
-	}
 
-	public void focusGained(FocusEvent e)
-	{
-		checkForPrompt();
-	}
+        if (component.hasFocus()) {
+            if (show == Show.ALWAYS
+                    || show == Show.FOCUS_GAINED) {
+                setVisible(true);
+            } else {
+                setVisible(false);
+            }
+        } else {
+            if (show == Show.ALWAYS
+                    || show == Show.FOCUS_LOST) {
+                setVisible(true);
+            } else {
+                setVisible(false);
+            }
+        }
+    }
 
-	public void focusLost(FocusEvent e)
-	{
-		focusLost++;
-		checkForPrompt();
-	}
+    public void focusGained(FocusEvent e) {
+        checkForPrompt();
+    }
 
-	public void insertUpdate(DocumentEvent e)
-	{
-		checkForPrompt();
-	}
+    public void focusLost(FocusEvent e) {
+        focusLost++;
+        checkForPrompt();
+    }
 
-	public void removeUpdate(DocumentEvent e)
-	{
-		checkForPrompt();
-	}
+    public void insertUpdate(DocumentEvent e) {
+        checkForPrompt();
+    }
 
-	public void changedUpdate(DocumentEvent e) {}
+    public void removeUpdate(DocumentEvent e) {
+        checkForPrompt();
+    }
+
+    public void changedUpdate(DocumentEvent e) {
+    }
 }

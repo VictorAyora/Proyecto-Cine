@@ -5,7 +5,9 @@
  */
 package Vista;
 
+import Controlador.placeHolder;
 import Controlador.*;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -15,7 +17,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Victor Ayora, Geovanny Poma, Veronica Placencia, Azucena Toledo
+ * @author Victor Ayora, Veronica Placencia, Geovanny Poma, Azucena Toledo
  */
 public class InicioSesion extends javax.swing.JFrame {
 
@@ -29,9 +31,11 @@ public class InicioSesion extends javax.swing.JFrame {
         this.setContentPane(fondo);
         this.setResizable(false);//no redimenciona la ventana
         this.setExtendedState(6);
-        //placeHolder place1 = new placeHolder("Ejm: 1104795232", jTextFieldUsuario);
-        //placeHolder place2 = new placeHolder("Escriba aqui su clave", jPasswordFieldClave);
         initComponents();
+        placeHolder place1 = new placeHolder("Ejm: 1104795232", jTextFieldUsuario);
+        placeHolder place2 = new placeHolder("Escriba aqui su clave", jPasswordFieldClave);
+        place1.setForeground(Color.gray);
+        place2.setForeground(Color.gray);
     }
 
 
@@ -56,13 +60,13 @@ public class InicioSesion extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextFieldUsuario.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jTextFieldUsuario.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jTextFieldUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldUsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 390, 370, 50));
+        getContentPane().add(jTextFieldUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 400, 430, 50));
 
         jButtonIngresar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButtonIngresar.setText("INGRESAR");
@@ -85,7 +89,7 @@ public class InicioSesion extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Stencil", 0, 36)); // NOI18N
         jLabel3.setText("INICIO DE SESION");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 290, 310, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 290, 310, 30));
 
         jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 36)); // NOI18N
         jLabel6.setText("Usuario:");
@@ -95,8 +99,8 @@ public class InicioSesion extends javax.swing.JFrame {
         jLabel7.setText("Clave:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 470, 100, 30));
 
-        jPasswordFieldClave.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        getContentPane().add(jPasswordFieldClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 500, 370, 50));
+        jPasswordFieldClave.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        getContentPane().add(jPasswordFieldClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 510, 430, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

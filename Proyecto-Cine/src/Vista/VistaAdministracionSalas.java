@@ -6,9 +6,8 @@
 package Vista;
 
 import Controlador.ControladorSala;
-import Modelo.Funcion;
-import Modelo.Sala;
 import Controlador.placeHolder;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -18,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Victor Ayora, Geovanny Poma, Veronica Placencia, Azucena Toledo
+ * @author Victor Ayora, Veronica Placencia, Geovanny Poma, Azucena Toledo
  */
 public class VistaAdministracionSalas extends javax.swing.JFrame {
 
@@ -36,6 +35,7 @@ public class VistaAdministracionSalas extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);//no redimenciona la ventana
         placeHolder place1 = new placeHolder("Ejm: 40", jTextFieldCapacidadSala);
+        place1.setForeground(Color.gray);
 
         //llamar con el controlador la lista de salas
         cs.setSalas(cs.cargarSalas());

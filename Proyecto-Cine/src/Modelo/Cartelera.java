@@ -19,16 +19,18 @@ import javax.persistence.OneToMany;
 public class Cartelera implements Serializable {
 
     //atributos
-    private int id_cartelera;
-    public String external_id_cartelera;
-    public String dias;
-    private List<Pelicula> pelicula = new ArrayList<Pelicula>();
-    private List<Horario> horario = new ArrayList<Horario>();
-    private List<Funcion> funcion = new ArrayList<Funcion>();
-
-    //getters y setters
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id_cartelera;
+    private String dias;
+    
+    @OneToMany
+    private List<Pelicula> pelicula;
+    @OneToMany
+    private List<Horario> horario;
+    @OneToMany
+    private List<Funcion> funcion;
+
     public int getId_cartelera() {
         return id_cartelera;
     }
@@ -37,16 +39,6 @@ public class Cartelera implements Serializable {
         this.id_cartelera = id_cartelera;
     }
 
-    @Column(length = 30)
-    public String getExternal_id_cartelera() {
-        return external_id_cartelera;
-    }
-
-    public void setExternal_id_cartelera(String external_id_cartelera) {
-        this.external_id_cartelera = external_id_cartelera;
-    }
-
-    @Column(length = 30)
     public String getDias() {
         return dias;
     }
@@ -55,8 +47,11 @@ public class Cartelera implements Serializable {
         this.dias = dias;
     }
 
-    @OneToMany(mappedBy = "carte", cascade = CascadeType.ALL)
+    
     public List<Pelicula> getPelicula() {
+        if(pelicula == null){
+            pelicula = new ArrayList();
+        }
         return pelicula;
     }
 
@@ -64,8 +59,10 @@ public class Cartelera implements Serializable {
         this.pelicula = pelicula;
     }
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     public List<Horario> getHorario() {
+        if(horario==null){
+            horario = new ArrayList();
+        }
         return horario;
     }
 
@@ -73,12 +70,15 @@ public class Cartelera implements Serializable {
         this.horario = horario;
     }
 
-    @OneToMany(mappedBy = "cartel", cascade = CascadeType.ALL)
     public List<Funcion> getFuncion() {
+        if(funcion==null){
+            funcion=new ArrayList();
+        }
         return funcion;
     }
 
     public void setFuncion(List<Funcion> funcion) {
         this.funcion = funcion;
     }
+
 }

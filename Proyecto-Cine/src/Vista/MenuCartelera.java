@@ -5,17 +5,32 @@
  */
 package Vista;
 
+import Controlador.ControladorCartelera;
+import Controlador.ControladorFuncion;
+import Controlador.ControladorHorario;
+import Controlador.ControladorPelicula;
+import Controlador.ControladorSala;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author COMPUCELL
+ * @author Victor Ayora, Veronica Placencia, Geovanny Poma, Azucena Toledo
  */
 public class MenuCartelera extends javax.swing.JFrame {
+
+    DefaultTableModel TablaCartelera; //Codigo que crea el modelo de la tabla
     FondoPanel fondo = new FondoPanel();
+    ControladorCartelera cc = new ControladorCartelera();
+    ControladorPelicula cp = new ControladorPelicula();
+    ControladorSala cs = new ControladorSala();
+    ControladorHorario ch = new ControladorHorario();
+    ControladorFuncion cf = new ControladorFuncion();
+
     /**
      * Creates new form NewJFrame
      */
@@ -24,6 +39,39 @@ public class MenuCartelera extends javax.swing.JFrame {
         this.setExtendedState(6);
         this.setResizable(false);//no redimenciona la ventana
         initComponents();
+        cs.setSalas(cs.cargarSalas());
+        for (int i = 0; i < cs.getSalas().size(); i++) {
+            if (cs.getSalas().get(i).getDisponibilidad() == true) {
+                jComboBoxSalas.addItem(String.valueOf(cs.getSalas().get(i).getNumeroSala()));
+            }
+
+        }
+        cp.setPeliculas(cp.cargarPeliculas());
+        for (int i = 0; i < cp.getPeliculas().size(); i++) {
+            if (cp.getPeliculas().get(i).getEstado_pelicula() == true) {
+                jComboBoxPeliculas.addItem(cp.getPeliculas().get(i).getTitulo());
+            }
+        }
+        ch.setHorarios(ch.cargarHorario());
+        String c = "";
+        if (ch.getHorarios().get(0).getHora().getMinutes() < 10) {
+            c = "0";
+        }
+        jRadioButton1.setText(String.valueOf(ch.getHorarios().get(0).getHora().getHours())
+                + ":" + c + String.valueOf(ch.getHorarios().get(0).getHora().getMinutes()));
+        c = "";
+        if (ch.getHorarios().get(1).getHora().getMinutes() < 10) {
+            c = "0";
+        }
+        jRadioButton2.setText(String.valueOf(ch.getHorarios().get(1).getHora().getHours())
+                + ":" + c + String.valueOf(ch.getHorarios().get(1).getHora().getMinutes()));
+        c = "";
+        if (ch.getHorarios().get(2).getHora().getMinutes() < 10) {
+            c = "0";
+        }
+        jRadioButton3.setText(String.valueOf(ch.getHorarios().get(2).getHora().getHours())
+                + ":" + c + String.valueOf(ch.getHorarios().get(2).getHora().getMinutes()));
+        cargarTabla();          
     }
 
     /**
@@ -41,26 +89,25 @@ public class MenuCartelera extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        jTableCartelera = new javax.swing.JTable();
+        jComboBoxDias = new javax.swing.JComboBox<>();
+        jComboBoxSalas = new javax.swing.JComboBox<>();
+        jComboBoxPeliculas = new javax.swing.JComboBox<>();
         jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 44)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 44)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("ADMINISTRACIÓN DE PELÍCULAS");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, -1, -1));
+        jLabel2.setText("ADMINISTRACIÓN DE CARTELERA");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("SALA:");
@@ -79,17 +126,13 @@ public class MenuCartelera extends javax.swing.JFrame {
         jLabel6.setText("DIA:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Modificar Datos");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 480, 140, -1));
-
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("Registrar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 260, 90, 30));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -110,7 +153,7 @@ public class MenuCartelera extends javax.swing.JFrame {
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 410, 140, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCartelera.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -118,40 +161,35 @@ public class MenuCartelera extends javax.swing.JFrame {
                 "Sala", "Pelicula", "Horario", "Dias"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jTableCartelera.setEnabled(false);
+        jScrollPane1.setViewportView(jTableCartelera);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, 870, 250));
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lunes - Viernes" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 240, -1));
+        jComboBoxDias.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxDias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lunes - Viernes", "Sabado - Domingo" }));
+        getContentPane().add(jComboBoxDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 240, -1));
 
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sala 1" }));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 240, -1));
+        jComboBoxSalas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jComboBoxSalas, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 240, -1));
 
-        jComboBox3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pelicula 1" }));
-        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 240, -1));
-
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton1.setText("20:30");
-        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, -1, -1));
+        jComboBoxPeliculas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jComboBoxPeliculas, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 240, -1));
 
         jRadioButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton3.setText("14:30");
-        getContentPane().add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, -1, -1));
+        jRadioButton3.setText("Hora 3");
+        getContentPane().add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, -1, -1));
+
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton1.setText("Hora 1");
+        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, -1, -1));
 
         jRadioButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton2.setText("17:00");
+        jRadioButton2.setText("Hora 2");
         getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         MenuAdministrador ma = new MenuAdministrador();
@@ -163,41 +201,175 @@ public class MenuCartelera extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (jRadioButton1.isSelected()) {
+            cc.getCartelera(); 
+            if (cc.getCartelera().getFuncion().isEmpty()) {
+                cc.getCartelera().getFuncion();
+                cc.getCartelera().getHorario();
+                cc.getCartelera().getPelicula();
+                cs.setSala(cs.traeSala(Integer.parseInt((String) jComboBoxSalas.getSelectedItem())));
+                cf.getFuncion();
+                cf.getFuncion().setEstado_funcion(true);
+                cf.getFuncion().setSala(cs.getSala());
+                cf.registrarFuncion(cf.getFuncion());
+
+                cc.getCartelera().getFuncion().add(cf.getFuncion());
+                ch.setHorario(ch.traerHorario(3));
+                cc.getCartelera().getHorario().add(ch.getHorario());
+                cp.setPelicula(cp.traePelicula((String) jComboBoxPeliculas.getSelectedItem()));
+                cc.getCartelera().getPelicula().add(cp.getPelicula());
+                if (((String) jComboBoxDias.getSelectedItem()).equals("Lunes - Viernes")) {
+                    cc.getCartelera().setDias("Lunes - Viernes");
+                } else {
+                    cc.getCartelera().setDias("Sabado - Domingo");
+                }
+                cc.registrarCartelera(cc.getCartelera());
+            } else {
+                int cont = 0;
+                for (int i = 0; i < cc.getCartelera().getFuncion().size(); i++) {
+                    if ((cc.getCartelera().getFuncion().get(i).getSala().getNumeroSala() == (Integer.parseInt((String) jComboBoxSalas.getSelectedItem())))
+                            && (cc.getCartelera().getDias().equals((String) jComboBoxPeliculas.getSelectedItem()))) {
+                        cont++;
+                    }
+                }
+                if (cont == 0) {
+                    cs.setSala(cs.traeSala(Integer.parseInt((String) jComboBoxSalas.getSelectedItem())));
+                    cf.getFuncion();
+                    cf.getFuncion().setEstado_funcion(true);
+                    cf.getFuncion().setSala(cs.getSala());
+                    cf.registrarFuncion(cf.getFuncion());
+
+                    cc.getCartelera().getFuncion().add(cf.getFuncion());
+                    ch.setHorario(ch.traerHorario(3));
+                    cc.getCartelera().getHorario().add(ch.getHorario());
+                    cp.setPelicula(cp.traePelicula((String) jComboBoxPeliculas.getSelectedItem()));
+                    cc.getCartelera().getPelicula().add(cp.getPelicula());
+                    if (((String) jComboBoxDias.getSelectedItem()).equals("Lunes - Viernes")) {
+                        cc.getCartelera().setDias("Lunes - Viernes");
+                    } else {
+                        cc.getCartelera().setDias("Sabado - Domingo");
+                    }
+                    cc.actualizarCartelera(cc.getCartelera());
+                } else {
+                    JOptionPane.showMessageDialog(null, "No permitido");
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuCartelera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuCartelera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuCartelera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuCartelera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
+        if (jRadioButton2.isSelected()) {
+            cc.getCartelera(); 
+            if (cc.getCartelera().getFuncion().isEmpty()) {
+                cc.getCartelera().getFuncion();
+                cc.getCartelera().getHorario();
+                cc.getCartelera().getPelicula();
+                cs.setSala(cs.traeSala(Integer.parseInt((String) jComboBoxSalas.getSelectedItem())));
+                cf.getFuncion();
+                cf.getFuncion().setEstado_funcion(true);
+                cf.getFuncion().setSala(cs.getSala());
+                cf.registrarFuncion(cf.getFuncion());
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuCartelera().setVisible(true);
+                cc.getCartelera().getFuncion().add(cf.getFuncion());
+                ch.setHorario(ch.traerHorario(1));
+                cc.getCartelera().getHorario().add(ch.getHorario());
+                cp.setPelicula(cp.traePelicula((String) jComboBoxPeliculas.getSelectedItem()));
+                cc.getCartelera().getPelicula().add(cp.getPelicula());
+                if (((String) jComboBoxDias.getSelectedItem()).equals("Lunes - Viernes")) {
+                    cc.getCartelera().setDias("Lunes - Viernes");
+                } else {
+                    cc.getCartelera().setDias("Sabado - Domingo");
+                }
+                cc.registrarCartelera(cc.getCartelera());
+            } else {
+                int cont = 0;
+                for (int i = 0; i < cc.getCartelera().getFuncion().size(); i++) {
+                    if ((cc.getCartelera().getFuncion().get(i).getSala().getNumeroSala() == (Integer.parseInt((String) jComboBoxSalas.getSelectedItem())))
+                            && (cc.getCartelera().getDias().equals((String) jComboBoxPeliculas.getSelectedItem()))) {
+                        cont++;
+                    }
+                }
+                if (cont == 0) {
+                    cs.setSala(cs.traeSala(Integer.parseInt((String) jComboBoxSalas.getSelectedItem())));
+                    cf.getFuncion();
+                    cf.getFuncion().setEstado_funcion(true);
+                    cf.getFuncion().setSala(cs.getSala());
+                    cf.registrarFuncion(cf.getFuncion());
+
+                    cc.getCartelera().getFuncion().add(cf.getFuncion());
+                    ch.setHorario(ch.traerHorario(2));
+                    cc.getCartelera().getHorario().add(ch.getHorario());
+                    cp.setPelicula(cp.traePelicula((String) jComboBoxPeliculas.getSelectedItem()));
+                    cc.getCartelera().getPelicula().add(cp.getPelicula());
+                    if (((String) jComboBoxDias.getSelectedItem()).equals("Lunes - Viernes")) {
+                        cc.getCartelera().setDias("Lunes - Viernes");
+                    } else {
+                        cc.getCartelera().setDias("Sabado - Domingo");
+                    }
+                    cc.actualizarCartelera(cc.getCartelera());
+                } else {
+                    JOptionPane.showMessageDialog(null, "No permitido");
+                }
             }
-        });
-    }
+        }
+        if (jRadioButton3.isSelected()) {
+            
+            cc.getCartelera(); 
+            if (cc.getCartelera().getFuncion().isEmpty()) {
+                cc.getCartelera().getFuncion();
+                cc.getCartelera().getHorario();
+                cc.getCartelera().getPelicula();
+                cs.setSala(cs.traeSala(Integer.parseInt((String) jComboBoxSalas.getSelectedItem())));
+                cf.getFuncion();
+                cf.getFuncion().setEstado_funcion(true);
+                cf.getFuncion().setSala(cs.getSala());
+                cf.registrarFuncion(cf.getFuncion());
+
+                cc.getCartelera().getFuncion().add(cf.getFuncion());
+                ch.setHorario(ch.traerHorario(3));
+                cc.getCartelera().getHorario().add(ch.getHorario());
+                cp.setPelicula(cp.traePelicula((String) jComboBoxPeliculas.getSelectedItem()));
+                cc.getCartelera().getPelicula().add(cp.getPelicula());
+                if (((String) jComboBoxDias.getSelectedItem()).equals("Lunes - Viernes")) {
+                    cc.getCartelera().setDias("Lunes - Viernes");
+                } else {
+                    cc.getCartelera().setDias("Sabado - Domingo");
+                }
+                cc.registrarCartelera(cc.getCartelera());
+            } else {
+                int cont = 0;
+                for (int i = 0; i < cc.getCartelera().getFuncion().size(); i++) {
+                    if ((cc.getCartelera().getFuncion().get(i).getSala().getNumeroSala() == (Integer.parseInt((String) jComboBoxSalas.getSelectedItem())))
+                            && (cc.getCartelera().getDias().equals((String) jComboBoxPeliculas.getSelectedItem()))) {
+                        cont++;
+                    }
+                }
+                if (cont == 0) {
+                    cs.setSala(cs.traeSala(Integer.parseInt((String) jComboBoxSalas.getSelectedItem())));
+                    cf.getFuncion();
+                    cf.getFuncion().setEstado_funcion(true);
+                    cf.getFuncion().setSala(cs.getSala());
+                    cf.registrarFuncion(cf.getFuncion());
+
+                    cc.getCartelera().getFuncion().add(cf.getFuncion());
+                    ch.setHorario(ch.traerHorario(3));
+                    cc.getCartelera().getHorario().add(ch.getHorario());
+                    cp.setPelicula(cp.traePelicula((String) jComboBoxPeliculas.getSelectedItem()));
+                    cc.getCartelera().getPelicula().add(cp.getPelicula());
+                    if (((String) jComboBoxDias.getSelectedItem()).equals("Lunes - Viernes")) {
+                        cc.getCartelera().setDias("Lunes - Viernes");
+                    } else {
+                        cc.getCartelera().setDias("Sabado - Domingo");
+                    }
+                    cc.actualizarCartelera(cc.getCartelera());
+                } else {
+                    JOptionPane.showMessageDialog(null, "No permitido");
+                }
+            }
+        } else if (!((jRadioButton1.isSelected()) || (jRadioButton2.isSelected()) || (jRadioButton3.isSelected()))) {
+            JOptionPane.showMessageDialog(null, "Seleccione una hora");
+        }
+
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     class FondoPanel extends JPanel {
 
@@ -211,14 +383,31 @@ public class MenuCartelera extends javax.swing.JFrame {
             super.paint(g);
         }
     }
+
+    private void cargarTabla() {
+        cc.setCarteleras(cc.cargarCarteleras());
+        TablaCartelera = (DefaultTableModel) jTableCartelera.getModel();
+        for (int i = 0; i < cc.getCarteleras().size(); i++) {
+            for (int j = 0; j < cc.getCarteleras().get(i).getFuncion().size(); j++) {                                    //Bucle que recorre la consulta obtenida
+                String horario = "";
+                horario = String.valueOf(cc.getCarteleras().get(i).getHorario().get(j).getHora().getHours());
+                horario += ": " + String.valueOf(cc.getCarteleras().get(i).getHorario().get(j).getHora().getMinutes());
+                TablaCartelera.addRow(new Object[]{
+                    cc.getCarteleras().get(i).getFuncion().get(j).getSala().getNumeroSala(),
+                    cc.getCarteleras().get(i).getPelicula().get(j).getTitulo(), horario,
+                    cc.getCarteleras().get(i).getDias()
+                });
+            }
+        }
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBoxDias;
+    private javax.swing.JComboBox<String> jComboBoxPeliculas;
+    private javax.swing.JComboBox<String> jComboBoxSalas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -229,6 +418,6 @@ public class MenuCartelera extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableCartelera;
     // End of variables declaration//GEN-END:variables
 }
