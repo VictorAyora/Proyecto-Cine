@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Veronica Estefania
+ * @author Victor Ayora, Veronica Placencia, Geovanny Poma, Azucena Toledo
  */
 public class ModificarClave extends javax.swing.JFrame {
 

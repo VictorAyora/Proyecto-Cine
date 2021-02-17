@@ -16,13 +16,10 @@ public class Sala implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_sala;
-    public String external_id_sala;
     private int numeroSala;
     private Boolean disponibilidad;
     private int capacidad;
     
-    private Funcion funcio;
-
     public int getId_sala() {
         return id_sala;
     }
@@ -30,23 +27,6 @@ public class Sala implements Serializable {
     public void setId_sala(int id_sala) {
         this.id_sala = id_sala;
     }
-
-    public String getExternal_id_sala() {
-        return external_id_sala;
-    }
-
-    public void setExternal_id_sala(String external_id_sala) {
-        this.external_id_sala = external_id_sala;
-    }
-
-    public Funcion getFuncio() {
-        return funcio;
-    }
-
-    public void setFuncio(Funcion funcio) {
-        this.funcio = funcio;
-    }
-
     
     public int getNumeroSala() {
         return numeroSala;
@@ -70,7 +50,6 @@ public class Sala implements Serializable {
 
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
-    }
-    
+    } 
     
 }

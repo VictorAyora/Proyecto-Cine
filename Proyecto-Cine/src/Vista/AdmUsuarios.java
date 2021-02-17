@@ -7,20 +7,21 @@ package Vista;
 
 import Controlador.*;
 import Controlador.placeHolder;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
- * @author Veronica Estefania
+ * @author Victor Ayora, Veronica Placencia, Geovanny Poma, Azucena Toledo
  */
 public class AdmUsuarios extends javax.swing.JFrame {
 
@@ -34,8 +35,8 @@ public class AdmUsuarios extends javax.swing.JFrame {
     File archivo;
     byte[] imagen;
     FileInputStream entrada;
-    String direccion="";
-    
+    String direccion = "";
+
     public AdmUsuarios() {
         this.setContentPane(fondo);
         this.setResizable(false);//no redimenciona la ventana
@@ -47,6 +48,12 @@ public class AdmUsuarios extends javax.swing.JFrame {
         placeHolder place4 = new placeHolder("Ejm: 0991704302", jTextFieldTelefono);
         placeHolder place5 = new placeHolder("Ejm: 1104758920", jTextFieldCedula);
         placeHolder place6 = new placeHolder("Escriba el numero de cedula  o apellidos de la cuenta a buscar", jTextFieldBuscar);
+        place1.setForeground(Color.gray);
+        place2.setForeground(Color.gray);
+        place3.setForeground(Color.gray);
+        place4.setForeground(Color.gray);
+        place5.setForeground(Color.gray);
+        place6.setForeground(Color.gray);
         cargarTabla();
 
     }
@@ -226,7 +233,7 @@ public class AdmUsuarios extends javax.swing.JFrame {
                 jButtonRegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 360, 110, -1));
+        getContentPane().add(jButtonRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 390, 110, -1));
 
         jButtonModificarDatos1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonModificarDatos1.setText("Modificar Datos");
@@ -241,32 +248,32 @@ public class AdmUsuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAgregarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarImagenActionPerformed
-         // Abrir archivo
-       if (seleccionar.showDialog(null, null) == JFileChooser.APPROVE_OPTION) {
-           archivo = seleccionar.getSelectedFile();
-           if (archivo.canRead()) {
-               if (archivo.getName().endsWith("jpg") || archivo.getName().endsWith("png")) {
-                   direccion=(archivo.getAbsolutePath());
-                   imagen = AbrirArchivo(archivo);
-                   Image i = new ImageIcon(imagen).getImage();
-                   ImageIcon img = new ImageIcon(i.getScaledInstance(jLabelImagen.getWidth(),jLabelImagen.getHeight() , Image.SCALE_SMOOTH));
-                   jLabelImagen.setIcon(img);
-               } else {
-                   JOptionPane.showMessageDialog(null, "Archivo no compatible.");
+        // Abrir archivo
+        if (seleccionar.showDialog(null, null) == JFileChooser.APPROVE_OPTION) {
+            archivo = seleccionar.getSelectedFile();
+            if (archivo.canRead()) {
+                if (archivo.getName().endsWith("jpg") || archivo.getName().endsWith("png")) {
+                    direccion = (archivo.getAbsolutePath());
+                    imagen = AbrirArchivo(archivo);
+                    Image i = new ImageIcon(imagen).getImage();
+                    ImageIcon img = new ImageIcon(i.getScaledInstance(jLabelImagen.getWidth(), jLabelImagen.getHeight(), Image.SCALE_SMOOTH));
+                    jLabelImagen.setIcon(img);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Archivo no compatible.");
 
-               }
-           }
-       }
+                }
+            }
+        }
     }//GEN-LAST:event_jButtonAgregarImagenActionPerformed
 
     private void jButtonCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCambiarEstadoActionPerformed
         int FilaTable = jTableAdmUsuarios.getSelectedRow();
         if (FilaTable >= 0) {
-            int id = (int) TablaAdmUsuarios.getValueAt(FilaTable, 0);
-            if (id == 1) {
+            String usu = (String) TablaAdmUsuarios.getValueAt(FilaTable, 0);
+            if (cc.traeCuenta(usu).getId_cuenta() == 1) {
                 JOptionPane.showMessageDialog(null, "No puede modificar estado del administrador");
             } else {
-                cc.setCuenta(cc.traerCuenta(id));
+                cc.setCuenta(cc.traeCuenta(usu));
                 if (cc.getCuenta().isEstado_cuenta()) {
                     cc.getCuenta().setEstado_cuenta(false);
                 } else {
@@ -293,8 +300,8 @@ public class AdmUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        cr.setRol(cr.traeRol((String)jComboBoxTipo.getSelectedItem()));
-        
+        cr.setRol(cr.traeRol((String) jComboBoxTipo.getSelectedItem()));
+
         //regitro usuario
         cu.getUsuario();
         cu.getUsuario().setNombre(jTextFieldNombre.getText());
@@ -302,7 +309,7 @@ public class AdmUsuarios extends javax.swing.JFrame {
         cu.getUsuario().setCorreo(jTextFieldCorreo.getText());
         cu.getUsuario().setCedula(jTextFieldCedula.getText());
         cu.getUsuario().setTelefono(jTextFieldTelefono.getText());
-        if(direccion.equals("")){
+        if (direccion.equals("")) {
             JOptionPane.showMessageDialog(null, "No se registro imagen");
         }
         cu.getUsuario().setFoto(direccion);
@@ -327,15 +334,15 @@ public class AdmUsuarios extends javax.swing.JFrame {
     private void jButtonModificarDatos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarDatos1ActionPerformed
         int FilaTable = jTableAdmUsuarios.getSelectedRow();
         if (FilaTable >= 0) {
-            cc.setCuenta(cc.traeCuenta((String)TablaAdmUsuarios.getValueAt(FilaTable, 0)));
+            cc.setCuenta(cc.traeCuenta((String) TablaAdmUsuarios.getValueAt(FilaTable, 0)));
             id_ex = cc.getCuenta().getId_cuenta();
             System.out.println("hla");
-            
+
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         }
         System.out.println("hla");
-            
+
         VistaCuenta c = new VistaCuenta(0, id_ex);
         c.setVisible(true);
         this.dispose();
@@ -381,25 +388,23 @@ public class AdmUsuarios extends javax.swing.JFrame {
     }
 
     public byte[] AbrirArchivo(File archivo) {
-       byte[] imagen = new byte[1024 * 100];
-       try {
-           entrada = new FileInputStream(archivo);
-           entrada.read(imagen);
-       } catch (Exception e) {
-       }
-       return imagen;
-   }
-    
-    
-    
+        byte[] imagen = new byte[1024 * 100];
+        try {
+            entrada = new FileInputStream(archivo);
+            entrada.read(imagen);
+        } catch (Exception e) {
+        }
+        return imagen;
+    }
+
     private void cargarTabla() {
         cc.setCuentas(cc.cargarCuentas());
         TablaAdmUsuarios = (DefaultTableModel) jTableAdmUsuarios.getModel();
         for (int i = 0; i < cc.getCuentas().size(); i++) {                                    //Bucle que recorre la consulta obtenida
             String estado;
-            if(cc.getCuentas().get(i).isEstado_cuenta()==true){
+            if (cc.getCuentas().get(i).isEstado_cuenta() == true) {
                 estado = "Disponible";
-            }else{
+            } else {
                 estado = "No Disponible";
             }
             TablaAdmUsuarios.addRow(new Object[]{

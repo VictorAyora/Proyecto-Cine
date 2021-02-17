@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import Controlador.placeHolder;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -12,7 +14,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Victor Ayora, Geovanny Poma, Veronica Placencia, Azucena Toledo
+ * @author Victor Ayora, Veronica Placencia, Geovanny Poma, Azucena Toledo
  */
 public class VistaMenuTaquillero extends javax.swing.JFrame {
 
@@ -40,12 +42,6 @@ public class VistaMenuTaquillero extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField3 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jPanelVenderTicket = new javax.swing.JPanel();
         jPanelVenderTicketi = new javax.swing.JPanel();
         jLabelImagenVenderTicket = new javax.swing.JLabel();
@@ -61,31 +57,6 @@ public class VistaMenuTaquillero extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTextField3.setEditable(false);
-        jTextField3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 20, 250, 70));
-
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 530, 70));
-
-        jTextField4.setEditable(false);
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 20, 130, 70));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usario circulo.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 10, 60, 80));
-
-        jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
-        jLabel2.setText("MI CUENTA ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 20, 120, 70));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupaNegra.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 30, -1, -1));
 
         jPanelVenderTicket.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelVenderTicket.setOpaque(false);
@@ -252,10 +223,6 @@ public class VistaMenuTaquillero extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
     private void jPanelVenderTicketMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelVenderTicketMouseExited
         jPanelVenderTicket.setVisible(false);
     }//GEN-LAST:event_jPanelVenderTicketMouseExited
@@ -275,7 +242,9 @@ public class VistaMenuTaquillero extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelVenderTicketiMouseEntered
 
     private void jPanelSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelSalirMouseClicked
-        System.exit(0);
+        InicioSesion is = new InicioSesion();
+        is.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jPanelSalirMouseClicked
 
     private void jPanelSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelSalirMouseEntered
@@ -344,9 +313,6 @@ public class VistaMenuTaquillero extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelImagenSalir;
     private javax.swing.JLabel jLabelImagenTicketsDisponibles;
     private javax.swing.JLabel jLabelImagenVenderTicket;
@@ -359,9 +325,6 @@ public class VistaMenuTaquillero extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelTicketDisponiblei;
     private javax.swing.JPanel jPanelVenderTicket;
     private javax.swing.JPanel jPanelVenderTicketi;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
     class FondoPanel extends JPanel {
 

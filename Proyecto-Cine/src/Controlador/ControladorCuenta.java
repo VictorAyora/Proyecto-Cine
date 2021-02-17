@@ -11,15 +11,22 @@ import org.hibernate.Session;
 import util.NewHibernateUtil;
 
 /**
+ * Clase para el Controlador de Cuenta
  *
- * @author Victor Ayora, Geovanny Poma, Veronica Placencia, Azucena Toledo
+ * @author Victor Ayora, Veronica Placencia, Geovanny Poma, Azucena Toledo
  */
 public class ControladorCuenta {
 
+    //Atributos
     private Session st;
     private Cuenta cuenta;
     private List<Cuenta> cuentas;
-    
+
+    /**
+     * Verificador de acceso
+     *
+     * @return pelicula
+     */
     public Cuenta getCuenta() {
         if (cuenta == null) {
             cuenta = new Cuenta();
@@ -27,30 +34,59 @@ public class ControladorCuenta {
         return cuenta;
     }
 
+    /**
+     * Verificador de acceso
+     *
+     * @return void
+     */
     public void setCuenta(Cuenta cuenta) {
         this.cuenta = cuenta;
     }
 
+    /**
+     * Este método sirve para listar las cuentas
+     *
+     * @return cuentas
+     */
     public List<Cuenta> getCuentas() {
-        if(cuentas == null){
+        if (cuentas == null) {
             cuentas = new ArrayList();
         }
         return cuentas;
     }
 
+    /**
+     * Este método sirve para setear el listado de cuentas
+     *
+     * @param cuentas
+     * @return void
+     */
     public void setCuentas(List<Cuenta> cuentas) {
         this.cuentas = cuentas;
     }
 
-    
+    /**
+     * Sirve para crear la sesion de Hibernate
+     */
     public ControladorCuenta() {
         sessionHibernate();
     }
 
+    /**
+     * Este método sirve para abrir la sesion de Hibernate
+     *
+     * @return void
+     */
     public void sessionHibernate() {
         st = NewHibernateUtil.getSessionFactory().openSession();
     }
 
+    /**
+     * Este método sirve para registrar una cuenta en la BD
+     *
+     * @param c que es la cuenta
+     * @return void
+     */
     public void registrarCuenta(Cuenta c) {
 
         try {
@@ -65,6 +101,11 @@ public class ControladorCuenta {
 
     }
 
+    /**
+     * Este método sirve para cargar el listado de cuentas de la BD
+     *
+     * @return lista de cuentas
+     */
     public List<Cuenta> cargarCuentas() {
 
         List<Cuenta> lista = new ArrayList();
@@ -76,6 +117,12 @@ public class ControladorCuenta {
         return lista;
     }
 
+    /**
+     * Este método sirve para traer una cuenta de la BD de acuerdo al usuario
+     *
+     * @param usuario
+     * @return cuenta
+     */
     public Cuenta traeCuenta(String usuario) {
         Cuenta cuenta = null;
 
@@ -85,11 +132,17 @@ public class ControladorCuenta {
             cuenta = (Cuenta) query.uniqueResult();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al traer Cliente" + e);
+            JOptionPane.showMessageDialog(null, "Error al traer Cuenta" + e);
         }
         return cuenta;
     }
 
+    /**
+     * Este método sirve para traer una cuenta de la BD por su id
+     *
+     * @param id de la cuenta
+     * @return c que es la cuenta
+     */
     public Cuenta traerCuenta(int id) {
 
         Cuenta c = null;
@@ -102,6 +155,12 @@ public class ControladorCuenta {
         return c;
     }
 
+    /**
+     * Este método sirve para actualizar una cuenta de la BD 
+     *
+     * @param c que es la cuenta
+     * @return void
+     */
     public void actualizarCuenta(Cuenta c) {
         try {
             st.beginTransaction();
@@ -112,14 +171,20 @@ public class ControladorCuenta {
             JOptionPane.showMessageDialog(null, "Error al actualizar cuenta");
         }
     }
-    
+
+    /**
+     * Este método sirve para encripat la clave 
+     *
+     * @param clave
+     * @return encriptado que es la clave encriptada
+     */
     public String getMD5(String clave) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] array = md.digest(clave.getBytes());
-            BigInteger numero = new BigInteger(1,array);
+            BigInteger numero = new BigInteger(1, array);
             String encriptado = numero.toString(16);
-            while(encriptado.length() < 32){
+            while (encriptado.length() < 32) {
                 encriptado = "0" + encriptado;
             }
             return encriptado;

@@ -1,4 +1,3 @@
-
 package Controlador;
 
 import Modelo.Rol;
@@ -9,32 +8,59 @@ import org.hibernate.Session;
 import util.NewHibernateUtil;
 
 /**
+ * Clase para el Controlador de Rol
  *
  * @author Victor Ayora, Geovanny Poma, Veronica Placencia, Azucena Toledo
  */
 public class ControladorRol {
+
+    //Atributos
     private Session st;
     private Rol rol;
 
+    /**
+     * Verificador de acceso
+     *
+     * @return rol
+     */
     public Rol getRol() {
-        if(rol == null){
+        if (rol == null) {
             rol = new Rol();
         }
         return rol;
     }
 
+    /**
+     * Verificador de acceso
+     *
+     * @return void
+     */
     public void setRol(Rol rol) {
         this.rol = rol;
     }
-    
+
+    /**
+     * Sirve para crear la sesion de Hibernate
+     */
     public ControladorRol() {
         sessionHibernate();
     }
 
+    /**
+     * Este método sirve para abrir la sesion de Hibernate
+     *
+     * @return void
+     */
     public void sessionHibernate() {
         st = NewHibernateUtil.getSessionFactory().openSession();
     }
 
+     /**
+     * Este método sirve para registrar un rol en la BD
+     *
+     * @param r que es el rol
+     * @return void
+     */
     public void registrarRol(Rol r) {
         try {
             st.beginTransaction();
@@ -47,6 +73,11 @@ public class ControladorRol {
         }
     }
 
+     /**
+     * Este método sirve para cargar el listado de roles de la BD
+     *
+     * @return lis
+     */
     public List<Rol> cargarRol(List<Rol> lis) {
         try {
             lis = (List<Rol>) st.createQuery("from Rol").list();
@@ -56,6 +87,12 @@ public class ControladorRol {
         return lis;
     }
 
+    /**
+     * Este método sirve para traer un rol de la BD por su id
+     *
+     * @param id del rol
+     * @return r que es el rol
+     */
     public Rol traerRol(int id) {
 
         Rol r = null;
@@ -68,6 +105,12 @@ public class ControladorRol {
         return r;
     }
 
+    /**
+     * Este método sirve para traer un rol de la BD por su tipo
+     *
+     * @param tipo del rol
+     * @return r que es el rol
+     */
     public Rol traeRol(String tipo) {
         Rol rol = null;
 
@@ -81,6 +124,12 @@ public class ControladorRol {
         }
         return rol;
     }
+ /**
+     * Este método sirve para actualizar un rol de la BD 
+     *
+     * @param r que es el rol
+     * @return void
+     */
     public void actualizarRol(Rol r) {
         try {
             st.beginTransaction();

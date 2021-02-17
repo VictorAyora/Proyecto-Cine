@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Veronica Estefania
+ * @author Victor Ayora, Veronica Placencia, Geovanny Poma, Azucena Toledo
  */
 public class VistaCuenta extends javax.swing.JFrame {
 

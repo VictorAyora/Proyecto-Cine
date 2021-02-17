@@ -5,7 +5,6 @@
  */
 package Vista;
 
-import Controlador.placeHolder;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -13,7 +12,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author COMPUCELL
+ * @author Victor Ayora, Veronica Placencia, Geovanny Poma, Azucena Toledo
  */
 public class MenuAdministrador extends javax.swing.JFrame {
     FondoPanel fondo = new FondoPanel();
@@ -24,7 +23,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.setContentPane(fondo);
         this.setExtendedState(6);
         this.setResizable(false);//no redimenciona la ventana
-        //placeHolder place1 = new placeHolder("Ejm: Carolina", jTextFieldBuscar);
         initComponents();
         jPanelUsuario.setVisible(false);
         jPanelCartelera.setVisible(false);
@@ -74,9 +72,8 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jTextFieldBuscar = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -330,19 +327,12 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usario circulo.png"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 20, 60, 80));
 
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupaNegra.png"))); // NOI18N
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, -1, 50));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel2.setText("MENÚ ADMINISTRADOR");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 34, -1, 70));
 
-        jTextFieldBuscar.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jTextFieldBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldBuscarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextFieldBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 530, 70));
-
-        jTextField2.setEditable(false);
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 30, 130, 70));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 680, 80));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -479,10 +469,6 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jPanelSalir.setVisible(true);
     }//GEN-LAST:event_jPanelSalirIMouseEntered
 
-    private void jTextFieldBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldBuscarActionPerformed
-
     private void jPanelCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCuentaMouseClicked
         InicioSesion is = new InicioSesion();
         int id_usr = is.cc.getCuenta().getId_cuenta();
@@ -554,7 +540,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelCartelera;
     private javax.swing.JLabel jLabelImagenCartelera;
@@ -568,6 +554,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelSalir;
     private javax.swing.JLabel jLabelSnacks;
     private javax.swing.JLabel jLabelUsuario;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelCartelera;
     private javax.swing.JPanel jPanelCarteleraI;
     private javax.swing.JPanel jPanelCuenta;
@@ -582,7 +569,5 @@ public class MenuAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelSnacksI;
     private javax.swing.JPanel jPanelUsuario;
     private javax.swing.JPanel jPanelUsuarioI;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextFieldBuscar;
     // End of variables declaration//GEN-END:variables
 }
